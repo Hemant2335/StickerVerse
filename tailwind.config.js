@@ -6,11 +6,17 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    extend:
+    {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+      boxShadow :{
+        '3xl' : ' 0px 5px 15px rgba(0, 0, 0, 0.35)'
+      },
+      mixBlendMode: {
+        'multiply': 'multiply', // Object of blend modes
+        'screen': 'screen',
       },
     },
   },
