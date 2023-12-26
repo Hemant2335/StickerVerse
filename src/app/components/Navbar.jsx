@@ -28,9 +28,9 @@ const Navbar = () => {
         {/* Action */}
       <div className="flex gap-5">
 
-        {/* Inventory */}
+        {/* Inventory */} 
         <div>
-          <button className="bg-[#1A1110] p-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"><FiPlusSquare /></button>
+          <button className="bg-[#1A1110] p-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>router.push("/Dashboard")}><FiPlusSquare /></button>
         </div>
         {/* Cart */}
         <div>
