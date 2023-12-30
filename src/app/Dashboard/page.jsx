@@ -19,6 +19,10 @@ const page = () => {
   const [Name, setName] = useState("");
   const [Type, setType] = useState("");
 
+  const handleAddtoProduct = async () => {
+    const res = await fetch("https://theprintbackend.vercel.app/products/add", {});
+  }
+
   return (
     <div>
       {isLoading && <Loading />}
