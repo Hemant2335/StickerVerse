@@ -60,6 +60,7 @@ const page = () => {
 
   const handleAddtoProduct = async () => {
     try {
+      setisLoading(true);
       const res = await fetch(
         "http://localhost:5000/dashboard/add",
         {
@@ -79,8 +80,9 @@ const page = () => {
           }),
         }
       );
+
       const data = await res.json();
-      console.log(data);
+      setisLoading(false);
       if (data?.Check) {
         alert("Product added successfully");
         console.log(data);
@@ -91,7 +93,8 @@ const page = () => {
         setCat("");
         setPrice("");
         setDesc("");
-        setGenere("");
+        setSubcat("");
+        setType("");
         setName("");
       } else {
         alert("Some error occured");
