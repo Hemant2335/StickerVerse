@@ -9,7 +9,7 @@ const Navbar = () => {
     const router = useRouter();
 
   return (
-    <div className="font-poppins flex justify-between items-center">
+    <div className="font-poppins flex justify-between items-center overflow-x-hidden">
       {/* Logo */}
       <div className="flex text-[4vh] font-bold">
         <h1>Sticker</h1>
