@@ -7,7 +7,7 @@ const ItemCard = ({data}) => {
   const router = useRouter();
 
   return (
-    <div className="mt-5 mb-10  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]" >
+    <div className="mt-5 mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]" >
       <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]">
       <Image layout="responsive" src={data?.imageURL} width={200} height={200} className="rounded-xl md:max-h-[28vh]"/>
         <div className=" flex  items-center justify-between px-2 shadow-3xl  rounded-md">
@@ -24,7 +24,7 @@ const ItemCard = ({data}) => {
               </h2>
             </div>
           </div>
-          <button className="bg-[#F9F6EE] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"onClick={()=>{router.push(`/productdetails/${data?.name}`)}}>
+          <button className="bg-[#f05700] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"onClick={()=>{router.push(`/productdetails/${data?.name}`)}}>
             Buy
           </button>
         </div>

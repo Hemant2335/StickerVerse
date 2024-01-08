@@ -6,11 +6,12 @@ import { ItemCard } from './components'
 const page = () => {
 
   const [Sticker, setSticker] = useState(null);
+  const [Poster, setPoster] = useState(null);
 
   const fetchdata = async() => 
   {
     try {
-      const res = await fetch("https://theprintbackend.vercel.app/products/Poster" , 
+      const res = await fetch("https://theprintbackend.vercel.app/products/Sticker" , 
       {
         method : "GET",
         headers: {
@@ -27,8 +28,29 @@ const page = () => {
     
   }
 
+  const fetchPoster = async() => 
+  {
+    try {
+      const res = await fetch("https://theprintbackend.vercel.app/products/Poster" , 
+      {
+        method : "GET",
+        headers: {
+          auth: localStorage.getItem("token"),
+        },
+      })
+      const data = await res.json();
+      console.log("Running")
+      console.log(data);
+      setPoster(data);
+    } catch (error) {
+        alert("Something went wrong");
+    }
+    
+  }
+
   useEffect(() => {
     fetchdata();
+    fetchPoster();
   }, [])
   
 
@@ -42,24 +64,24 @@ const page = () => {
 
       {/* Sticker */}
       <div className='mt-[5vh] w-full'>
-        <h2 className='font-bold text-[4vh] text-center md:text-[5vh]'>Stickers</h2>
+        <h2 className='font-bold  text-[4vh] md:text-left text-center md:text-[5vh]'>Stickers</h2>
         <div className='md:flex gap-9'>
           {Sticker?.slice(0,3).map((item)=>{
             return (<ItemCard data={item}/>)
           })}
+
         </div>
       </div>
-      {/* Latest */}
-      {/* <div className='mt-[5vh] '>
-        <h2 className='font-bold text-[5vh]'>Latest</h2>
-        <div className='grid grid-cols-5 p-4 '>
-          <ItemCard/>
-          <ItemCard/>
-          <ItemCard/>
-          <ItemCard/>
-          <ItemCard/>
+      {/* Poster */}
+      <div className='mt-[5vh] w-full'>
+      <h2 className='font-bold text-[4vh] md:text-left text-center md:text-[5vh]'>Poster</h2>
+        <div className='md:flex gap-9'>
+          {Poster?.slice(0,3).map((item)=>{
+            return (<ItemCard data={item}/>)
+          })}
+
         </div>
-      </div> */}
+      </div>
       {/* Best Seller */}
       {/* <div className='mt-[5vh] '>
         <h2 className='font-bold text-[5vh]'>Best Seller</h2>
