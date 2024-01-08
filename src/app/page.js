@@ -10,7 +10,7 @@ const page = () => {
   const fetchdata = async() => 
   {
     try {
-      const res = await fetch("http://localhost:5000/products/Poster");
+      const res = await fetch("https://theprintbackend.vercel.app/products/Poster");
       const data = res.json();
       console.log(data);
     } catch (error) {
