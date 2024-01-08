@@ -34,7 +34,7 @@ const page = () => {
       const formData = new FormData();
       formData.append("image", isselected);
       console.log(formData);
-      const response = await fetch(`http://localhost:5000/dashboard/upload`, {
+      const response = await fetch(`https://theprintbackend.vercel.app/dashboard/upload`, {
         method: "POST",
         headers: {
           auth: localStorage.getItem("token"),
@@ -62,7 +62,7 @@ const page = () => {
     try {
       setisLoading(true);
       const res = await fetch(
-        "http://localhost:5000/dashboard/add",
+        "https://theprintbackend.vercel.app/dashboard/add",
         {
           method: "POST",
           headers: {

@@ -1,7 +1,30 @@
-import React from 'react'
+"use client"
+
+import React  , {useEffect , useState}from 'react'
 import { ItemCard } from './components'
 
 const page = () => {
+
+  const [Sticker, setSticker] = useState(null);
+
+  const fetchdata = async() => 
+  {
+    try {
+      const res = await fetch("http://localhost:5000/products/Poster");
+      const data = res.json();
+      console.log(data);
+    } catch (error) {
+        alert("Something went wrong");
+    }
+    
+  }
+
+  useEffect(() => {
+    fetchdata();
+  }, [])
+  
+
+
   return (
     <div className='w-full p-4'>
 
@@ -11,7 +34,7 @@ const page = () => {
 
       {/* Popular */}
       <div className='mt-[5vh] '>
-        <h2 className='font-bold text-[5vh]'>Popular</h2>
+        <h2 className='font-bold text-[5vh]'>Sticker</h2>
         <div className='grid grid-cols-5 p-4 '>
           <ItemCard/>
           <ItemCard/>
