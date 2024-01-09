@@ -74,9 +74,9 @@ const Navbar = () => {
       )}
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex">
+      <div className="hidden md:flex items-center justify-center">
         <nav>
-          <ul className="flex gap-5 items-center">
+          <ul className="flex gap-5 items-center justify-center">
             <li
               className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
               onClick={() => router.push("/")}
@@ -89,37 +89,19 @@ const Navbar = () => {
             <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
               <FiGrid />
             </li>
+            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
+                <FiPlusSquare />
+              </li>
+              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
+                <FiShoppingCart />
+              </li>
+              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Auth/Login")}>
+                <FiUserPlus />
+              </li>
           </ul>
         </nav>
       </div>
-      {/* Action */}
-      <div className="gap-5 hidden md:flex">
-        {/* Inventory */}
-        <div>
-          <button
-            className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-            onClick={() => router.push("/Dashboard")}
-          >
-            <FiPlusSquare />
-          </button>
-        </div>
-        {/* Cart */}
-        <div>
-          <button className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
-            <FiShoppingCart />
-          </button>
-        </div>
-
-        {/* Login */}
-        <div>
-          <button
-            className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-            onClick={() => router.push("/Auth/Login")}
-          >
-            <FiUserPlus />
-          </button>
-        </div>
-      </div>
+    
     </div>
   );
 };

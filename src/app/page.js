@@ -2,6 +2,8 @@
 
 import React  , {useEffect , useState}from 'react'
 import { ItemCard , MoreCard } from './components'
+import Image from 'next/image'
+import banner from "../Assets/Banner.jpg"
 
 const page = () => {
 
@@ -59,7 +61,8 @@ const page = () => {
     <div className='w-full md:p-4 p-2 flex flex-col items-center overflow-x-hidden'>
 
       {/* Banner */}
-      <div className=' w-full bg-[#080806] h-[60vh] rounded-lg mt-[5vh]'>
+      <div className='w-full overflow-hidden flex items-center justify-center bg-[#080806] h-[60vh] rounded-lg mt-[5vh]'>
+      <Image layout="responsive" src={banner} width={500} height={500} className="rounded-xl"/>
       </div>
 
       {/* Sticker */}
