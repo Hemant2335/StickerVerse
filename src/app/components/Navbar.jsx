@@ -78,15 +78,15 @@ const Navbar = () => {
         <nav>
           <ul className="flex gap-5 items-center">
             <li
-              className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
               onClick={() => router.push("/")}
             >
               <FiHome />
             </li>
-            <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
               <FiCompass />
             </li>
-            <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
               <FiGrid />
             </li>
           </ul>
@@ -97,7 +97,7 @@ const Navbar = () => {
         {/* Inventory */}
         <div>
           <button
-            className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+            className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
             onClick={() => router.push("/Dashboard")}
           >
             <FiPlusSquare />
@@ -105,7 +105,7 @@ const Navbar = () => {
         </div>
         {/* Cart */}
         <div>
-          <button className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+          <button className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
             <FiShoppingCart />
           </button>
         </div>
@@ -113,7 +113,7 @@ const Navbar = () => {
         {/* Login */}
         <div>
           <button
-            className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+            className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
             onClick={() => router.push("/Auth/Login")}
           >
             <FiUserPlus />
