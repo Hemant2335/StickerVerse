@@ -1,7 +1,7 @@
 "use client"
 
 import React  , {useEffect , useState}from 'react'
-import { ItemCard } from './components'
+import { ItemCard , MoreCard } from './components'
 
 const page = () => {
 
@@ -69,17 +69,17 @@ const page = () => {
           {Sticker?.slice(0,3).map((item)=>{
             return (<ItemCard data={item}/>)
           })}
-
+          <MoreCard/>
         </div>
       </div>
       {/* Poster */}
       <div className='mt-[5vh] w-full'>
       <h2 className='font-bold text-[4vh] md:text-left text-center md:text-[5vh]'>Poster</h2>
         <div className='md:flex gap-9'>
-          {Poster?.slice(0,3).map((item)=>{
+          {Poster?.slice(0,4).map((item)=>{
             return (<ItemCard data={item}/>)
           })}
-
+          <MoreCard/>
         </div>
       </div>
       {/* Best Seller */}
