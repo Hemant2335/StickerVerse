@@ -84,20 +84,17 @@ const page = () => {
       const data = await res.json();
       setisLoading(false);
       if (data?.Check) {
-        alert("Product added successfully");
         console.log(data);
         setisLoading(false);
         setisuploaded(false);
         setisselected(null);
-        setimgurl("");
-        setCat("");
-        setPrice("");
-        setDesc("");
-        setSubcat("");
-        setType("");
-        setName("");
+        alert("Product added successfully");
       } else {
-        alert("Some error occured");
+        console.log(data);
+        setisLoading(false);
+        setisuploaded(false);
+        setisselected(null);
+        alert("Error in uploading");
       }
     } catch (error) {
       console.log(error);
