@@ -24,7 +24,7 @@ const page = () => {
       <div className='mt-[5vh] w-full'>
         <h2 className='font-bold  text-[4vh] text-left text-lg md:text-[5vh]'>Stickers</h2>
         <div className='md:flex gap-9'>
-          {Sticker?.slice(0,3).map((item)=>{
+          {Sticker?.slice(0,4).map((item)=>{
             return (<ItemCard data={item}/>)
           })}
           <MoreCard/>

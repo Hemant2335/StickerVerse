@@ -38,7 +38,7 @@ const Navbar = () => {
         </button>
       </div>
       {issidebar && (
-        <div className="fixed p-2 right-0  h-screen top-0 w-[50vw] shadow-3xl bg-[#080806]">
+        <div className="z-10 fixed p-2 right-0  h-screen top-0 w-[50vw] shadow-3xl bg-[#080806]">
           <button
             className="  md:hidden p-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
             onClick={handlesideclick}
@@ -56,7 +56,7 @@ const Navbar = () => {
               <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Explore")}}>
                 <FiCompass />
               </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Category")}>
                 <FiGrid />
               </li>
               <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
@@ -74,7 +74,7 @@ const Navbar = () => {
       )}
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center justify-center">
+      <div className="hidden md:flex items-center justify-center p-4">
         <nav>
           <ul className="flex gap-5 items-center justify-center">
             <li
@@ -83,10 +83,10 @@ const Navbar = () => {
             >
               <FiHome />
             </li>
-            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Explore")}}>
               <FiCompass />
             </li>
-            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform">
+            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Category")}}>
               <FiGrid />
             </li>
             <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>

@@ -61,8 +61,8 @@ const Explore = () => {
       </div>
 
       {/* Shopping Items */}
-      <div className="w-full h-fit">
-        <div className="grid grid-cols-1 md:grid-cols-5">
+      <div className="w-full h-fit mt-[5vh]">
+        <div className="grid grid-cols-1 md:grid-cols-4">
           {data?.map((item) => {
             return <ItemCard data={item} />;
           })}
