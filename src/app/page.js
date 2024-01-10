@@ -1,73 +1,28 @@
 "use client"
 
-import React  , {useEffect , useState}from 'react'
+import React  , {useState}from 'react'
 import { ItemCard , MoreCard } from './components'
 import Image from 'next/image'
 import banner from "../Assets/Banner.jpg"
+import { useContext } from 'react'
+import StateContext from '@/context/Context'
 
 const page = () => {
 
-  const [Sticker, setSticker] = useState(null);
-  const [Poster, setPoster] = useState(null);
-
-  const fetchdata = async() => 
-  {
-    try {
-      const res = await fetch("https://theprintbackend.vercel.app/products/Sticker" , 
-      {
-        method : "GET",
-        headers: {
-          auth: localStorage.getItem("token"),
-        },
-      })
-      const data = await res.json();
-      console.log("Running")
-      console.log(data);
-      setSticker(data);
-    } catch (error) {
-        alert("Something went wrong");
-    }
-    
-  }
-
-  const fetchPoster = async() => 
-  {
-    try {
-      const res = await fetch("https://theprintbackend.vercel.app/products/Poster" , 
-      {
-        method : "GET",
-        headers: {
-          auth: localStorage.getItem("token"),
-        },
-      })
-      const data = await res.json();
-      console.log("Running")
-      console.log(data);
-      setPoster(data);
-    } catch (error) {
-        alert("Something went wrong");
-    }
-    
-  }
-
-  useEffect(() => {
-    fetchdata();
-    fetchPoster();
-  }, [])
-  
+  const {Sticker , Poster} = useContext(StateContext) 
 
 
   return (
     <div className='w-full md:p-4 p-2 flex flex-col items-center overflow-x-hidden'>
 
       {/* Banner */}
-      <div className='w-full overflow-hidden flex items-center justify-center bg-[#080806] h-[60vh] rounded-lg mt-[5vh]'>
+      <div className='hidden w-full overflow-hidden md:flex items-center justify-center bg-[#080806]  md:h-[60vh] rounded-lg mt-[5vh]'>
       <Image layout="responsive" src={banner} width={500} height={500} className="rounded-xl"/>
       </div>
 
       {/* Sticker */}
       <div className='mt-[5vh] w-full'>
-        <h2 className='font-bold  text-[4vh] md:text-left text-center md:text-[5vh]'>Stickers</h2>
+        <h2 className='font-bold  text-[4vh] text-left text-lg md:text-[5vh]'>Stickers</h2>
         <div className='md:flex gap-9'>
           {Sticker?.slice(0,3).map((item)=>{
             return (<ItemCard data={item}/>)
@@ -77,7 +32,7 @@ const page = () => {
       </div>
       {/* Poster */}
       <div className='mt-[5vh] w-full'>
-      <h2 className='font-bold text-[4vh] md:text-left text-center md:text-[5vh]'>Poster</h2>
+      <h2 className='font-bold text-[4vh] text-left text-lg md:text-[5vh]'>Poster</h2>
         <div className='md:flex gap-9'>
           {Poster?.slice(0,4).map((item)=>{
             return (<ItemCard data={item}/>)
