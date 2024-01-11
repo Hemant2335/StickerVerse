@@ -92,7 +92,7 @@ const Navbar = () => {
             <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
                 <FiPlusSquare />
               </li>
-              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
+              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Cart")}>
                 <FiShoppingCart />
               </li>
               <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Auth/Login")}>

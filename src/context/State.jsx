@@ -8,6 +8,7 @@ const StateProvider = ({ children }) => {
     
     const [Sticker, setSticker] = useState(null);
     const [Poster, setPoster] = useState(null);
+    
     const [isLoadingstate, setisLoadingstate] = useState(false);
 
     const fetchdata = async() => 
@@ -50,13 +51,19 @@ const StateProvider = ({ children }) => {
     
   }
 
+  
+
+
   useEffect(() => {
     fetchdata();
     fetchPoster();
+    fetchcart();
   }, [])
 
+
+
     return (
-        <StateContext.Provider value={{ Sticker, Poster }}>
+        <StateContext.Provider value={{ Sticker, Poster ,Cartitems }}>
         {children}
         </StateContext.Provider>
     );
