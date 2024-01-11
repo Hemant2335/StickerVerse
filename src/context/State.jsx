@@ -57,13 +57,12 @@ const StateProvider = ({ children }) => {
   useEffect(() => {
     fetchdata();
     fetchPoster();
-    fetchcart();
   }, [])
 
 
 
     return (
-        <StateContext.Provider value={{ Sticker, Poster ,Cartitems }}>
+        <StateContext.Provider value={{ Sticker, Poster }}>
         {children}
         </StateContext.Provider>
     );

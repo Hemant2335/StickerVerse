@@ -7,7 +7,7 @@ const CartCard = ({data}) => {
     const handleondelete = async() => {
         try {
             const res = await fetch(
-                "https://theprintbackend.vercel.app/products/item/delete",
+                "https://theprintbackend.vercel.app/products/item/deleteitem",
                 {
                     method: "POST",
                     headers: {
