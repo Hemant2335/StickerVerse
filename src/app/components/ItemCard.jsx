@@ -25,7 +25,7 @@ const ItemCard = ({data}) => {
             </div>
           </div>
           <button className="bg-[#f05700] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"onClick={()=>{router.push(`/productdetails/${data?.name}`)}}>
-            Buy
+            Cart
           </button>
         </div>
       </div>
