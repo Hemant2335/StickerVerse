@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { FiTrash2 } from "react-icons/fi";
 
-const CartCard = ({data}) => {
+const CartCard = ({data , Cart , setCart}) => {
 
     const handleondelete = async() => {
         try {
@@ -15,17 +15,18 @@ const CartCard = ({data}) => {
                         auth: localStorage.getItem("token"),
                     },
                     body: JSON.stringify({
-                        name: data?.Name,
+                        id: data?._id,
                     }),
                 }
             );
 
-            const data = await res.json();
-            console.log(data);
-            if (data?.Check) {
-                alert(data?.msg);
+            const data1 = await res.json();
+            if (data1?.Check) {
+                const arr = Cart.filter((item) => item?._id !== data?._id);
+                setCart(arr);
+                alert(data1?.msg);
             } else {
-                alert(data?.msg);
+                alert(data1?.msg);
             }
         } catch (error) {
             console.log(error);

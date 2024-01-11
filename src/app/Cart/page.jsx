@@ -53,7 +53,7 @@ const Cart = () => {
       <div className="w-full h-fit ">
         <div className="grid grid-cols-1 md:grid-cols-3">
           {Cartitems?.map((item) => {
-            return <CartCard data={item} />;
+            return <CartCard data={item} Cart = {Cartitems}  setCart = {setCartitems}/>;
           })}
         </div>
       </div>
