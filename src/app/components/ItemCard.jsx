@@ -7,6 +7,13 @@ const ItemCard = ({ data }) => {
   const Catvalue = data ;
   const handleonCart = async() => {
     try {
+
+      if(!localStorage.getItem('token'))
+      {
+        router.push('/Auth/Login');
+        return;
+      }
+
       const res = await fetch(
         "https://theprintbackend.vercel.app/products/item/addtocart",
         {
