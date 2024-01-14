@@ -105,8 +105,8 @@ const page = () => {
   return (
     <div>
       {isLoading && <Loading/>}
-      <div className="flex justify-center my-[10vh] md:mx-0 mx-[5vw] md:p-[5vh]">
-        <div className="h-fit w-[50vw] shadow-3xl bg-[#080806] gap-[10vh] justify-center items-center p-[5vh]">
+      <div className="flex justify-center my-[10vh] md:mx-0  md:p-[5vh]">
+        <div className="h-fit md:w-[50vw] shadow-3xl bg-[#080806] gap-[10vh] justify-center items-center p-[5vh]">
           <div className=" shadow-3xl items-center flex flex-col w-full justify-center  p-4 rounded-lg">
             {imgurl ? (
               <Image src={imgurl} height={150} width={150} alt="Image" />
@@ -202,7 +202,7 @@ const page = () => {
             </div>
             <div className="w-full p-4 flex justify-center items-center">
               <button
-                className="bg-[#f05700] text-[2.4vh]  p-3 rounded-lg w-[20vw] font-poppins font-bold text-white hover:bg-[#f06800] focus:outline-none"
+                className="bg-[#f05700] text-sm md:text-[2.4vh]  p-3 rounded-lg w-[20vw] font-poppins font-bold text-white hover:bg-[#f06800] focus:outline-none"
                 onClick={() => handleAddtoProduct()}
               >
                 Add to Product
