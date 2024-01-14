@@ -8,6 +8,7 @@ const StateProvider = ({ children }) => {
     
     const [Sticker, setSticker] = useState(null);
     const [Poster, setPoster] = useState(null);
+    const [isAdmin, setisAdmin] = useState(false);
     
     const [isLoadingstate, setisLoadingstate] = useState(false);
 
@@ -62,7 +63,7 @@ const StateProvider = ({ children }) => {
 
 
     return (
-        <StateContext.Provider value={{ Sticker, Poster }}>
+        <StateContext.Provider value={{ Sticker, Poster , setisAdmin , isAdmin}}>
         {children}
         </StateContext.Provider>
     );

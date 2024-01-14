@@ -5,12 +5,15 @@ import { useState } from "react";
 import logo from "../../../Assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import StateContext from "@/context/Context";
+import { useContext } from "react";
 
 const page = () => {
 
   const router = useRouter();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const {isAdmin , setisAdmin} = useContext(StateContext);
 
   const handleLogin = async () => {
 
@@ -28,9 +31,11 @@ const page = () => {
     const data = await response.json();
     if(!data.Success)
     {
+      
       return alert(data.Message);
     }
     else{
+      setisAdmin(data.isAdmin);
       alert("Login Successfull");
       localStorage.setItem("token",data.Message);
       router.push("/");

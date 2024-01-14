@@ -12,11 +12,13 @@ import {
   FiX,
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import StateContext from "@/context/Context";
+import { useContext } from "react";
 
 const Navbar = () => {
   const router = useRouter();
   const [issidebar, setissidebar] = useState(false);
-
+  const { isAdmin } = useContext(StateContext);
   const handlesideclick = () => {
     setissidebar(!issidebar);
   };
@@ -53,19 +55,42 @@ const Navbar = () => {
               >
                 <FiHome />
               </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Explore")}}>
+              <li
+                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                onClick={() => {
+                  router.push("/Explore");
+                }}
+              >
                 <FiCompass />
               </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Category")}>
+              <li
+                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                onClick={() => router.push("/Category")}
+              >
                 <FiGrid />
               </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
-                <FiPlusSquare />
-              </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => {localStorage.getItem('token') ? (router.push("/Cart")) : (router.push("/Auth/Login"))}}>
+              {isAdmin && (
+                <li
+                  className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                  onClick={() => router.push("/Dashboard")}
+                >
+                  <FiPlusSquare />
+                </li>
+              )}
+              <li
+                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                onClick={() => {
+                  localStorage.getItem("token")
+                    ? router.push("/Cart")
+                    : router.push("/Auth/Login");
+                }}
+              >
                 <FiShoppingCart />
               </li>
-              <li className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Auth/Login")}>
+              <li
+                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                onClick={() => router.push("/Auth/Login")}
+              >
                 <FiUserPlus />
               </li>
             </ul>
@@ -83,25 +108,49 @@ const Navbar = () => {
             >
               <FiHome />
             </li>
-            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Explore")}}>
+            <li
+              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+              onClick={() => {
+                router.push("/Explore");
+              }}
+            >
               <FiCompass />
             </li>
-            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={()=>{router.push("/Category")}}>
+            <li
+              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+              onClick={() => {
+                router.push("/Category");
+              }}
+            >
               <FiGrid />
             </li>
-            <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Dashboard")}>
+            {isAdmin && (
+              <li
+                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                onClick={() => router.push("/Dashboard")}
+              >
                 <FiPlusSquare />
               </li>
-              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => {localStorage.getItem('token') ? (router.push("/Cart")) : (router.push("/Auth/Login"))}}>
-                <FiShoppingCart />
-              </li>
-              <li className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform" onClick={() => router.push("/Auth/Login")}>
-                <FiUserPlus />
-              </li>
+            )}
+            <li
+              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+              onClick={() => {
+                localStorage.getItem("token")
+                  ? router.push("/Cart")
+                  : router.push("/Auth/Login");
+              }}
+            >
+              <FiShoppingCart />
+            </li>
+            <li
+              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+              onClick={() => router.push("/Auth/Login")}
+            >
+              <FiUserPlus />
+            </li>
           </ul>
         </nav>
       </div>
-    
     </div>
   );
 };
