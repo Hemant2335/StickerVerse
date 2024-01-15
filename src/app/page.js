@@ -6,6 +6,7 @@ import Image from 'next/image'
 import banner from "../Assets/Banner.jpg"
 import { useContext } from 'react'
 import StateContext from '@/context/Context'
+import ToastWrapper from './components/ToastWrapper'
 
 const page = () => {
 
@@ -13,6 +14,7 @@ const page = () => {
 
 
   return (
+    <><ToastWrapper />
     <div className='w-full md:p-4 p-2 flex flex-col items-center overflow-x-hidden'>
 
       {/* Banner */}
@@ -53,6 +55,7 @@ const page = () => {
       </div> */}
 
     </div>
+    </>
   )
 }
 

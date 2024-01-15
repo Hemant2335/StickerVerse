@@ -7,6 +7,7 @@ import { MdCloudDone } from "react-icons/md";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import Image from "next/image";
+import ToastWrapper from "../components/ToastWrapper";
 
 const page = () => {
   const [isuploaded, setisuploaded] = useState(false);
@@ -103,6 +104,7 @@ const page = () => {
   };
 
   return (
+    <><ToastWrapper />
     <div>
       {isLoading && <Loading/>}
       <div className="flex justify-center my-[10vh] md:mx-0  md:p-[5vh]">
@@ -212,6 +214,7 @@ const page = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
