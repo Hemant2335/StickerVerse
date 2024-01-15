@@ -7,7 +7,6 @@ import Image from "next/image";
 import StateContext from "@/context/Context";
 import { useContext } from "react";
 import { ItemCard } from "../components";
-import ToastWrapper from "../components/ToastWrapper";
 
 const Explore = () => {
   const { Sticker, Poster } = useContext(StateContext);
@@ -22,7 +21,6 @@ const Explore = () => {
   };
 
   return (
-    <><ToastWrapper />
     <div className="">
       {/* headers */}
       <div className="w-full flex flex-col items-center md:flex-row mt-[5vh]  justify-center gap-[5vw]">
@@ -71,7 +69,6 @@ const Explore = () => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 

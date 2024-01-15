@@ -1,6 +1,7 @@
 import { Navbar, Footer } from "./components/index";
 import "./globals.css";
 import StateProvider from "@/context/State";
+import { Toaster } from 'react-hot-toast';
 
 
 export const metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
           <div className="m-[5vh]">
             <Navbar />
             {children}
+            <Toaster/>
           </div>
           
           <Footer />

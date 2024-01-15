@@ -5,8 +5,7 @@ import logo from "../../../Assets/logo.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import ToastWrapper from "@/app/components/ToastWrapper";
+import { toast } from "react-hot-toast";
 
 const page = () => {
   const router = useRouter();
@@ -41,8 +40,6 @@ const page = () => {
   };
 
   return (
-    <>
-      <ToastWrapper />
       <div className="w-full h-fit flex mt-[5vh] justify-center items-center p-4">
         <div className="bg-[#080806] h-fit md:min-w-[55vh] rounded-lg">
           <div className="w-full flex items-center justify-center">
@@ -95,7 +92,6 @@ const page = () => {
           </h2>
         </div>
       </div>
-    </>
   );
 };
 
