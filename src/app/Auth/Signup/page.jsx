@@ -5,6 +5,7 @@ import logo from "../../../Assets/logo.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from 'react-toastify';
 
 const page = () => {
   const router = useRouter();
@@ -29,10 +30,10 @@ const page = () => {
     const data = await response.json();
     if(!data.Success)
     {
-        return alert(data.Message);
+        return toast.warning(data.Message);
     }
     else{
-        alert(data.Message);
+        toast.success(data.Message);
         router.push("/Auth/Login");
     }
   };

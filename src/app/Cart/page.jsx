@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
@@ -23,7 +24,7 @@ const Cart = () => {
       console.log(data);
       setCartitems(data);
     } catch (error) {
-      alert("Something went wrong");
+      toast.error("Cannot Fetch Cart Items");
     }
   };
 

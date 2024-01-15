@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import StateContext from "@/context/Context";
 import { useContext } from "react";
+import { toast } from 'react-toastify';
 
 const page = () => {
 
@@ -32,11 +33,11 @@ const page = () => {
     if(!data.Success)
     {
       
-      return alert(data.Message);
+      return toast.warning(data.Message);
     }
     else{
       setisAdmin(data.isAdmin);
-      alert("Login Successfull");
+      toast.success("Login Successfull");
       localStorage.setItem("token",data.Message);
       router.push("/");
     }

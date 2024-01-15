@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { FiTrash2 } from "react-icons/fi";
+import { toast } from 'react-toastify';
 
 const CartCard = ({data , Cart , setCart}) => {
 
@@ -24,13 +25,13 @@ const CartCard = ({data , Cart , setCart}) => {
             if (data1?.Check) {
                 const arr = Cart.filter((item) => item?._id !== data?._id);
                 setCart(arr);
-                alert(data1?.msg);
+                toast.success(data1?.msg);
             } else {
-                alert(data1?.msg);
+                toast.warning(data1?.msg);
             }
         } catch (error) {
             console.log(error);
-            alert("Something went wrong");
+            toast.error("Something went wrong");
         }
     }
 

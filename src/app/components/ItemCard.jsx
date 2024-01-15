@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { toast } from 'react-toastify';
 
 const ItemCard = ({ data }) => {
   const router = useRouter();
@@ -11,6 +12,7 @@ const ItemCard = ({ data }) => {
       if(!localStorage.getItem('token'))
       {
         router.push('/Auth/Login');
+        toast.warning("Please Login First");
         return;
       }
 
@@ -33,14 +35,14 @@ const ItemCard = ({ data }) => {
       const data = await res.json();
       console.log(data);
       if (data?.Check) {
-        alert(data?.msg);
+        toast.success(data?.msg);
       } else {
-        alert(data?.msg);
+        toast.warning(data?.msg);
       }
       
     } catch (error) {
         console.log(error);
-        alert("Something went wrong");
+        toast.error("Failed to add to cart");
     }
    
   };
