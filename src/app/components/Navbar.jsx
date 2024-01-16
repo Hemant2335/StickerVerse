@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import {
   FiHome,
   FiGrid,
@@ -10,6 +10,7 @@ import {
   FiPlusSquare,
   FiCompass,
   FiX,
+  FiUser 
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import StateContext from "@/context/Context";
@@ -89,9 +90,13 @@ const Navbar = () => {
               </li>
               <li
                 className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-                onClick={() => router.push("/Auth/Login")}
+                onClick={() => {
+                  localStorage.getItem("token")
+                    ? router.push("/Profile")
+                    : router.push("/Auth/Login");
+                }}
               >
-                <FiUserPlus />
+                <FiUser />
               </li>
             </ul>
           </nav>
@@ -144,9 +149,13 @@ const Navbar = () => {
             </li>
             <li
               className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-              onClick={() => router.push("/Auth/Login")}
+              onClick={() => {
+                localStorage.getItem("token")
+                  ? router.push("/Profile")
+                  : router.push("/Auth/Login");
+              }}
             >
-              <FiUserPlus />
+              <FiUser />
             </li>
           </ul>
         </nav>
