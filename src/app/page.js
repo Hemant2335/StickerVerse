@@ -1,17 +1,12 @@
 "use client"
 
-import React  , {useState}from 'react'
-import { ItemCard , MoreCard } from './components'
+import React from 'react'
 import Image from 'next/image'
 import banner from "../Assets/Banner.jpg"
-import { useContext } from 'react'
-import StateContext from '@/context/Context'
+import DashboardCard from './components/DashboardCard'
 
 const page = () => {
-
-  const {Sticker , Poster} = useContext(StateContext) 
-
-
+  
   return (
     <div className='w-full md:p-4 p-2 flex flex-col items-center overflow-x-hidden'>
 
@@ -21,25 +16,9 @@ const page = () => {
       </div>
 
       {/* Sticker */}
-      <div className='mt-[5vh] w-full'>
-        <h2 className='font-bold  text-[4vh] text-left text-lg md:text-[5vh]'>Stickers</h2>
-        <div className='md:flex gap-9'>
-          {Sticker?.slice(0,4).map((item)=>{
-            return (<ItemCard data={item}/>)
-          })}
-          <MoreCard/>
-        </div>
-      </div>
+      <DashboardCard Name={"Sticker"}/>
       {/* Poster */}
-      <div className='mt-[5vh] w-full'>
-      <h2 className='font-bold text-[4vh] text-left text-lg md:text-[5vh]'>Poster</h2>
-        <div className='md:flex gap-9'>
-          {Poster?.slice(0,4).map((item)=>{
-            return (<ItemCard data={item}/>)
-          })}
-          <MoreCard/>
-        </div>
-      </div>
+      <DashboardCard Name={"Poster"}/>
       {/* Best Seller */}
       {/* <div className='mt-[5vh] '>
         <h2 className='font-bold text-[5vh]'>Best Seller</h2>

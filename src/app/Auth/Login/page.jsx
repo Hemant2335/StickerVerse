@@ -5,8 +5,8 @@ import { useState } from "react";
 import logo from "../../../Assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import StateContext from "@/context/Context";
-import { useContext } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { adminstatus } from "@/store/atom/State";
 import { toast } from 'react-hot-toast';
 
 const page = () => {
@@ -14,7 +14,7 @@ const page = () => {
   const router = useRouter();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const {isAdmin , setisAdmin} = useContext(StateContext);
+  const setisAdmin = useSetRecoilState(adminstatus);
 
   const handleLogin = async () => {
 

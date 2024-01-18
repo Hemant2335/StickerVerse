@@ -60,6 +60,7 @@ const StateProvider = ({ children }) => {
     fetchPoster();
   }, [])
 
+
     return (
         <StateContext.Provider value={{ Sticker, Poster , setisAdmin , isAdmin}}>
         {children}

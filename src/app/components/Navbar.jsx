@@ -13,13 +13,15 @@ import {
   FiUser 
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import StateContext from "@/context/Context";
-import { useContext } from "react";
+import {useRecoilValue} from "recoil";
+import { adminstatus } from "@/store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();
   const [issidebar, setissidebar] = useState(false);
-  const { isAdmin } = useContext(StateContext);
+  const isAdmin = useRecoilValue(adminstatus);
+
+
   const handlesideclick = () => {
     setissidebar(!issidebar);
   };

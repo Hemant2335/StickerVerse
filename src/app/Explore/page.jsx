@@ -7,14 +7,16 @@ import Image from "next/image";
 import StateContext from "@/context/Context";
 import { useContext } from "react";
 import { ItemCard } from "../components";
+import useFetch from "../hooks/useFetch";
 
 const Explore = () => {
-  const { Sticker, Poster } = useContext(StateContext);
+  const Sticker = useFetch("Sticker");
+  const Poster = useFetch("Poster");
   const [data, setdata] = useState(null);
 
   useEffect(() => {
     setdata(Sticker);
-  }, []);
+  }, [Sticker]);
 
   const handlebuttonclick = (item) => {
     setdata(item);
