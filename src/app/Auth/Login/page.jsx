@@ -33,7 +33,7 @@ const page = () => {
     if(!data.Success)
     {
       
-      return toast.warning(data.Message);
+      return toast.error(data.Message);
     }
     else{
       setisAdmin(data.isAdmin);

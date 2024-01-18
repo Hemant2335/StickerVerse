@@ -27,7 +27,7 @@ const CartCard = ({data , Cart , setCart}) => {
                 setCart(arr);
                 toast.success(data1?.msg);
             } else {
-                toast.warning(data1?.msg);
+                toast.error(data1?.msg);
             }
         } catch (error) {
             console.log(error);

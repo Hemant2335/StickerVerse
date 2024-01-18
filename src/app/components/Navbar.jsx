@@ -131,7 +131,7 @@ const Navbar = () => {
             </li>
             {isAdmin && (
               <li
-                className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
+                className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
                 onClick={() => router.push("/Dashboard")}
               >
                 <FiPlusSquare />

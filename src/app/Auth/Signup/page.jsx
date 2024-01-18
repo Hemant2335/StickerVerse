@@ -32,7 +32,7 @@ const page = () => {
     );
     const data = await response.json();
     if (!data.Success) {
-      return toast.warning(data.Message);
+      return toast.error(data.Message);
     } else {
       toast.success(data.Message);
       router.push("/Auth/Login");

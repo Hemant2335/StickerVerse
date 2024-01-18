@@ -37,12 +37,12 @@ const ItemCard = ({ data }) => {
       if (data?.Check) {
         toast.success(data?.msg);
       } else {
-        toast.warning(data?.msg);
+        toast.error(data?.msg);
       }
       
     } catch (error) {
         console.log(error);
-        toast.error("Failed to add to cart");
+        toast.error("Please Login First");
     }
    
   };

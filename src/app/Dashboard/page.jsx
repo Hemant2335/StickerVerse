@@ -7,6 +7,7 @@ import { MdCloudDone } from "react-icons/md";
 import { useState } from "react";
 import Loading from "../components/Loading";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [isuploaded, setisuploaded] = useState(false);
@@ -88,17 +89,17 @@ const page = () => {
         setisLoading(false);
         setisuploaded(false);
         setisselected(null);
-        alert("Product added successfully");
+        toast.success("Product added successfully");
       } else {
         console.log(data);
         setisLoading(false);
         setisuploaded(false);
         setisselected(null);
-        alert("Error in uploading");
+        toast.error("Error in uploading");
       }
     } catch (error) {
       console.log(error);
-      alert("Some error occured");
+      toast.error("Internal Server Error");
     }
   };
 

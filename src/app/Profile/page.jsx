@@ -30,9 +30,13 @@ const Profile = () => {
   }, []);
 
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
     localStorage.removeItem("token");
-    router.push("/");
+
+    router.push("/Auth/Login");
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   }
 
   return (
