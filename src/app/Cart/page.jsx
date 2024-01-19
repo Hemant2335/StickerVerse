@@ -3,13 +3,18 @@
 import React, { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
 import { toast } from 'react-hot-toast';
+import { loadingstatus } from "@/store/atom/State";
+import { useRecoilState } from "recoil";
+import Loading from "../components/Loading";
 
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
   const [totalprice, settotalprice] = useState(null);
+  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
 
   const fetchcart = async () => {
     try {
+      setisLoading(true);
       const res = await fetch(
         "https://theprintbackend.vercel.app/products/item/cart",
         {
@@ -19,9 +24,8 @@ const Cart = () => {
           },
         }
       );
+      setisLoading(false);
       const data = await res.json();
-      console.log("Running");
-      console.log(data);
       setCartitems(data);
     } catch (error) {
       toast.error("Cannot Fetch Cart Items");
@@ -49,6 +53,8 @@ const Cart = () => {
   }, [Cartitems]);
 
   return (
+    <>
+    {isLoading && <Loading/>}
     <div className="md:flex p-[5vh]">
       {/* Items */}
       <div className="w-full h-fit ">
@@ -81,6 +87,7 @@ const Cart = () => {
 
       {/* Total */}
     </div>
+    </>
   );
 };
 

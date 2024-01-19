@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { MdEmail, MdMarkEmailRead } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
+import { loadingstatus } from "@/store/atom/State";
+import { useRecoilState } from "recoil";
 const page = () => {
   const router = useRouter();
   const [Email, setEmail] = useState("");
@@ -17,6 +19,7 @@ const page = () => {
   const [inputcode, setinputcode] = useState(null);
   const [ispass, setispass] = useState(false);
   const [code, setcode] = useState(null);
+  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
 
   // Function to handle Signup
 
@@ -24,6 +27,7 @@ const page = () => {
     if (!isEmailVerify) {
       return toast.error("Please Verify Email First");
     }
+    setisLoading(true);
     const response = await fetch(
       "https://theprintbackend.vercel.app/users/signup",
       {
@@ -38,6 +42,7 @@ const page = () => {
         }),
       }
     );
+    setisLoading(false);
     const data = await response.json();
     if (!data.Success) {
       return toast.error(data.Message);
@@ -92,6 +97,8 @@ const page = () => {
   };
 
   return (
+    <>
+    {isLoading && <Loading/>}
     <div className="w-full h-fit flex mt-[5vh] justify-center items-center p-4">
       <div className="bg-[#080806] h-fit md:min-w-[55vh] rounded-lg">
         <div className="w-full flex items-center justify-center">
@@ -168,6 +175,7 @@ const page = () => {
         </h2>
       </div>
     </div>
+    </>
   );
 };
 
