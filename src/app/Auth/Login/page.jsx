@@ -5,9 +5,11 @@ import { useState } from "react";
 import logo from "../../../Assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { adminstatus } from "@/store/atom/State";
 import { toast } from 'react-hot-toast';
+import { loadingstatus } from "@/store/atom/State";
+import Loading from "@/app/components/Loading";
 
 const page = () => {
 
@@ -16,8 +18,10 @@ const page = () => {
   const [Password, setPassword] = useState("");
   const setisAdmin = useSetRecoilState(adminstatus);
 
-  const handleLogin = async () => {
+  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
 
+  const handleLogin = async () => {
+    setisLoading(true);
     const response = await fetch("https://theprintbackend.vercel.app/users/login",{
       method:"POST",
       headers:{
@@ -28,7 +32,7 @@ const page = () => {
         Password:Password
       })
     })
-
+    setisLoading(false);
     const data = await response.json();
     if(!data.Success)
     {
@@ -45,7 +49,10 @@ const page = () => {
   }
 
   return (
+    <>
+    {isLoading && <Loading/>}
     <div className="w-full h-fit p-4 mt-[5vh] flex justify-center items-center">
+      
       <div className="bg-[#080806] h-fit md:min-w-[55vh] rounded-lg">
         <div className="w-full flex items-center justify-center">
           <Image src={logo} width={150} height={150} />
@@ -78,10 +85,11 @@ const page = () => {
           </button>
         </div>
 
-        <h2 className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white" onClick={()=>router.push("/Auth/Signup")}>Don't have an Account? Signup</h2>  
+        <h2 className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white" onClick={()=>router.push("/Auth/Signup")}> <button>Don't have an Account? Signup</button> </h2>  
 
       </div>
     </div>
+    </>
   );
 };
 

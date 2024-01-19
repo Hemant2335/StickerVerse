@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FiHome,
   FiGrid,
@@ -10,17 +10,16 @@ import {
   FiPlusSquare,
   FiCompass,
   FiX,
-  FiUser 
+  FiUser,
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import {useRecoilValue} from "recoil";
+import { useRecoilValue } from "recoil";
 import { adminstatus } from "@/store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();
   const [issidebar, setissidebar] = useState(false);
   const isAdmin = useRecoilValue(adminstatus);
-
 
   const handlesideclick = () => {
     setissidebar(!issidebar);
@@ -54,7 +53,10 @@ const Navbar = () => {
             <ul className="gap-5 items-center px-[8vw] py-[5vh] flex flex-col">
               <li
                 className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-                onClick={() => router.push("/")}
+                onClick={() => {
+                  router.push("/");
+                  handlesideclick();
+                }}
               >
                 <FiHome />
               </li>
@@ -62,20 +64,27 @@ const Navbar = () => {
                 className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
                 onClick={() => {
                   router.push("/Explore");
+                  handlesideclick();
                 }}
               >
                 <FiCompass />
               </li>
               <li
                 className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-                onClick={() => router.push("/Category")}
+                onClick={() => {
+                  router.push("/Category");
+                  handlesideclick();
+                }}
               >
                 <FiGrid />
               </li>
               {isAdmin && (
                 <li
                   className="bg-[#1A1110] w-full flex  justify-center py-[1.5vh] rounded-lg hover:scale-125 cursor-pointer transition-transform"
-                  onClick={() => router.push("/Dashboard")}
+                  onClick={() => {
+                    router.push("/Dashboard");
+                    handlesideclick();
+                  }}
                 >
                   <FiPlusSquare />
                 </li>
@@ -86,6 +95,7 @@ const Navbar = () => {
                   localStorage.getItem("token")
                     ? router.push("/Cart")
                     : router.push("/Auth/Login");
+                  handlesideclick();
                 }}
               >
                 <FiShoppingCart />
@@ -96,6 +106,7 @@ const Navbar = () => {
                   localStorage.getItem("token")
                     ? router.push("/Profile")
                     : router.push("/Auth/Login");
+                  handlesideclick();
                 }}
               >
                 <FiUser />

@@ -164,7 +164,7 @@ const page = () => {
           className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white"
           onClick={() => router.push("/Auth/Login")}
         >
-          Already have an Account? Login
+          <button>Already have an Account? Login</button>
         </h2>
       </div>
     </div>
