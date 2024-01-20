@@ -1,6 +1,7 @@
 import { Navbar, Footer } from "./components/index";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
             <RecoilContextProvider>
               <Navbar />
               {children}
+              <Analytics />
               <SpeedInsights />
               <Toaster />
             </RecoilContextProvider>
