@@ -1,14 +1,20 @@
+"use client"
+
 import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from 'react-hot-toast';
+import { loadingstatus } from "@/store/atom/State";
+import { useRecoilState} from "recoil";
+import Loading from "./Loading";
 
 const ItemCard = ({ data }) => {
   const router = useRouter();
   const Catvalue = data ;
+  const [isLoading ,setisLoading] = useRecoilState(loadingstatus);
   const handleonCart = async() => {
     try {
-
+      setisLoading(true);
       if(!localStorage.getItem('token'))
       {
         router.push('/Auth/Login');
@@ -31,7 +37,7 @@ const ItemCard = ({ data }) => {
           }),
         }
       );
-
+      setisLoading(false);
       const data = await res.json();
       console.log(data);
       if (data?.Check) {
@@ -48,6 +54,7 @@ const ItemCard = ({ data }) => {
   };
 
   return (
+    <>
     <div className="mt-5 mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]">
       <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]">
         <Image
@@ -80,6 +87,7 @@ const ItemCard = ({ data }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

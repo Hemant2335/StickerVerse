@@ -31,12 +31,11 @@ const Profile = () => {
 
 
   const handleLogout = async() => {
-    localStorage.removeItem("token");
-
     router.push("/Auth/Login");
+    localStorage.removeItem("token");
     setTimeout(() => {
       window.location.reload();
-    }, 100);
+    }, 1000);
   }
 
   return (

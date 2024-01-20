@@ -4,10 +4,17 @@ import React from 'react'
 import Image from 'next/image'
 import banner from "../Assets/Banner.jpg"
 import DashboardCard from './components/DashboardCard'
+import { loadingstatus } from "@/store/atom/State";
+import {useRecoilValue } from "recoil";
+import Loading from './components/Loading'
 
 const page = () => {
+
+  const isLoading = useRecoilValue(loadingstatus);
   
   return (
+    <>
+    {isLoading && <Loading/>}
     <div className='w-full md:p-4 p-2 flex flex-col items-center overflow-x-hidden'>
 
       {/* Banner */}
@@ -32,6 +39,7 @@ const page = () => {
       </div> */}
 
     </div>
+    </>
   )
 }
 

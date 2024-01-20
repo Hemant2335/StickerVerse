@@ -1,6 +1,6 @@
 import { Navbar, Footer } from "./components/index";
 import "./globals.css";
-import StateProvider from "@/context/State";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 
@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
             <RecoilContextProvider>
               <Navbar />
               {children}
+              <SpeedInsights />
               <Toaster />
             </RecoilContextProvider>
             </div>

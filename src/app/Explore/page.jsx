@@ -4,15 +4,17 @@ import React, { useEffect, useState } from "react";
 import sticker from "../../Assets/sticker.png";
 import poster from "../../Assets/poster.png";
 import Image from "next/image";
-import StateContext from "@/context/Context";
-import { useContext } from "react";
+import { loadingstatus } from "@/store/atom/State";
+import Loading from "../components/Loading";
 import { ItemCard } from "../components";
 import useFetch from "../hooks/useFetch";
+import { useRecoilState } from "recoil";
 
 const Explore = () => {
   const Sticker = useFetch("Sticker");
   const Poster = useFetch("Poster");
   const [data, setdata] = useState(null);
+  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
 
   useEffect(() => {
     setdata(Sticker);
@@ -23,54 +25,57 @@ const Explore = () => {
   };
 
   return (
-    <div className="">
-      {/* headers */}
-      <div className="w-full flex flex-col items-center md:flex-row mt-[5vh]  justify-center gap-[5vw]">
-        <div
-          className="bg-[#222222] gap-[2vh] flex items-center justify-center rounded-lg hover:scale-105 transition-transform cursor-pointer w-fit h-fit p-[2vh] md:p-[3vh]"
-          onClick={() => {
-            handlebuttonclick(Sticker);
-          }}
-        >
-          <div className=" w-[5vh] overflow-hidden md:flex items-center justify-center  md:h-[5vh] rounded-lg ">
-            <Image
-              layout="responsive"
-              src={sticker}
-              width={100}
-              height={100}
-              className="rounded-xl"
-            />
+    <>
+    {isLoading && <Loading/>}
+      <div className="">
+        {/* headers */}
+        <div className="w-full flex flex-col items-center md:flex-row mt-[5vh]  justify-center gap-[5vw]">
+          <div
+            className="bg-[#222222] gap-[2vh] flex items-center justify-center rounded-lg hover:scale-105 transition-transform cursor-pointer w-fit h-fit p-[2vh] md:p-[3vh]"
+            onClick={() => {
+              handlebuttonclick(Sticker);
+            }}
+          >
+            <div className=" w-[5vh] overflow-hidden md:flex items-center justify-center  md:h-[5vh] rounded-lg ">
+              <Image
+                layout="responsive"
+                src={sticker}
+                width={100}
+                height={100}
+                className="rounded-xl"
+              />
+            </div>
+            <h1 className="md:text-xl font-bold text-center">Stickers</h1>
           </div>
-          <h1 className="md:text-xl font-bold text-center">Stickers</h1>
-        </div>
-        <div
-          className="bg-[#222222] gap-[2vh] flex items-center justify-center rounded-lg hover:scale-105 transition-transform cursor-pointer w-fit h-fit p-[2vh] md:p-[3vh]"
-          onClick={() => {
-            handlebuttonclick(Poster);
-          }}
-        >
-          <div className=" w-[5vh] overflow-hidden md:flex items-center justify-center  md:h-[5vh] rounded-lg ">
-            <Image
-              layout="responsive"
-              src={poster}
-              width={100}
-              height={100}
-              className="rounded-xl"
-            />
+          <div
+            className="bg-[#222222] gap-[2vh] flex items-center justify-center rounded-lg hover:scale-105 transition-transform cursor-pointer w-fit h-fit p-[2vh] md:p-[3vh]"
+            onClick={() => {
+              handlebuttonclick(Poster);
+            }}
+          >
+            <div className=" w-[5vh] overflow-hidden md:flex items-center justify-center  md:h-[5vh] rounded-lg ">
+              <Image
+                layout="responsive"
+                src={poster}
+                width={100}
+                height={100}
+                className="rounded-xl"
+              />
+            </div>
+            <h1 className="md:text-xl font-bold text-center">Posters</h1>
           </div>
-          <h1 className="md:text-xl font-bold text-center">Posters</h1>
         </div>
-      </div>
 
-      {/* Shopping Items */}
-      <div className="w-full h-fit mt-[5vh]">
-        <div className="grid grid-cols-1 md:grid-cols-4">
-          {data?.map((item) => {
-            return <ItemCard data={item} />;
-          })}
+        {/* Shopping Items */}
+        <div className="w-full h-fit mt-[5vh]">
+          <div className="grid grid-cols-1 md:grid-cols-4">
+            {data?.map((item) => {
+              return <ItemCard data={item} />;
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
