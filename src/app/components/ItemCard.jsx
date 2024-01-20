@@ -14,14 +14,14 @@ const ItemCard = ({ data }) => {
   const [isLoading ,setisLoading] = useRecoilState(loadingstatus);
   const handleonCart = async() => {
     try {
-      setisLoading(true);
+      
       if(!localStorage.getItem('token'))
       {
         router.push('/Auth/Login');
         toast.warning("Please Login First");
         return;
       }
-
+      setisLoading(true);
       const res = await fetch(
         "https://theprintbackend.vercel.app/products/item/addtocart",
         {

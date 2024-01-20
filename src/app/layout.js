@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 
 export const metadata = {
-  title: "ThePrint",
+  title: "StickerVerse",
   description: "All your prints at one place",
 };
 

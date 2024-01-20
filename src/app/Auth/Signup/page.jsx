@@ -10,6 +10,7 @@ import { MdEmail, MdMarkEmailRead } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { loadingstatus } from "@/store/atom/State";
 import { useRecoilState } from "recoil";
+import Loading from "@/app/components/Loading";
 const page = () => {
   const router = useRouter();
   const [Email, setEmail] = useState("");
@@ -56,7 +57,7 @@ const page = () => {
     if (!Email) {
       return toast.error("Please Enter Email");
     }
-
+    setisLoading(true);
     const response = await fetch(
       "https://theprintbackend.vercel.app/users/verifyemail",
       {
@@ -69,6 +70,7 @@ const page = () => {
         }),
       }
     );
+    setisLoading(false);
     const data = await response.json();
     if (!data.Check) {
       return toast.error(data.Msg);
