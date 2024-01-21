@@ -86,6 +86,11 @@ const Item = () => {
     { Name: "Classic (A4) 300 GSM" },
   ];
 
+  const StickerSize = [
+    { Name: "2.5*2.5 CMS", Price: 20 },
+    { Name: "3*3 CMS", Price: 30 },
+  ]
+
   const handlesize = () => {};
 
   return (
@@ -144,6 +149,33 @@ const Item = () => {
               </div>
             ))}
           </div>
+        )}
+        {itemdata?.type === "Sticker" && (
+            <div className=" md:flex grid grid-cols-2 py-[2vh]  gap-2">
+                {StickerSize.map((item) => (
+                <div
+                    className="bg-[#222222] cursor-pointer hover:scale-105  transition-transform text-gray-400 font-bold text-sm md:max-w-[7vw] p-2 rounded-md"
+                    id={item?.Name}
+                    onClick={() => {
+                    setSize(item?.Name);
+                    const Name = item?.Name;
+                    StickerSize.map((item) => {
+                        if(item?.Name !== Name)
+                        {
+                            document
+                                .getElementById(item?.Name)
+                                .classList.remove("border-2", "border-[#f05700]");
+                        } 
+                    });
+                    document
+                        .getElementById(item?.Name)
+                        .classList.add("border-2", "border-[#f05700]");
+                    }}
+                >
+                    {item?.Name}
+                </div>
+                ))}
+            </div>
         )}
         <button
           className="bg-[#f05700] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"
