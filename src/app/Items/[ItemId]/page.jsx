@@ -83,7 +83,7 @@ const Item = () => {
     { Name: "Economic (12*18) 180 GSM", Price: 89 },
     { Name: "Laminated (A4) 300 GSM", Price: 79 },
     { Name: "Economic (A4) 180 GSM", Price: 59 },
-    { Name: "Classic (A4) 300 GSM" },
+    { Name: "Classic (A4) 300 GSM"  , Price: 29},
   ];
 
   const StickerSize = [
@@ -91,7 +91,7 @@ const Item = () => {
     { Name: "3*3 CMS", Price: 30 },
   ]
 
-  const handlesize = () => {};
+  const [Price, setPrice] = useState(null)
 
   return (
     <div className="md:flex w-full md:md-0 mt-[5vh] md:p-[5vh] min-h-[50vh] justify-between">
@@ -121,7 +121,7 @@ const Item = () => {
           </div>
         </div>
         <h2 className=" font-bold text-lg text-[#f05700]">
-          Price : ₹ {itemdata?.Price}
+          Price : {Price ? `₹${Price}` : "Select Size" }
         </h2>
         {itemdata?.type === "Poster" && (
           <div className=" md:flex grid grid-cols-2 p-[2vh]  gap-2">
@@ -131,6 +131,7 @@ const Item = () => {
                 id={item?.Name}
                 onClick={() => {
                   setSize(item?.Name);
+                  setPrice(item?.Price);
                   const Name = item?.Name;
                   PosterSize.map((item) => {
                     if(item?.Name !== Name)
@@ -158,6 +159,7 @@ const Item = () => {
                     id={item?.Name}
                     onClick={() => {
                     setSize(item?.Name);
+                    setPrice(item?.Price);
                     const Name = item?.Name;
                     StickerSize.map((item) => {
                         if(item?.Name !== Name)
