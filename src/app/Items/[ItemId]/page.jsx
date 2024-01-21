@@ -94,7 +94,7 @@ const Item = () => {
   const handlesize = () => {};
 
   return (
-    <div className="md:flex w-full md:p-[5vh] min-h-[50vh] justify-between">
+    <div className="md:flex w-full md:md-0 mt-[5vh] md:p-[5vh] min-h-[50vh] justify-between">
       <div>
         <Image
           layout="responsive"
