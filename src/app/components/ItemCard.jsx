@@ -4,59 +4,19 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from 'react-hot-toast';
-import { loadingstatus } from "@/store/atom/State";
-import { useRecoilState} from "recoil";
-import Loading from "./Loading";
+
 
 const ItemCard = ({ data }) => {
   const router = useRouter();
-  const Catvalue = data ;
-  const [isLoading ,setisLoading] = useRecoilState(loadingstatus);
-  const handleonCart = async() => {
-    try {
-      
-      if(!localStorage.getItem('token'))
-      {
-        router.push('/Auth/Login');
-        toast.warning("Please Login First");
-        return;
-      }
-      setisLoading(true);
-      const res = await fetch(
-        "https://theprintbackend.vercel.app/products/item/addtocart",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({
-            name: Catvalue?.Name,
-            price: Catvalue?.Price,
-            image: Catvalue?.imageURL,
-          }),
-        }
-      );
-      setisLoading(false);
-      const data = await res.json();
-      console.log(data);
-      if (data?.Check) {
-        toast.success(data?.msg);
-      } else {
-        toast.error(data?.msg);
-      }
-      
-    } catch (error) {
-        console.log(error);
-        toast.error("Please Login First");
-    }
-   
-  };
+
+  const handleonCart = () => {
+    router.push(`/Items/${data?._id}`);
+  }
 
   return (
     <>
-    <div className="mt-5 mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]">
-      <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]">
+    <div className="mt-5 cursor-pointer hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]" >
+      <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]" >
         <Image
           layout="responsive"
           src={data?.imageURL}
@@ -82,7 +42,7 @@ const ItemCard = ({ data }) => {
             className="bg-[#f05700] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"
             onClick={handleonCart}
           >
-            Cart
+            Buy
           </button>
         </div>
       </div>

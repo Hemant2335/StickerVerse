@@ -1,39 +1,38 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 
-const CartCard = ({data , Cart , setCart}) => {
-
-    const handleondelete = async() => {
-        try {
-            const res = await fetch(
-                "https://theprintbackend.vercel.app/products/item/deleteitem",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        auth: localStorage.getItem("token"),
-                    },
-                    body: JSON.stringify({
-                        id: data?._id,
-                    }),
-                }
-            );
-
-            const data1 = await res.json();
-            if (data1?.Check) {
-                const arr = Cart.filter((item) => item?._id !== data?._id);
-                setCart(arr);
-                toast.success(data1?.msg);
-            } else {
-                toast.error(data1?.msg);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong");
+const CartCard = ({ data, Cart, setCart }) => {
+  const handleondelete = async () => {
+    try {
+      const res = await fetch(
+        "https://theprintbackend.vercel.app/products/item/deleteitem",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            id: data?._id,
+          }),
         }
+      );
+
+      const data1 = await res.json();
+      if (data1?.Check) {
+        const arr = Cart.filter((item) => item?._id !== data?._id);
+        setCart(arr);
+        toast.success(data1?.msg);
+      } else {
+        toast.error(data1?.msg);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
+  };
 
   return (
     <div className="mt-5 mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]">
@@ -52,12 +51,12 @@ const CartCard = ({data , Cart , setCart}) => {
             </h1>
             <div className="flex">
               <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                Price :
-              </h2>
-              <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                {data?.Price}
+                Price : {data?.Price}
               </h2>
             </div>
+            <h2 className="text-sm text-gray-400 font-poppins font-medium ">
+              Size : {data?.size}
+            </h2>
           </div>
           <button
             className="bg-[#f05700] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"
@@ -68,7 +67,7 @@ const CartCard = ({data , Cart , setCart}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartCard
+export default CartCard;
