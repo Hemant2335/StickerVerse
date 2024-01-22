@@ -9,7 +9,7 @@ const useFetch = (param) => {
 
   const fetchdata = async () => {
     try {
-      setisLoading(false);
+      setisLoading(true);
       const res = await fetch(
         `https://theprintbackend.vercel.app/products/${param}`,
         {

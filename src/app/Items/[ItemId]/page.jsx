@@ -53,7 +53,7 @@ const Item = () => {
           },
           body: JSON.stringify({
             name: itemdata?.Name,
-            price: itemdata?.Price,
+            price: Price,
             image: itemdata?.imageURL,
             size: Size,
           }),
@@ -78,12 +78,12 @@ const Item = () => {
   }, []);
 
   const PosterSize = [
-    { Name: "Laminated (12*18) 300 GSM", Price: 129 },
+    { Name: "Platinum (12*18) 300 GSM", Price: 149 },
     { Name: "Classic (12*18) 180 GSM", Price: 109 },
     { Name: "Economic (12*18) 180 GSM", Price: 89 },
     { Name: "Laminated (A4) 300 GSM", Price: 79 },
     { Name: "Economic (A4) 180 GSM", Price: 59 },
-    { Name: "Classic (A4) 300 GSM"  , Price: 29},
+    { Name: "Classic (A4) 300 GSM"  , Price: 29},0
   ];
 
   const StickerSize = [
