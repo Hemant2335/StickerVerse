@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import logo from "../../../Assets/logo.png";
+import logo from "../../../Assets/Newlogo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -53,7 +53,7 @@ const page = () => {
     {isLoading && <Loading/>}
     <div className="w-full h-fit p-4 mt-[5vh] flex justify-center items-center">
       
-      <div className="bg-[#080806] h-fit md:min-w-[55vh] rounded-lg">
+      <div className=" shadow-3xl h-fit md:min-w-[55vh] rounded-lg">
         <div className="w-full flex items-center justify-center">
           <Image src={logo} width={150} height={150} />
         </div>
@@ -65,7 +65,7 @@ const page = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
           <input
             type="Password"
@@ -74,7 +74,7 @@ const page = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
           <h2 className="text-right text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white">Forgot Password?</h2> 
         </div>

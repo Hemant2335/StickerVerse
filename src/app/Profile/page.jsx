@@ -40,7 +40,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="flex justify-center mt-[10vh]">
+      <div className="flex text-gray-800 justify-center mt-[10vh]">
         <div className="h-fit w-fit shadow-3xl flex flex-col md:flex-row gap-[10vh] justify-center items-center px-10 py-10">
           <div className="shadow-3xl w-fit p-4 rounded-lg">
             {/* {data?.isAdmin ? () : (<img src={profile} alt="" className='h-[30vh]' />)} */}

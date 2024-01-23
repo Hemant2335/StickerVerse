@@ -106,7 +106,7 @@ const Item = () => {
       </div>
       <div className="md:min-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
         <div>
-          <h1 className=" font-bold text-4xl">{itemdata?.Name}</h1>
+          <h1 className=" font-bold text-gray-800 text-4xl">{itemdata?.Name}</h1>
           <p className=" text-gray-400">{itemdata?.Description}</p>
         </div>
         <div className=" flex gap-2">
