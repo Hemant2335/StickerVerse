@@ -83,7 +83,7 @@ const Item = () => {
     { Name: "Economic (12*18) 180 GSM", Price: 89 },
     { Name: "Laminated (A4) 300 GSM", Price: 79 },
     { Name: "Economic (A4) 180 GSM", Price: 59 },
-    { Name: "Classic (A4) 300 GSM"  , Price: 29},0
+    { Name: "Classic (A4) 300 GSM"  , Price: 29},
   ];
 
   const StickerSize = [
@@ -136,14 +136,10 @@ const Item = () => {
                   PosterSize.map((item) => {
                     if(item?.Name !== Name)
                     {
-                        document
-                            .getElementById(item?.Name)
-                            .classList.remove("border-2", "border-[#f05700]");
+                        document.getElementById(item?.Name).classList.remove("border-2", "border-[#f05700]");
                     } 
                   });
-                  document
-                    .getElementById(item?.Name)
-                    .classList.add("border-2", "border-[#f05700]");
+                  document.getElementById(item?.Name).classList.add("border-2", "border-[#f05700]");
                 }}
               >
                 {item?.Name}

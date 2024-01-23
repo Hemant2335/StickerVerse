@@ -15,7 +15,7 @@ const ItemCard = ({ data }) => {
 
   return (
     <>
-    <div className="mt-5 cursor-pointer hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]" >
+    <div className="mt-5 cursor-pointer hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:min-w-[10vw]" >
       <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]" >
         <Image
           layout="responsive"
