@@ -24,6 +24,29 @@ const Explore = () => {
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
   const [isCatdropdown, setisCatdropdown] = useState(false);
 
+
+  const handleAddCategoryfilter = async () =>{
+    if(!Category)
+    {
+      // setdata(Poster);
+      return ;
+    }
+    try {
+      let newfile = data.filter((item)=>{
+        return item.Category === Category
+      })
+      setdata(newfile);
+       
+    } catch (error) {
+       toast.error("Something went wrong");
+    }
+  }
+
+  useEffect(() => {
+    handleAddCategoryfilter();
+  }, [Category]);
+
+
   const handleCategory = async () => {
     try {
       const res = await fetch(
@@ -48,8 +71,9 @@ const Explore = () => {
     handleCategory();
   }, [Sticker]);
 
-  const handlebuttonclick = (item) => {
+  const handlebuttonclick =(item) => {
     setdata(item);
+    setCategory(null);
   };
 
   return (
@@ -109,6 +133,18 @@ const Explore = () => {
               </h1>
               {isCatdropdown && (
                 <div className="mt-[2vh] shadow-3xl absolute bg-white rounded-lg">
+                  <div
+                        className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                        onClick={() => {
+                          setCategory(null);
+                          setisCatdropdown(false);
+                          setSubcategory(null);
+                        }}
+                      >
+                        <h1 className="text-gray-800 font-bold">
+                          Select Category
+                        </h1>
+                      </div>
                   {Categorydata?.map((item) => {
                     return (
                       <div
