@@ -33,7 +33,7 @@ const ItemCard = ({ data }) => {
               </h1>
               <div className="flex gap-2">
               <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                Price : {data?.Price}
+                Price : ₹{data?.Price}
               </h2>
             </div>
             </div>
