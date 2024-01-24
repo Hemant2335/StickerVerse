@@ -107,7 +107,7 @@ const page = () => {
     <div>
       {isLoading && <Loading/>}
       <div className="flex justify-center my-[10vh] md:mx-0  md:p-[5vh]">
-        <div className="h-fit md:w-[50vw] shadow-3xl bg-[#080806] gap-[10vh] justify-center items-center p-[5vh]">
+        <div className="h-fit md:w-[50vw] shadow-3xl  gap-[10vh] justify-center items-center p-[5vh]">
           <div className=" shadow-3xl items-center flex flex-col w-full justify-center  p-4 rounded-lg">
             {imgurl ? (
               <Image src={imgurl} height={150} width={150} alt="Image" />

@@ -203,10 +203,10 @@ const Navbar = () => {
           </li>
           {isAdmin && (
             <li
-              className="bg-[#1A1110] p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+              className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
               onClick={() => router.push("/Dashboard")}
             >
-              <FiPlusSquare />
+              <FiPlusSquare /> DASHBOARD
             </li>
           )}
         </ul>
