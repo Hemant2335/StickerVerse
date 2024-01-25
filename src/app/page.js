@@ -17,13 +17,13 @@ const page = () => {
       <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         
         {/* Banner */}
-        <div className="hidden  rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[80vh]  mt-[5vh]">
-          <div className="min:w-[40vw] max-w-[40vw] p-[10vh] h-full text-gray-800 rounded-l-xl bg-gray-100">
+        <div className="rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[80vh]  mt-[5vh]">
+          <div className="min:w-[40vw] md:max-w-[40vw] p-[4vh] md:p-[10vh] h-full text-gray-800 rounded-l-xl bg-gray-100">
             <h1 className="text-4xl font-bold">Collect Prints for the Heaven</h1>
             <p className="mt-[5vh] text-gray-400 ">Discover fresh Creatvity, with full of artwork and Passion from a wide range Collection , Enjoy exploring and supporting future </p>
             <button className="mt-[5vh] bg-gray-800 text-white px-4 py-2 rounded-lg">Explore Now</button>
           </div>
-          <div className="h-full ">
+          <div className="h-full hidden">
             <Image
               layout="responsive"
               src={banner}
