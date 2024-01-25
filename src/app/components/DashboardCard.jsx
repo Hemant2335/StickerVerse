@@ -1,21 +1,25 @@
-"use client"
-import { MoreCard } from '.'
-import useFetch from '../hooks/useFetch'
-import ItemCard from './ItemCard'
+"use client";
+import { MoreCard } from ".";
+import useFetch from "../hooks/useFetch";
+import ItemCard from "./ItemCard";
 
-const DashboardCard = ({Name}) => {
+const DashboardCard = ({ Name }) => {
   const ProductData = useFetch(Name);
   return (
-    <div className='mt-[5vh] w-full'>
-        <h2 className='font-bold  text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]'>{Name}</h2>
-        <div className='md:grid grid-cols-5 gap-9'>
-          {ProductData?.slice(0,4).map((item)=>{
-            return (<ItemCard data={item}/>)
-          })}
-          <MoreCard/>
-        </div>
+    <div className="mt-[5vh] w-full">
+      <h2 className="font-bold  text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]">
+        {Name}
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-9">
+        {ProductData?.slice(0, 4).map((item) => {
+          return <ItemCard data={item} />;
+        })}  
       </div>
-  )
-}
+      <div className=" w-full flex justify-center">
+          <MoreCard />
+        </div>
+    </div>
+  );
+};
 
-export default DashboardCard
+export default DashboardCard;

@@ -40,7 +40,7 @@ const Navbar = () => {
           <Image
           layout="responsive"
           src={logo}
-          className="rounded-xl md:max-h-[20vh]"
+          className="rounded-xl max-h-[15vh] md:max-h-[20vh]"
         />
         </div>
         {/* Mobile Menu */}

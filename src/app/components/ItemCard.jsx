@@ -18,7 +18,7 @@ const ItemCard = ({ data }) => {
         className="mt-5 cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:min-w-[10vw]"
         onClick={handleonCart}
       >
-        <div className=" min-w-[20vh]  md:min-w-[10vw] md:max-w-[25vw]">
+        <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
             src={data?.imageURL}
