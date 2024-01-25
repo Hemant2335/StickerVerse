@@ -15,16 +15,16 @@ const ItemCard = ({ data }) => {
   return (
     <>
       <div
-        className="mt-5 cursor-pointer shadow-3xl  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:min-w-[10vw]"
+        className="mt-5 cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:min-w-[10vw]"
         onClick={handleonCart}
       >
-        <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]">
+        <div className=" min-w-[20vh]  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
             src={data?.imageURL}
             width={200}
             height={200}
-            className="rounded-xl md:max-h-[25vh] shadow-3xl"
+            className="rounded-xl md:max-h-[40vh]"
           />
           <div className=" flex  items-center justify-between px-2  rounded-md">
             <div>

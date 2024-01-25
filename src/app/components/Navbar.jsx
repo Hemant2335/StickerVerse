@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { adminstatus } from "@/store/atom/State";
 import Image from "next/image";
-import logo from "../../Assets/Newlogo.png";
+import logo from "../../Assets/StickerVerse.png";
 import { FiSearch } from "react-icons/fi";
 
 const Navbar = () => {
@@ -31,15 +31,17 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="font-poppins flex justify-between items-center overflow-x-hidden">
+      <div className="bg-black flex justify-center">
+          Summer Sale Live 50% off on any 2 Stickers
+      </div>
+      <div className="mt-[1vh] font-poppins flex justify-between items-center overflow-x-hidden">
         {/* Logo */}
         <div className="flex text-[3vh] text-gray-800 w-fit h-fit font-bold ">
-          {/* <Image
+          <Image
           layout="responsive"
           src={logo}
-          className="rounded-xl md:max-h-[28vh]"
-        /> */}
-          MRPRINT
+          className="rounded-xl md:max-h-[20vh]"
+        />
         </div>
         {/* Mobile Menu */}
         <div>
@@ -144,6 +146,44 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-center p-4">
           <nav>
             <ul className="flex gap-2 items-center justify-center">
+            <li
+            className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            onClick={() => router.push("/")}
+          >
+            <FiHome />
+          </li>
+          <li
+            className="text-gray-800 font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            onClick={() => {
+              router.push("/Explore");
+            }}
+          >
+            <FiCompass />
+          </li>
+          <li
+            className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            onClick={() => {
+              router.push("/Category");
+            }}
+          >
+            <FiGrid />
+          </li>
+          <li
+            className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            onClick={() => {
+              router.push("/Category");
+            }}
+          >
+            <FiSmile />
+          </li>
+          {isAdmin && (
+            <li
+              className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+              onClick={() => router.push("/Dashboard")}
+            >
+              <FiPlusSquare />
+            </li>
+          )}
               <li
                 className="text-gray-800 p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
@@ -167,49 +207,6 @@ const Navbar = () => {
             </ul>
           </nav>
         </div>
-      </div>
-      <hr className=" border-[0.2vh]" />
-      <div className="hidden w-full md:flex justify-center mt-[2vh]">
-        <ul className="flex gap-5">
-          <li
-            className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-            onClick={() => router.push("/")}
-          >
-            <FiHome /> HOME
-          </li>
-          <li
-            className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-            onClick={() => {
-              router.push("/Explore");
-            }}
-          >
-            <FiCompass /> EXPLORE
-          </li>
-          <li
-            className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-            onClick={() => {
-              router.push("/Category");
-            }}
-          >
-            <FiGrid /> CATEGORY
-          </li>
-          <li
-            className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-            onClick={() => {
-              router.push("/Category");
-            }}
-          >
-            <FiSmile /> ABOUT US
-          </li>
-          {isAdmin && (
-            <li
-              className="text-gray-800 text-[2.3vh] font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-              onClick={() => router.push("/Dashboard")}
-            >
-              <FiPlusSquare /> DASHBOARD
-            </li>
-          )}
-        </ul>
       </div>
     </div>
   );

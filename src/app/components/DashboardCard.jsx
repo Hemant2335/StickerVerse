@@ -8,7 +8,7 @@ const DashboardCard = ({Name}) => {
   return (
     <div className='mt-[5vh] w-full'>
         <h2 className='font-bold  text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]'>{Name}</h2>
-        <div className='md:flex gap-9'>
+        <div className='md:grid grid-cols-5 gap-9'>
           {ProductData?.slice(0,4).map((item)=>{
             return (<ItemCard data={item}/>)
           })}

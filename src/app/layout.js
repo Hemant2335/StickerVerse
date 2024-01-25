@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="">
-            <div className="mx-[5vh]">
+            <div className="mx-[5vw]">
             <RecoilContextProvider>
               <Navbar />
               <Suspense fallback = {<Loading/>}/>
