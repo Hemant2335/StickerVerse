@@ -284,7 +284,7 @@ const page = () => {
                     </div>
 
                     {isSubcatdropdown && (
-                      <div className="mt-[2vh] shadow-3xl absolute bg-white rounded-lg">
+                      <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
                         <div
                           className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                           onClick={() => {
