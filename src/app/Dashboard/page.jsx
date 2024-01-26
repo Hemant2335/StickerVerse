@@ -22,8 +22,9 @@ const page = () => {
   const [Name, setName] = useState("");
   const [Type, setType] = useState("");
   const [Categorydata, setCategorydata] = useState(null);
+  const [SubCategorydata, setSubCategorydata] = useState(null);
   const [isCatdropdown, setisCatdropdown] = useState(false);
-  const [isCatinput, setisCatinput] = useState(false);
+  const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
 
   const handleCategory = async () => {
     try {
@@ -43,9 +44,9 @@ const page = () => {
       toast.error("Something went wrong");
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     handleCategory();
-  } , [])
+  }, []);
 
   // Function to handle image upload
 
@@ -90,6 +91,10 @@ const page = () => {
 
   const handleAddtoProduct = async () => {
     try {
+      if(!Name || !Desc || !Price || !Cat || !Subcat || !Type || !imgurl)
+      {
+        return toast.error("Please fill all the fields");
+      }
       setisLoading(true);
       const res = await fetch(
         "https://theprintbackend.vercel.app/dashboard/add",
@@ -200,23 +205,35 @@ const page = () => {
                 />
               </div>
               <div className="mt-[2vh]">
-                <h1
-                  className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
-                  onClick={() => {
-                    setisCatdropdown(!isCatdropdown);
-                  }}
-                >
-                  {Cat ? `${Cat}` : "Select Category"}{" "}
-                  <FiChevronDown />
-                </h1>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Category eg: Marvel"
+                    className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+                    onChange={(e) => {
+                      setCat(e.target.value);
+                    }}
+                    value={Cat}
+                  />
+                  <h1
+                    className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
+                    onClick={() => {
+                      setisCatdropdown(!isCatdropdown);
+                    }}
+                  >
+                    {" "}
+                    <FiChevronDown />
+                  </h1>
+                </div>
+
                 {isCatdropdown && (
-                  <div className="mt-[2vh] shadow-3xl absolute bg-white rounded-lg">
+                  <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
                     <div
                       className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                       onClick={() => {
                         setCategory(null);
                         setisCatdropdown(false);
-                        setSubcategory(null);
+                        setSubcat(null);
                       }}
                     >
                       <h1 className="text-gray-800 font-bold">
@@ -230,7 +247,7 @@ const page = () => {
                           onClick={() => {
                             setCat(item?.Name);
                             setisCatdropdown(false);
-                            setSubcategory(null);
+                            setSubcat(null);
                             setSubCategorydata(item?.subcategory);
                           }}
                         >
@@ -244,14 +261,60 @@ const page = () => {
                 )}
               </div>
               <div className="mt-5">
-                <input
-                  type="text"
-                  placeholder="Sub category eg: Iron-Man"
-                  className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
-                  onChange={(e) => {
-                    setSubcat(e.target.value);
-                  }}
-                />
+                {(
+                  <div className="mt-[2vh]">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Sub category eg: Iron-Man"
+                        className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+                        onChange={(e) => {
+                          setSubcat(e.target.value);
+                        }}
+                        value={Subcat}
+                      />
+                      <h1
+                        className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
+                        onClick={() => {
+                          setisSubcatdropdown(!isSubcatdropdown);
+                        }}
+                      >
+                        <FiChevronDown />
+                      </h1>
+                    </div>
+
+                    {isSubcatdropdown && (
+                      <div className="mt-[2vh] shadow-3xl absolute bg-white rounded-lg">
+                        <div
+                          className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                          onClick={() => {
+                            setisSubcatinput(true);
+                            setisSubcatdropdown(false);
+                          }}
+                        >
+                          <h1 className="text-gray-800 font-bold">
+                            Select SubCategory
+                          </h1>
+                        </div>
+                        {SubCategorydata?.map((item) => {
+                          return (
+                            <div
+                              className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                              onClick={() => {
+                                setSubcat(item?.Name);
+                                setisSubcatdropdown(false);
+                              }}
+                            >
+                              <h1 className="text-gray-800 font-bold">
+                                {item?.Name}
+                              </h1>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="mt-5">
                 <input
