@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import logo from "../../../Assets/Newlogo.png";
+import logo from "../../../Assets/StickerVerse.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -51,6 +51,15 @@ const page = () => {
   return (
     <>
     {isLoading && <Loading/>}
+    {/* <div className="h-full hidden md:flex">
+            <Image
+              layout="responsive"
+              src={banner}
+              width={50}
+              height={50}
+              className="md:h-[2vw] rounded-r-2xl"
+            />
+          </div> */}
     <div className="w-full h-fit p-4 mt-[5vh] flex justify-center items-center">
       
       <div className=" shadow-3xl h-fit md:min-w-[55vh] rounded-lg">
@@ -65,7 +74,7 @@ const page = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800 hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
           <input
             type="Password"
@@ -74,9 +83,9 @@ const page = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-[#2B2B2B]  p-3 text-sm font-medium text-white hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800 hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
-          <h2 className="text-right text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white">Forgot Password?</h2> 
+          <h2 className="text-right text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-red-400">Forgot Password?</h2> 
         </div>
 
         <div className="w-full p-4 flex justify-center items-center">
@@ -85,7 +94,7 @@ const page = () => {
           </button>
         </div>
 
-        <h2 className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-white" onClick={()=>router.push("/Auth/Signup")}> <button>Don't have an Account? Signup</button> </h2>  
+        <h2 className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-red-400 mb-2" onClick={()=>router.push("/Auth/Signup")}> <button>Don't have an Account? Signup</button> </h2>  
 
       </div>
     </div>

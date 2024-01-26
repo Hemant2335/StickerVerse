@@ -7,10 +7,10 @@ const DashboardCard = ({ Name }) => {
   const ProductData = useFetch(Name);
   return (
     <div className="mt-[5vh] w-full">
-      <h2 className="font-bold  text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]">
+      <h2 className="font-bold mb-5 text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]">
         {Name}
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-9">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
         {ProductData?.slice(0, 4).map((item) => {
           return <ItemCard data={item} />;
         })}  

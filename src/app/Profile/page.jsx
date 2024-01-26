@@ -5,10 +5,13 @@ import profile from "../../Assets/man-avatar.png"
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { adminstatus } from "@/store/atom/State";
+import { useSetRecoilState } from "recoil";
 
 const Profile = () => {
   const router = useRouter();
   const [data, setdata] = useState("");
+  const setisAdmin = useSetRecoilState(adminstatus);
   const show = async () => {
     const response = await fetch(
       `https://theprintbackend.vercel.app/users/getuser`,
@@ -23,8 +26,10 @@ const Profile = () => {
 
     const json = await response.json();
     setdata(json?.User);
+    setisAdmin(data?.isAdmin);
     console.log(data);
   };
+
   useEffect(() => {
     show();
   }, []);
