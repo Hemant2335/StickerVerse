@@ -25,6 +25,9 @@ const page = () => {
   const [SubCategorydata, setSubCategorydata] = useState(null);
   const [isCatdropdown, setisCatdropdown] = useState(false);
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
+  const [isTypedropdown, setisTypedropdown] = useState(false);
+
+  const Typedropdown = ["Sticker", "Poster"] ;
 
   const handleCategory = async () => {
     try {
@@ -228,18 +231,6 @@ const page = () => {
 
                 {isCatdropdown && (
                   <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
-                    <div
-                      className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
-                      onClick={() => {
-                        setCategory(null);
-                        setisCatdropdown(false);
-                        setSubcat(null);
-                      }}
-                    >
-                      <h1 className="text-gray-800 font-bold">
-                        Select Category
-                      </h1>
-                    </div>
                     {Categorydata?.map((item) => {
                       return (
                         <div
@@ -287,10 +278,6 @@ const page = () => {
                       <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
                         <div
                           className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
-                          onClick={() => {
-                            setisSubcatinput(true);
-                            setisSubcatdropdown(false);
-                          }}
                         >
                           <h1 className="text-gray-800 font-bold">
                             Select SubCategory
@@ -316,7 +303,7 @@ const page = () => {
                   </div>
                 )}
               </div>
-              <div className="mt-5">
+              <div className="mt-5 flex gap-2">
                 <input
                   type="text"
                   placeholder="Type eg: Sticker"
@@ -324,7 +311,36 @@ const page = () => {
                   onChange={(e) => {
                     setType(e.target.value);
                   }}
+                  value={Type}
                 />
+                <h1
+                    className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
+                    onClick={() => {
+                      setisTypedropdown(!isTypedropdown);
+                    }}
+                  >
+                    {" "}
+                    <FiChevronDown />
+                  </h1>
+                {isTypedropdown && (
+                  <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
+                    {Typedropdown?.map((item) => {
+                      return (
+                        <div
+                          className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                          onClick={() => {
+                            setType(item);
+                            setisTypedropdown(false);
+                          }}
+                        >
+                          <h1 className="text-gray-800 font-bold">
+                            {item}
+                          </h1>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
             <div className="w-full p-4 flex justify-center items-center">
