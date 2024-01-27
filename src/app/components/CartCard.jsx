@@ -35,38 +35,35 @@ const CartCard = ({ data, Cart, setCart }) => {
   };
 
   return (
-    <div className="mt-5 mb-10 rounded-lg  w-full md:w-fit bg-[#080806] p-4 md:min-w-[10vw]">
-      <div className=" min-w-[20vh] md:min-w-[10vw] md:max-w-[20vw]">
+    <>
+    <div className="mt-5 mb-10 flex shadow-3xl justify-between rounded-lg w-full items-center   p-4 md:max-w-[50vw]">
+      <div className="flex gap-4">
+        <div >
         <Image
           layout="responsive"
           src={data?.imageURL}
           width={200}
           height={200}
-          className="rounded-xl md:max-h-[28vh]"
+          className="rounded-xl md:max-h-[20vh]"
         />
-        <div className=" flex  items-center justify-between px-2 shadow-3xl  rounded-md">
-          <div>
-            <h1 className="text-sm text-[#F9F6EE] font-poppins font-medium mt-5 ">
-              {data?.Name}
-            </h1>
-            <div className="flex">
-              <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                Price : {data?.Price}
-              </h2>
-            </div>
-            <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-              Size : {data?.size}
-            </h2>
-          </div>
-          <button
-            className="bg-[#f05700] ml-[2vw] text-sm hover:scale-105 transition-transform text-black font-poppins font-medium p-2 rounded-lg mt-5"
-            onClick={handleondelete}
-          >
-            <FiTrash2 />
-          </button>
+        </div>
+        <div className="w-full">
+          <h1 className="text-lg font-semibold text-gray-600 ">{data?.Name}</h1>
+          <h1 className="text-sm font-semibold text-gray-400 ">{data?.size}</h1>
         </div>
       </div>
+      <div className="flex gap-4 items-center mt-5">
+        <h1 className="text-lg font-semibold  text-gray-600">
+          ₹ {data?.Price}
+        </h1>
+        <FiTrash2
+          className="text-xl text-red-400 cursor-pointer"
+          onClick={handleondelete}
+        />
+      </div>
     </div>
+    
+    </>
   );
 };
 

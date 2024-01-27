@@ -54,11 +54,12 @@ const Cart = () => {
 
   return (
     <>
+    <h1 className="text-gray-800 mt-[5vh] text-xl font-extrabold">Shopping Cart</h1>
     {isLoading && <Loading/>}
-    <div className="md:flex p-[5vh]">
+    <div className="md:flex pt-[2vh] px-[5vh]">
       {/* Items */}
       <div className="w-full h-fit ">
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="">
           {Cartitems?.map((item) => {
             return <CartCard data={item} Cart = {Cartitems}  setCart = {setCartitems}/>;
           })}

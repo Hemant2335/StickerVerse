@@ -20,4 +20,5 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #ffffff;
+  font-family: "Poppins", sans-serif;
 }
