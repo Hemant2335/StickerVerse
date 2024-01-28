@@ -47,9 +47,10 @@ const CartCard = ({ data, Cart, setCart }) => {
           className="rounded-xl md:max-h-[20vh]"
         />
         </div>
-        <div className="w-full">
+        <div className="w-full flex flex-col justify-center">
           <h1 className="text-lg font-semibold text-gray-600 ">{data?.Name}</h1>
           <h1 className="text-sm font-semibold text-gray-400 ">{data?.size}</h1>
+          <h1 className="text-sm font-semibold text-gray-400 ">Quantity : {data?.quantity}</h1>
         </div>
       </div>
       <div className="flex gap-4 items-center mt-5">

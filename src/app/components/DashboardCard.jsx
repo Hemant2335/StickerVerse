@@ -11,7 +11,7 @@ const DashboardCard = ({ Name }) => {
         {Name}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
-        {ProductData?.slice(0, 4).map((item) => {
+        {ProductData?.slice(0, 10).map((item) => {
           return <ItemCard data={item} />;
         })}  
       </div>
