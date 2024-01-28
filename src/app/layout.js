@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="">
+      
             <div className="mx-[5vw]">
             <RecoilContextProvider>
               <Navbar />
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             </RecoilContextProvider>
             </div>
             <Footer />
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </body>
     </html>
   );
