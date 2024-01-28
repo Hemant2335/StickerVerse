@@ -174,7 +174,7 @@ const Item = () => {
             >
               -
             </button>
-            <div className="w-[3vw] h-[3vw] rounded-[50%] border-2 flex items-center justify-center">
+            <div className="w-[5vh] h-[5vh] rounded-[50%] border-2 flex items-center justify-center">
               {Quantity}
             </div>
             <button
