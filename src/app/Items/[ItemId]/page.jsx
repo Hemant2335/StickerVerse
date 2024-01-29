@@ -84,6 +84,8 @@ const Item = () => {
             image: itemdata?.imageURL,
             size: Size,
             quantity: Quantity,
+            type: itemdata?.type,
+            
           }),
         }
       );

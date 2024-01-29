@@ -17,6 +17,35 @@ const Cart = () => {
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const router = useRouter();
 
+  const handleaddtoOrder = async(item)=>{
+    try {
+      console.log("I am Orderadd running" , item);
+      const res = await fetch("https://theprintbackend.vercel.app/order/addorder",{
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json",
+          auth : localStorage.getItem("token")
+        },
+        body : JSON.stringify({
+          name : item?.name,
+          price : item?.price,
+          image : item?.image,
+          size : item?.size,
+          quantity : item?.quantity,
+          type : item?.type,
+          status : "Yet to be Delivered",
+        })
+      })
+      const data = await res.json();
+      console.log(data);
+
+    } catch (error) {
+       toast.error("Cannot Add to Order");
+    }
+  }
+
+
+
   const handlebuy = async () => {
     try {
       setisLoading(true);
@@ -47,7 +76,6 @@ const Cart = () => {
         handler: response => {
           // Handle the payment success or failure
           console.log(response);
-          addtocart();
           router.push("/Success");
         },
         prefill: {
@@ -57,6 +85,9 @@ const Cart = () => {
 
       const razorpayInstance = new window.Razorpay(options);
       razorpayInstance.open();
+      Cartitems?.map((item)=>{
+        handleaddtoOrder(item);
+      })
       setisLoading(false);
     } catch (error) {
       setisLoading(false);
@@ -88,7 +119,7 @@ const Cart = () => {
   const findtotal = () => {
     let a = 0;
     Cartitems?.map((item) => {
-      a = a + item?.Price;
+      a = a + item?.price;
     });
     settotalprice(a);
   };

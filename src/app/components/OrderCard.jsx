@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import { toast } from "react-hot-toast";
 
-const ItemCard = ({ data }) => {
+const OrderCard = ({ data }) => {
   const router = useRouter();
 
   const handleonCart = () => {
@@ -22,23 +22,29 @@ const ItemCard = ({ data }) => {
         <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
-            src={data?.imageURL}
+            src={data?.image}
             width={200}
             height={200}
             className="rounded-xl md:max-h-[40vh]"
+            alt="Image"
           />
           <div className=" flex  items-center justify-between px-2  rounded-md">
             <div>
               <h1 className="text-sm text-gray-800 font-poppins font-medium mt-5 ">
-                {data?.Name}
+                {data?.name}
               </h1>
               <div className="flex gap-2">
+                <h2 className="text-sm text-gray-400 font-poppins font-medium ">
+                  Price : ₹{data?.price}
+                </h2>
+              </div>
               <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                Price : ₹{data?.Price}
+                Size : {data?.size}
+              </h2>
+              <h2 className="text-sm text-green-400 font-poppins font-medium ">
+                Status : {data?.status}
               </h2>
             </div>
-            </div>
-            
           </div>
         </div>
       </div>
@@ -46,4 +52,4 @@ const ItemCard = ({ data }) => {
   );
 };
 
-export default ItemCard;
+export default OrderCard;

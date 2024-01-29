@@ -243,7 +243,7 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  <FiUser /> {Accname}
+                  <FiUser /> {Accname.split(" ")[0]}
                 </li>
                 {isUserdropdown && localStorage.getItem("token") && (
                   <div className="shadow-3xl bg-white z-50  rounded-md absolute w-fit h-fit">
