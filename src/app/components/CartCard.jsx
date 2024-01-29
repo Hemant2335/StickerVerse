@@ -36,7 +36,7 @@ const CartCard = ({ data, Cart, setCart }) => {
 
   return (
     <>
-    <div className="mt-5 mb-10 ,md:flex shadow-3xl justify-between rounded-lg w-full items-center   p-4 md:max-w-[50vw]">
+    <div className="mt-5 mb-10 md:flex shadow-3xl justify-between rounded-lg w-full items-center   p-4 md:max-w-[50vw]">
       <div className="md:flex gap-4">
         <div >
         <Image
