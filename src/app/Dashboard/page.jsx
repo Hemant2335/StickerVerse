@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import profile from "../../Assets/StickerVerse.png";
+import profile from "../../Assets/Logo.png";
 import { FiUploadCloud } from "react-icons/fi";
 import { MdCloudDone } from "react-icons/md";
 import { useState } from "react";
