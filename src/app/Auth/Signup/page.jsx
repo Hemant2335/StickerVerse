@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import logo from "../../../Assets/Stickerverse.png";
+import logo from "../../../Assets/Logo.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

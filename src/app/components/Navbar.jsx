@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { adminstatus } from "@/store/atom/State";
 import Image from "next/image";
-import logo from "../../Assets/StickerVerse.png";
+import Navlogo from "../../Assets/Logo.png";
 import { FiSearch } from "react-icons/fi";
 import { Accountname } from "@/store/atom/State";
 
@@ -75,7 +75,7 @@ const Navbar = () => {
         <div className="flex text-[3vh] text-gray-800 w-fit h-fit font-bold ">
           <Image
             layout="responsive"
-            src={logo}
+            src={Navlogo}
             className="rounded-xl max-h-[15vh] md:max-h-[20vh]"
           />
         </div>

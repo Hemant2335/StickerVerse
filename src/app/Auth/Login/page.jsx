@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import logo from "../../../Assets/StickerVerse.png";
+import logo from "../../../Assets/Logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
