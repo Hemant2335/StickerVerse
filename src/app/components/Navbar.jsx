@@ -10,6 +10,7 @@ import {
   FiPlusSquare,
   FiCompass,
   FiX,
+  FiPackage,
   FiUser,
   FiSmile,
 } from "react-icons/fi";
@@ -157,6 +158,17 @@ const Navbar = () => {
                     }}
                   >
                     <FiUser />
+                  </li>
+                  <li
+                    className="bg-gray-200  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    onClick={() => {
+                      localStorage.getItem("token")
+                        ? router.push("/Orders")
+                        : router.push("/Auth/Login");
+                      handlesideclick();
+                    }}
+                  >
+                    <FiPackage />
                   </li>
                 </ul>
               </nav>
