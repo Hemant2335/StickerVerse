@@ -36,8 +36,8 @@ const CartCard = ({ data, Cart, setCart }) => {
 
   return (
     <>
-    <div className="mt-5 mb-10 flex shadow-3xl justify-between rounded-lg w-full items-center   p-4 md:max-w-[50vw]">
-      <div className="flex gap-4">
+    <div className="mt-5 mb-10 ,md:flex shadow-3xl justify-between rounded-lg w-full items-center   p-4 md:max-w-[50vw]">
+      <div className="md:flex gap-4">
         <div >
         <Image
           layout="responsive"
@@ -47,13 +47,13 @@ const CartCard = ({ data, Cart, setCart }) => {
           className="rounded-xl md:max-h-[20vh]"
         />
         </div>
-        <div className="w-full flex flex-col justify-center">
+        <div className="w-full md:mt-0 mt-[2vh] flex flex-col justify-center">
           <h1 className="text-lg font-semibold text-gray-600 ">{data?.name}</h1>
           <h1 className="text-sm font-semibold text-gray-400 ">{data?.size}</h1>
           <h1 className="text-sm font-semibold text-gray-400 ">Quantity : {data?.quantity}</h1>
         </div>
       </div>
-      <div className="flex gap-4 items-center mt-5">
+      <div className="flex gap-4 items-center mt-[2vh] md:mt-5">
         <h1 className="text-lg font-semibold  text-gray-600">
           ₹ {data?.price}
         </h1>
