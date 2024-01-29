@@ -6,7 +6,7 @@ import logo from "../../../Assets/StickerVerse.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { adminstatus } from "@/store/atom/State";
+import { adminstatus  , Accountname} from "@/store/atom/State";
 import { toast } from 'react-hot-toast';
 import { loadingstatus } from "@/store/atom/State";
 import Loading from "@/app/components/Loading";
@@ -17,6 +17,7 @@ const page = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const setisAdmin = useSetRecoilState(adminstatus);
+  const setAccname = useSetRecoilState(Accountname);
 
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
 
@@ -41,6 +42,7 @@ const page = () => {
     }
     else{
       setisAdmin(data.isAdmin);
+      setAccname(data?.Name)
       toast.success("Login Successfull");
       localStorage.setItem("token",data.Message);
       router.push("/");
@@ -74,7 +76,7 @@ const page = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800 hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
           <input
             type="Password"
@@ -83,18 +85,18 @@ const page = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800 hover:bg-[#383838] focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
+            className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-red-400 focus:outline-none md:w-full "
           />
-          <h2 className="text-right text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-red-400">Forgot Password?</h2> 
+          <h2 className="text-right text-sm md:text-[2vh] font-medium  text-gray-400 cursor-pointer hover:text-red-400">Forgot Password?</h2> 
         </div>
 
         <div className="w-full p-4 flex justify-center items-center">
-          <button className="bg-[#f05700] text-sm md:text-[2.4vh]  p-3 rounded-lg w-[20vw] font-poppins font-bold text-white hover:bg-[#f06800] focus:outline-none" onClick={handleLogin}>
+          <button className="bg-[#f05700] text-sm md:text-[2vh]  p-3 rounded-lg w-[20vw] font-poppins font-medium text-white hover:bg-[#f06800] focus:outline-none" onClick={handleLogin}>
             Login
           </button>
         </div>
 
-        <h2 className="text-center text-sm md:text-[2.4vh] font-semibold text-gray-400 cursor-pointer hover:text-red-400 mb-2" onClick={()=>router.push("/Auth/Signup")}> <button>Don't have an Account? Signup</button> </h2>  
+        <h2 className="text-center text-sm md:text-[2vh] font-medium text-gray-400 cursor-pointer hover:text-red-400 mb-2" onClick={()=>router.push("/Auth/Signup")}> <button>Don't have an Account? Signup</button> </h2>  
 
       </div>
     </div>

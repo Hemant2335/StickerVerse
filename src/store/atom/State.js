@@ -7,6 +7,10 @@ export const adminstatus = atom({
     default : false
 })
 
+export const Accountname = atom({
+  key : "accountname" ,
+  default : "Login"
+})
 
 export const loadingstatus = atom({
   key : "Loading",

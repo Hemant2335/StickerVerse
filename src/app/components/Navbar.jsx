@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   FiHome,
   FiGrid,
@@ -19,19 +19,21 @@ import { adminstatus } from "@/store/atom/State";
 import Image from "next/image";
 import logo from "../../Assets/StickerVerse.png";
 import { FiSearch } from "react-icons/fi";
+import { Accountname } from "@/store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();
   const [issidebar, setissidebar] = useState(false);
-  const [isAdmin ,setisAdmin] = useRecoilState(adminstatus);
+  const [isAdmin, setisAdmin] = useRecoilState(adminstatus);
+  const [Accname, setAccname] = useRecoilState(Accountname);
+  const [isUserdropdown, setisUserdropdown] = useState(false);
 
   const handlesideclick = () => {
     setissidebar(!issidebar);
   };
 
   const show = async () => {
-    if(!localStorage.getItem("token"))
-    {
+    if (!localStorage.getItem("token")) {
       return;
     }
     const response = await fetch(
@@ -47,12 +49,20 @@ const Navbar = () => {
 
     const json = await response.json();
     setisAdmin(json?.User?.isAdmin);
+    setAccname(json?.User?.Name);
   };
 
   useEffect(() => {
     show();
   }, []);
-  
+
+  const handleMouseEnter = useCallback(() => {
+    setisUserdropdown(true);
+  }, [isUserdropdown]);
+
+  const handleMouseleave = useCallback(() => {
+    setisUserdropdown(false);
+  }, [isUserdropdown]);
 
   return (
     <div>
@@ -85,7 +95,7 @@ const Navbar = () => {
             >
               <FiX />
             </button>
-            <div >
+            <div>
               <nav>
                 <ul className="gap-5 items-center px-[8vw] py-[5vh] flex flex-col">
                   <li
@@ -138,7 +148,7 @@ const Navbar = () => {
                     <FiShoppingCart />
                   </li>
                   <li
-                    className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-gray-200  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       localStorage.getItem("token")
                         ? router.push("/Profile")
@@ -156,7 +166,7 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="hidden  text-[2.3vh] md:flex items-center w-full justify-center p-4">
-          <div className="bg-[#e5e4e2] rounded-xl flex ml-[2vw] items-center pl-2 pr-[5vw]">
+          <div className="bg-[#e5e4e2]  rounded-xl flex ml-[2vw] items-center pl-2 pr-[5vw]">
             <h1 className="text-gray-800 text-lg">
               <FiSearch />
             </h1>
@@ -215,22 +225,51 @@ const Navbar = () => {
                 className="text-gray-800 p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
                   localStorage.getItem("token")
-                    ? router.push("/Profile")
-                    : router.push("/Auth/Login");
-                }}
-              >
-                <FiUser />
-              </li>
-              <li
-                className="text-gray-800 p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-                onClick={() => {
-                  localStorage.getItem("token")
                     ? router.push("/Cart")
                     : router.push("/Auth/Login");
                 }}
               >
                 <FiShoppingCart />
               </li>
+              <div
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseleave}
+              >
+                <li
+                  className="text-gray-800 flex items-center gap-2  p-[1.5vh] border-2  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  onClick={() => {
+                    if (!localStorage.getItem("token")) {
+                      router.push("/Auth/Login");
+                    }
+                  }}
+                >
+                  <FiUser /> {Accname}
+                </li>
+                {isUserdropdown && localStorage.getItem("token") && (
+                  <div className="shadow-3xl bg-white z-50  rounded-md absolute w-fit h-fit">
+                    <div
+                      className=" py-2 px-[4vh] cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                      onClick={() => {
+                        localStorage.getItem("token")
+                          ? router.push("/Profile")
+                          : router.push("/Auth/Login");
+                      }}
+                    >
+                      <h1 className="text-gray-800 font-medium">Profile</h1>
+                    </div>
+                    <div
+                      className=" py-2 px-[4vh] cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                      onClick={() => {
+                        localStorage.getItem("token")
+                          ? router.push("/Orders")
+                          : router.push("/Auth/Login");
+                      }}
+                    >
+                      <h1 className="text-gray-800 font-medium">Order</h1>
+                    </div>
+                  </div>
+                )}
+              </div>
             </ul>
           </nav>
         </div>
