@@ -80,7 +80,7 @@ const Item = () => {
           },
           body: JSON.stringify({
             name: itemdata?.Name,
-            price: Price,
+            price: Price*Quantity,
             image: itemdata?.imageURL,
             size: Size,
             quantity: Quantity,

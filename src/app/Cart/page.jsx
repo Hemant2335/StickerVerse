@@ -4,61 +4,68 @@ import React, { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
 import { toast } from "react-hot-toast";
 import { loadingstatus } from "@/store/atom/State";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Loading from "../components/Loading";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
+import { Accountname } from "@/store/atom/State";
 
-const stripePromise = loadStripe("pk_test_51N99acSGQqNXtMtKFh8WCcrV4Cu9BP9kvklGeTix8CBsYFqsCECn5z8ncs99VIHGWd3cO1LliUCAUwmicykSGdD800b26rXUfd");
+const stripePromise = loadStripe(
+  "pk_test_51N99acSGQqNXtMtKFh8WCcrV4Cu9BP9kvklGeTix8CBsYFqsCECn5z8ncs99VIHGWd3cO1LliUCAUwmicykSGdD800b26rXUfd"
+);
 
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
   const [totalprice, settotalprice] = useState(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const router = useRouter();
+  const ClientName = useRecoilValue(Accountname);
 
-  const handleaddtoOrder = async(item)=>{
+  const handleaddtoOrder = async (item) => {
     try {
-      console.log("I am Orderadd running" , item);
-      const res = await fetch("https://theprintbackend.vercel.app/order/addorder",{
-        method : "POST",
-        headers : {
-          "Content-Type" : "application/json",
-          auth : localStorage.getItem("token")
-        },
-        body : JSON.stringify({
-          name : item?.name,
-          price : item?.price,
-          image : item?.image,
-          size : item?.size,
-          quantity : item?.quantity,
-          type : item?.type,
-          status : "Yet to be Delivered",
-        })
-      })
+      console.log("I am Orderadd running", item);
+      const res = await fetch(
+        "https://theprintbackend.vercel.app/order/addorder",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            name: item?.name,
+            price: item?.price,
+            image: item?.image,
+            size: item?.size,
+            quantity: item?.quantity,
+            type: item?.type,
+            status: "Yet to be Delivered",
+          }),
+        }
+      );
       const data = await res.json();
       console.log(data);
-
     } catch (error) {
-       toast.error("Cannot Add to Order");
+      toast.error("Cannot Add to Order");
     }
-  }
-
-
+  };
 
   const handlebuy = async () => {
     try {
       setisLoading(true);
-      const response = await fetch(`https://theprintbackend.vercel.app/payment/checkout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth" : localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        amount: 1000,
-      }),
-    });
+      const response = await fetch(
+        `https://theprintbackend.vercel.app/payment/checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            amount: 1000,
+          }),
+        }
+      );
 
       const json = await response.json();
 
@@ -67,27 +74,27 @@ const Cart = () => {
       // setOrderId(id);
       // Redirect the user to the Razorpay payment page
       const options = {
-        key: 'rzp_test_dqAiGJZnvCIklf',
-        amount: 100, // Payment amount in paise or cents  
-        currency: 'INR',
-        name: 'OEat',
-        description: 'Payment for your order',
+        key: "rzp_test_dqAiGJZnvCIklf",
+        amount: 100, // Payment amount in paise or cents
+        currency: "INR",
+        name: "OEat",
+        description: "Payment for your order",
         order_id: id,
-        handler: response => {
+        handler: (response) => {
           // Handle the payment success or failure
           console.log(response);
           router.push("/Success");
         },
         prefill: {
-          email: 'knrt73373@gmail.com',
-        }
+          email: "knrt73373@gmail.com",
+        },
       };
 
       const razorpayInstance = new window.Razorpay(options);
       razorpayInstance.open();
-      Cartitems?.map((item)=>{
+      Cartitems?.map((item) => {
         handleaddtoOrder(item);
-      })
+      });
       setisLoading(false);
     } catch (error) {
       setisLoading(false);
@@ -124,7 +131,6 @@ const Cart = () => {
     settotalprice(a);
   };
 
-
   useEffect(() => {
     fetchcart();
   }, []);
@@ -151,9 +157,26 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className="">
-          <h2 className="font-medium text-xl mb-8">Summary</h2>
-          <div className="bg-[#f05700] md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
+        <div className=" flex flex-col gap-[2vh]">
+          <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
+            <h3 className="text-start font-medium mb-2">
+              Shipping Address
+            </h3>
+            <hr />
+            <div className="text-start mt-2">
+             <h4>{ClientName}</h4>
+             <h4>Hostel No : H-15</h4>
+             <h4>Room No : 8</h4>
+             <h4>Jaypee University of Engineering and Technology</h4>
+            </div>
+          </div>
+          <button
+            className="py-3 px-5 w-fit shadow-3xl   rounded-md text-black font-medium hover:text-[#f05700] hover:bg-Grey transition-transform active:scale-105"
+            onClick={handlebuy}
+          >
+            Change
+          </button>
+          <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
             <h3 className="text-start font-medium mb-2">
               SubTotal : ₹ {totalprice}
             </h3>
@@ -165,7 +188,7 @@ const Cart = () => {
             </div>
           </div>
           <button
-            className="px-10 py-2 bg-white mt-4 rounded-lg text-black font-semibold hover:text-[#f05700] hover:bg-Grey transition-transform active:scale-105"
+            className="px-10 py-3 mb-[2vh] bg-black w-full mt-2 rounded-md text-white font-semibold hover:text-[#f05700] hover:bg-Grey transition-transform active:scale-105"
             onClick={handlebuy}
           >
             Check Out
