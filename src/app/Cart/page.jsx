@@ -6,13 +6,9 @@ import { toast } from "react-hot-toast";
 import { loadingstatus } from "@/store/atom/State";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Loading from "../components/Loading";
-import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 import { Accountname } from "@/store/atom/State";
 
-const stripePromise = loadStripe(
-  "pk_test_51N99acSGQqNXtMtKFh8WCcrV4Cu9BP9kvklGeTix8CBsYFqsCECn5z8ncs99VIHGWd3cO1LliUCAUwmicykSGdD800b26rXUfd"
-);
 
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
@@ -20,6 +16,72 @@ const Cart = () => {
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const router = useRouter();
   const ClientName = useRecoilValue(Accountname);
+  const [ClientEmail, setClientEmail] = useState("");
+  const [ClientAddress, setClientAddress] = useState("");
+
+  const handleClientDetails = async () => {
+    try {
+      const res = await fetch(
+        "https://theprintbackend.vercel.app/users/getuser",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            auth: localStorage.getItem("token"),
+          },
+        }
+      );
+      const data = await res.json();
+      setClientAddress(data?.User?.Address);
+      setClientEmail(data?.User?.Email);
+    } catch (error) {
+      toast.error("Cannot Fetch Client Details");
+    }
+  }
+
+  // Function to Generate the Reciept
+
+  const generateInvoice = async() => {
+    const data = Cartitems?.map((item)=>{
+      return(
+        {
+          name: item?.name,
+          quantity: item?.quantity,
+          unit_cost: item?.price
+        }
+      )
+    })
+    try {
+      const response = await fetch('https://api.razorpay.com/v1/invoices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'StickerVerse',
+          to: 'Client Company Name',
+          logo: 'https://shorturl.at/adfsQ',
+          number: 1,
+          date: Date.now(),
+          due_date: Date.now() + 30 * 24 * 60 * 60 * 1000,
+          items: data,
+          notes: 'Thanks for being an awesome customer!',
+          terms: 'Please pay by the due date.'
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error generating invoice: ${response.status} - ${response.statusText}`);
+      }
+  
+      const pdfBlob = await response.json();
+      console.log(pdfBlob);
+  
+    } catch (error) {
+      console.error('Error generating invoice:', error.message);
+    }
+  }
+
 
   const handleaddtoOrder = async (item) => {
     try {
@@ -74,8 +136,8 @@ const Cart = () => {
       // setOrderId(id);
       // Redirect the user to the Razorpay payment page
       const options = {
-        key: "rzp_test_dqAiGJZnvCIklf",
-        amount: 100, // Payment amount in paise or cents
+        key: "rzp_test_EKXHvUpruWk99x",
+        amount: totalprice*100, // Payment amount in paise or cents
         currency: "INR",
         name: "OEat",
         description: "Payment for your order",
@@ -133,6 +195,7 @@ const Cart = () => {
 
   useEffect(() => {
     fetchcart();
+    handleClientDetails();
   }, []);
 
   useEffect(() => {
@@ -165,16 +228,11 @@ const Cart = () => {
             <hr />
             <div className="text-start mt-2">
              <h4>{ClientName}</h4>
-             <h4>knrt73373@gmail.com</h4>
-             <h4>Jaypee University of Engineering and Technology</h4>
+             <h4>{ClientEmail }</h4>
+             <h4>{ClientAddress ? `${ClientAddress}` : `Please Add your Address in your Profile`}</h4>
             </div>
           </div>
-          <button
-            className="py-3 px-5 w-fit shadow-3xl   rounded-md text-black font-medium hover:text-[#f05700] hover:bg-Grey transition-transform active:scale-105"
-            onClick={handlebuy}
-          >
-            Change
-          </button>
+          <p className="text-gray-400 text-sm">Not Your Address ? You can Change or Add the Address in your profile</p>
           <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
             <h3 className="text-start font-medium mb-2">
               SubTotal : ₹ {totalprice}
