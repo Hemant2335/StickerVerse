@@ -9,9 +9,11 @@ import { adminstatus } from "@/store/atom/State";
 import { useSetRecoilState } from "recoil";
 import ChangeAddress from "../components/ChangeAddress";
 import { Accountname } from "@/store/atom/State";
+import Loading from "../components/Loading";
 
 const Profile = () => {
   const router = useRouter();
+  const [isLoading, setisLoading] = useState(false);
   const [data, setdata] = useState("");
   const [isAddaddress, setisAddaddress] = useState(false);
   const [Address, setAddress] = useState("");
@@ -19,6 +21,7 @@ const Profile = () => {
   
   const setisAdmin = useSetRecoilState(adminstatus);
   const show = async () => {
+    setisLoading(true);
     const response = await fetch(
       `https://theprintbackend.vercel.app/users/getuser`,
       {
@@ -31,8 +34,8 @@ const Profile = () => {
     );
 
     const json = await response.json();
-    console.log(json?.User);
     setdata(json?.User);
+    setisLoading(false);
     setAddress(json?.User?.Address);
     setisAdmin(data?.isAdmin);
     
@@ -50,6 +53,7 @@ const Profile = () => {
 
   return (
     <>
+     {isLoading && (<Loading/>)}
       {isAddaddress && <ChangeAddress setisAddaddress = {setisAddaddress} setMainAddress={setAddress}/>}
       <div className="flex text-gray-800 justify-center mt-[10vh]">
         <div className="h-fit w-fit shadow-3xl flex flex-col md:flex-row gap-[10vh] justify-center items-center px-10 py-10">

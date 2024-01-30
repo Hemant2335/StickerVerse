@@ -11,7 +11,7 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
 
   const handleAddtoAddress = async() => {
     if (Address === "" || Pincode === "" || City === "" || State === "") {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
     } else {
       const data = {
         address: Address,
@@ -49,8 +49,8 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
 
 
   return (
-    <div className=" fixed flex h-[100vh] w-screen top-0 left-0 justify-center items-center  z-10 bg-[rgba(34,34,34,0.5)]">
-      <div className="bg-white p-[3vh] shadow-3xl w-[45vw] h-fit rounded-lg">
+    <div className=" fixed flex h-[100vh] w-screen px-2 top-0 left-0 justify-center items-center  z-10 bg-[rgba(34,34,34,0.5)]">
+      <div className="bg-white p-[3vh] shadow-3xl md:w-[45vw] h-fit rounded-lg">
         <div
           className=" w-fit h-fit absolute cursor-pointer text-lg text-gray-800"
           onClick={() => {
@@ -76,7 +76,7 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
                 }}
               />
             </div>
-          <div className="mt-2 grid md:grid-cols-2 gap-[2vh] items-center justify-center">
+          <div className="mt-2  md:grid md:grid-cols-2 gap-[2vh] items-center justify-center">
             
             <div className="">
               <input
@@ -88,7 +88,7 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
                 }}
               />
             </div>
-            <div className="">
+            <div className="md:mt-0 mt-2">
               <input
                 type="text"
                 placeholder="City eg : Gurugram"
@@ -98,7 +98,7 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
                 }}
               />
             </div>
-            <div className="">
+            <div className="md:mt-0 mt-2">
               <input
                 type="text"
                 placeholder="State eg : Haryana"
