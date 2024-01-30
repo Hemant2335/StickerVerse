@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
 import React from "react";
-import profile from "../../Assets/man-avatar.png"
+import profile from "../../Assets/man-avatar.png";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { adminstatus } from "@/store/atom/State";
 import { useSetRecoilState } from "recoil";
+import ChangeAddress from "../components/ChangeAddress";
+import { Accountname } from "@/store/atom/State";
 
 const Profile = () => {
   const router = useRouter();
   const [data, setdata] = useState("");
+  const [isAddaddress, setisAddaddress] = useState(false);
+  const [Address, setAddress] = useState("");
+  const setAccountName = useSetRecoilState(Accountname); 
+  
   const setisAdmin = useSetRecoilState(adminstatus);
   const show = async () => {
     const response = await fetch(
@@ -25,26 +31,26 @@ const Profile = () => {
     );
 
     const json = await response.json();
+    console.log(json?.User);
     setdata(json?.User);
+    setAddress(json?.User?.Address);
     setisAdmin(data?.isAdmin);
-    console.log(data);
+    
   };
 
   useEffect(() => {
     show();
   }, []);
 
-
-  const handleLogout = async() => {
-    router.push("/Auth/Login");
+  const handleLogout = async () => {
     localStorage.removeItem("token");
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  }
+    setAccountName("Login");
+    router.push("/Auth/Login");
+  };
 
   return (
     <>
+      {isAddaddress && <ChangeAddress setisAddaddress = {setisAddaddress} setMainAddress={setAddress}/>}
       <div className="flex text-gray-800 justify-center mt-[10vh]">
         <div className="h-fit w-fit shadow-3xl flex flex-col md:flex-row gap-[10vh] justify-center items-center px-10 py-10">
           <div className="shadow-3xl w-fit p-4 rounded-lg">
@@ -75,16 +81,32 @@ const Profile = () => {
                 {data?.Email}
               </h2>
             </div>
+            <div className="flex gap-5 items-center">
+              <h2 className="text-xl font-poppins font-semibold">Address</h2>
+              {Address.length != 0 ? (
+                <div className="flex items-center max-w-[30vw] gap-2">
+                <h2 className="text-lg font-poppins font-medium">
+                  {Address.split(",")[0]}
+                </h2>
+                <button className="border-2 py-1 px-2 rounded-md hover:border-red-500" onClick={()=>{setisAddaddress(true)}}>Change</button>
+                </div>
+              ) : (
+                <button className="border-2 py-1 px-2 rounded-md hover:border-red-500" onClick={()=>{setisAddaddress(true)}}> Add</button>
+              )}
+            </div>
           </div>
-          
         </div>
-        
       </div>
       <div className="w-full p-4 flex justify-center items-center">
-          <button className="bg-[#f05700] text-sm md:text-[2.4vh]  p-3 rounded-lg w-[20vw] font-poppins font-bold text-white hover:bg-[#f06800] focus:outline-none" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
+        <button
+          className="bg-[#f05700] text-sm md:text-[2.4vh]  p-3 rounded-lg w-[20vw] font-poppins font-bold text-white hover:bg-[#f06800] focus:outline-none"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
+      
+
     </>
   );
 };

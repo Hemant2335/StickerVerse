@@ -165,8 +165,7 @@ const Cart = () => {
             <hr />
             <div className="text-start mt-2">
              <h4>{ClientName}</h4>
-             <h4>Hostel No : H-15</h4>
-             <h4>Room No : 8</h4>
+             <h4>knrt73373@gmail.com</h4>
              <h4>Jaypee University of Engineering and Technology</h4>
             </div>
           </div>
