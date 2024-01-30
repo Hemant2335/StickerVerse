@@ -84,7 +84,7 @@ const Profile = () => {
             <div className="flex gap-5 items-center">
               <h2 className="text-xl font-poppins font-semibold">Address</h2>
               {Address.length != 0 ? (
-                <div className="flex items-center max-w-[30vw] gap-2">
+                <div className="flex items-center  gap-2">
                 <h2 className="text-lg font-poppins font-medium">
                   {Address.split(",")[0]}
                 </h2>
