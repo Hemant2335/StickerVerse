@@ -10,6 +10,7 @@ import { useSetRecoilState } from "recoil";
 import ChangeAddress from "../components/ChangeAddress";
 import { Accountname } from "@/store/atom/State";
 import Loading from "../components/Loading";
+import ChangePhone from "../components/ChangePhone";
 
 const Profile = () => {
   const router = useRouter();
@@ -17,6 +18,8 @@ const Profile = () => {
   const [data, setdata] = useState("");
   const [isAddaddress, setisAddaddress] = useState(false);
   const [Address, setAddress] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [isAddsetPhone, setisAddsetPhone] = useState(false);
   const setAccountName = useSetRecoilState(Accountname); 
   
   const setisAdmin = useSetRecoilState(adminstatus);
@@ -38,7 +41,7 @@ const Profile = () => {
     setisLoading(false);
     setAddress(json?.User?.Address);
     setisAdmin(data?.isAdmin);
-    
+    setPhone(json?.User?.Phone);
   };
 
   useEffect(() => {
@@ -55,6 +58,7 @@ const Profile = () => {
     <>
      {isLoading && (<Loading/>)}
       {isAddaddress && <ChangeAddress setisAddaddress = {setisAddaddress} setMainAddress={setAddress}/>}
+      {isAddsetPhone && <ChangePhone setMainPhone={setPhone} setissetPhone={setisAddsetPhone}/>}
       <div className="flex text-gray-800 justify-center mt-[10vh]">
         <div className="h-fit w-fit shadow-3xl flex flex-col md:flex-row gap-[10vh] justify-center items-center px-10 py-10">
           <div className="shadow-3xl w-fit p-4 rounded-lg">
@@ -96,6 +100,19 @@ const Profile = () => {
                 </div>
               ) : (
                 <button className="border-2 py-1 px-2 rounded-md hover:border-red-500" onClick={()=>{setisAddaddress(true)}}> Add</button>
+              )}
+            </div>
+            <div className="flex gap-5 items-center">
+              <h2 className="text-xl font-poppins font-semibold">Phone</h2>
+              {Phone ? (
+                <div className="flex items-center  gap-2">
+                <h2 className="text-lg font-poppins font-medium">
+                  {Phone}
+                </h2>
+                <button className="border-2 py-1 px-2 rounded-md hover:border-red-500" onClick={()=>{setisAddsetPhone(true)}}>Change</button>
+                </div>
+              ) : (
+                <button className="border-2 py-1 px-2 rounded-md hover:border-red-500" onClick={()=>{setisAddsetPhone(true)}}> Add</button>
               )}
             </div>
           </div>

@@ -17,6 +17,7 @@ const Cart = () => {
   const ClientName = useRecoilValue(Accountname);
   const [ClientEmail, setClientEmail] = useState("");
   const [ClientAddress, setClientAddress] = useState("");
+  const [ClientPhone, setClientPhone] = useState("")
 
   const handleClientDetails = async () => {
     try {
@@ -33,6 +34,7 @@ const Cart = () => {
       const data = await res.json();
       setClientAddress(data?.User?.Address);
       setClientEmail(data?.User?.Email);
+      setClientPhone(data?.User?.Phone);
     } catch (error) {
       toast.error("Cannot Fetch Client Details");
     }
@@ -95,6 +97,7 @@ const Cart = () => {
           email: ClientEmail,
           name: ClientName,
           address: ClientAddress,
+          phone : ClientPhone,
         }),
       });
 
@@ -113,8 +116,18 @@ const Cart = () => {
         order_id: order_id,
         handler: (response) => {
           // Handle the payment success or failure
-          console.log(response);
-          router.push("/Success");
+          if(response)
+          {
+            toast.success("Payment Successful");
+            router.push("/Success");
+            Cartitems?.map((item) => {
+              handleaddtoOrder(item);
+            });
+          }
+          else{
+            toast.error("Payment Failed");
+          }
+          
         },
         prefill: {
           email: "knrt73373@gmail.com",
@@ -123,9 +136,7 @@ const Cart = () => {
 
       const razorpayInstance = new window.Razorpay(options);
       razorpayInstance.open();
-      Cartitems?.map((item) => {
-        handleaddtoOrder(item);
-      });
+      
       setisLoading(false);
     } catch (error) {
       setisLoading(false);
@@ -190,12 +201,13 @@ const Cart = () => {
         </div>
 
         <div className=" flex flex-col gap-[2vh]">
-          <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
+          <div className="bg-red-500  md:h-[200px] md:max-w-[25vw] py-2 w-auto h-fit  rounded-md p-4">
             <h3 className="text-start font-medium mb-2">Shipping Address</h3>
             <hr />
-            <div className="text-start mt-2">
+            <div className="text-start mt-2 ">
               <h4>{ClientName}</h4>
               <h4>{ClientEmail}</h4>
+              <h4>{ClientPhone}</h4>
               <h4>
                 {ClientAddress
                   ? `${ClientAddress}`
