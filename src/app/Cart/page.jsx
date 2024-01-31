@@ -75,7 +75,7 @@ const Cart = () => {
       return {
         name: item?.name,
         description: item?.description,
-        amount: item?.price*100,
+        amount: (item?.price/item?.quantity)*100,
         currency: "INR",
         quantity: item?.quantity,
       };
@@ -157,7 +157,7 @@ const Cart = () => {
   const findtotal = () => {
     let a = 0;
     Cartitems?.map((item) => {
-      a = a + item?.price*item?.quantity;
+      a = a + item?.price;
     });
     settotalprice(a);
   };
