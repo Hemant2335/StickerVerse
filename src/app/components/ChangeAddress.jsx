@@ -1,52 +1,57 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
-
-  const [Address, setAddress] = useState("");
+const ChangeAddress = ({ setisAddaddress, setMainAddress }) => {
+  const [Address1, setAddress1] = useState("");
+  const [Address2, setAddress2] = useState("");
   const [Pincode, setPincode] = useState("");
   const [City, setCity] = useState("");
   const [State, setState] = useState("");
 
-  const handleAddtoAddress = async() => {
-    if (Address === "" || Pincode === "" || City === "" || State === "") {
+  const handleAddtoAddress = async () => {
+    if (
+      Address1 === "" ||
+      Address2 === "" ||
+      Pincode === "" ||
+      City === "" ||
+      State === ""
+    ) {
       toast.error("Please fill all the fields");
     } else {
       const data = {
-        address: Address,
+        address1: Address1,
+        address2: Address2,
         pincode: Pincode,
         city: City,
         state: State,
       };
       try {
-        const res = await fetch("https://theprintbackend.vercel.app/users/updateaddress", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "auth" : localStorage.getItem("token")
-          },
-          body: JSON.stringify(data),
-        });
+        const res = await fetch(
+          "https://theprintbackend.vercel.app/users/updateaddress",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              auth: localStorage.getItem("token"),
+            },
+            body: JSON.stringify(data),
+          }
+        );
         const resdata = await res.json();
-        if(resdata?.Check)
-        {
+        if (resdata?.Check) {
           toast.success("Address Updated");
           setisAddaddress(false);
-          setMainAddress(`${Address} , ${City} , ${State} , ${Pincode}`)
-        }
-        else{
+          setMainAddress(`${Address} , ${City} , ${State} , ${Pincode}`);
+        } else {
           toast.error("Something went wrong");
         }
-
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
       }
-      
     }
-  }
-
+  };
 
   return (
     <div className=" fixed flex h-[100vh] w-screen px-2 top-0 left-0 justify-center items-center  z-10 bg-[rgba(34,34,34,0.5)]">
@@ -67,17 +72,26 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
             please mention your Hostel and Room no
           </p>
           <div className="mt-5">
-              <input
-                type="text"
-                placeholder="Address 1 eg: H-15-8 juet guna"
-                className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                }}
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Address 1 eg: H-15-8"
+              className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+              onChange={(e) => {
+                setAddress1(e.target.value);
+              }}
+            />
+          </div>
+          <div className="mt-2">
+            <input
+              type="text"
+              placeholder="Address 2 eg: Jaypee University"
+              className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
+              onChange={(e) => {
+                setAddress2(e.target.value);
+              }}
+            />
+          </div>
           <div className="mt-2  md:grid md:grid-cols-2 gap-[2vh] items-center justify-center">
-            
             <div className="">
               <input
                 type="text"
@@ -110,13 +124,13 @@ const ChangeAddress = ({ setisAddaddress ,setMainAddress }) => {
             </div>
           </div>
           <div className="w-full pt-4 flex justify-center items-center">
-              <button
-                className="bg-red-500 text-sm md:text-[2vh]  p-3 rounded-lg w-fit font-poppins font-bold text-gray-800 hover:bg-[#f06800] focus:outline-none"
-                onClick={() => handleAddtoAddress()}
-              >
-                Add Address
-              </button>
-            </div>
+            <button
+              className="bg-red-500 text-sm md:text-[2vh]  p-3 rounded-lg w-fit font-poppins font-bold text-gray-800 hover:bg-[#f06800] focus:outline-none"
+              onClick={() => handleAddtoAddress()}
+            >
+              Add Address
+            </button>
+          </div>
         </div>
       </div>
     </div>

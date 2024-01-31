@@ -9,7 +9,6 @@ import Loading from "../components/Loading";
 import { useRouter } from "next/navigation";
 import { Accountname } from "@/store/atom/State";
 
-
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
   const [totalprice, settotalprice] = useState(null);
@@ -37,51 +36,9 @@ const Cart = () => {
     } catch (error) {
       toast.error("Cannot Fetch Client Details");
     }
-  }
+  };
 
   // Function to Generate the Reciept
-
-  const generateInvoice = async() => {
-    const data = Cartitems?.map((item)=>{
-      return(
-        {
-          name: item?.name,
-          quantity: item?.quantity,
-          unit_cost: item?.price
-        }
-      )
-    })
-    try {
-      const response = await fetch('https://api.razorpay.com/v1/invoices', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'StickerVerse',
-          to: 'Client Company Name',
-          logo: 'https://shorturl.at/adfsQ',
-          number: 1,
-          date: Date.now(),
-          due_date: Date.now() + 30 * 24 * 60 * 60 * 1000,
-          items: data,
-          notes: 'Thanks for being an awesome customer!',
-          terms: 'Please pay by the due date.'
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error generating invoice: ${response.status} - ${response.statusText}`);
-      }
-  
-      const pdfBlob = await response.json();
-      console.log(pdfBlob);
-  
-    } catch (error) {
-      console.error('Error generating invoice:', error.message);
-    }
-  }
-
 
   const handleaddtoOrder = async (item) => {
     try {
@@ -113,35 +70,47 @@ const Cart = () => {
   };
 
   const handlebuy = async () => {
+
+    const itemdata = Cartitems?.map((item) => {
+      return {
+        name: item?.name,
+        description: item?.description,
+        amount: item?.price*100,
+        currency: "INR",
+        quantity: item?.quantity,
+      };
+    });
+
     try {
       setisLoading(true);
-      const response = await fetch(
-        `https://theprintbackend.vercel.app/payment/checkout`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
-          },
-          body: JSON.stringify({
-            amount: 1000,
-          }),
-        }
-      );
+      console.log(itemdata);
+      const response = await fetch(`https://theprintbackend.vercel.app/payment/invoice`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          auth: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          items: itemdata,
+          email: ClientEmail,
+          name: ClientName,
+          address: ClientAddress,
+        }),
+      });
 
       const json = await response.json();
 
-      const { id } = json;
+      const { id, order_id, amount_due } = json;
       console.log(id);
       // setOrderId(id);
       // Redirect the user to the Razorpay payment page
       const options = {
         key: "rzp_test_EKXHvUpruWk99x",
-        amount: totalprice*100, // Payment amount in paise or cents
+        amount: amount_due, // Payment amount in paise or cents
         currency: "INR",
         name: "OEat",
         description: "Payment for your order",
-        order_id: id,
+        order_id: order_id,
         handler: (response) => {
           // Handle the payment success or failure
           console.log(response);
@@ -188,7 +157,7 @@ const Cart = () => {
   const findtotal = () => {
     let a = 0;
     Cartitems?.map((item) => {
-      a = a + item?.price;
+      a = a + item?.price*item?.quantity;
     });
     settotalprice(a);
   };
@@ -222,17 +191,21 @@ const Cart = () => {
 
         <div className=" flex flex-col gap-[2vh]">
           <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
-            <h3 className="text-start font-medium mb-2">
-              Shipping Address
-            </h3>
+            <h3 className="text-start font-medium mb-2">Shipping Address</h3>
             <hr />
             <div className="text-start mt-2">
-             <h4>{ClientName}</h4>
-             <h4>{ClientEmail }</h4>
-             <h4>{ClientAddress ? `${ClientAddress}` : `Please Add your Address in your Profile`}</h4>
+              <h4>{ClientName}</h4>
+              <h4>{ClientEmail}</h4>
+              <h4>
+                {ClientAddress
+                  ? `${ClientAddress}`
+                  : `Please Add your Address in your Profile`}
+              </h4>
             </div>
           </div>
-          <p className="text-gray-400 text-sm">Not Your Address ? You can Change or Add the Address in your profile</p>
+          <p className="text-gray-400 text-sm">
+            Not Your Address ? You can Change or Add the Address in your profile
+          </p>
           <div className="bg-red-500  md:h-[200px] md:w-[350px] w-auto h-[250px]  rounded-md p-4">
             <h3 className="text-start font-medium mb-2">
               SubTotal : ₹ {totalprice}
