@@ -21,47 +21,35 @@ const page = () => {
   const [ispass, setispass] = useState(false);
   const [code, setcode] = useState(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
-  const [buttonValue, setbuttonValue] = useState("Verify Email")
+  const [buttonValue, setbuttonValue] = useState("Verify Email");
 
   // Function to handle Signup
 
   const handleSignup = async () => {
-    if (!isEmailVerify) {
-      if(!ispass)
+    setisLoading(true);
+    const response = await fetch(
+      "https://theprintbackend.vercel.app/users/signup",
       {
-        handleEmailVerify();
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Email: Email,
+          Name: Name,
+          Password: Password,
+        }),
       }
-      else
-      {
-        handleEmailVerifyCode();
-      }
+    );
+    setisLoading(false);
+    const data = await response.json();
+    if (!data.Success) {
+      return toast.error(data.Message);
     } else {
-      setisLoading(true);
-      const response = await fetch(
-        "https://theprintbackend.vercel.app/users/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Email: Email,
-            Name: Name,
-            Password: Password,
-          }),
-        }
-      );
-      setisLoading(false);
-      const data = await response.json();
-      if (!data.Success) {
-        return toast.error(data.Message);
-      } else {
-        toast.success(data.Message);
-        router.push("/Auth/Login");
-      }
+      toast.success(data.Message);
+      router.push("/Auth/Login");
     }
   };
-
 
   const handleEmailVerify = async () => {
     if (!Email) {
@@ -85,7 +73,7 @@ const page = () => {
     if (!data.Check) {
       return toast.error(data.Msg);
     } else {
-      setbuttonValue("Verify Code")
+      setbuttonValue("Verify Code");
       setispass(true);
       setcode(data.Code);
       toast.success(data.Msg);
@@ -102,8 +90,18 @@ const page = () => {
     } else {
       setisEmailVerify(true);
       setispass(false);
-      setbuttonValue("Sign up")
-      toast.success("Email Verified Successfully");
+      setbuttonValue("Sign up");
+      handleSignup();
+    }
+  };
+
+  const handlebuttonclick = () => {
+    if (!isEmailVerify) {
+      if (!ispass) {
+        handleEmailVerify();
+      } else {
+        handleEmailVerifyCode();
+      }
     }
   };
 
@@ -166,7 +164,7 @@ const page = () => {
           <div className="w-full p-4 flex justify-center items-center">
             <button
               className="bg-[#f05700] text-sm md:text-[2vh]  p-3 rounded-lg w-[20vw] font-poppins font-medium text-white hover:bg-[#f06800] focus:outline-none"
-              onClick={handleSignup}
+              onClick={handlebuttonclick}
             >
               {buttonValue}
             </button>

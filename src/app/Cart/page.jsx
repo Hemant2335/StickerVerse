@@ -61,6 +61,7 @@ const Cart = () => {
             quantity: item?.quantity,
             type: item?.type,
             status: "Yet to be Delivered",
+            address: ClientAddress,
           }),
         }
       );

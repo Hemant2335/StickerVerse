@@ -1,23 +1,14 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { toast } from "react-hot-toast";
 
 const OrderCard = ({ data }) => {
-  const router = useRouter();
-
-  const handleonCart = () => {
-    router.push(`/Items/${data?._id}`);
-  };
-
   return (
     <>
       <div
         className=" cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:max-w-[16vw]"
-        onClick={handleonCart}
       >
         <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image

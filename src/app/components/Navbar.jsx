@@ -49,6 +49,7 @@ const Navbar = () => {
     );
 
     const json = await response.json();
+    console.log(json);
     setisAdmin(json?.User?.isAdmin);
     setAccname(json?.User?.Name);
   };
@@ -163,7 +164,9 @@ const Navbar = () => {
                     className="bg-gray-200  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       localStorage.getItem("token")
-                        ? router.push("/Orders")
+                        ? !isAdmin
+                          ? router.push("/Orders")
+                          : router.push("/AdminOrders")
                         : router.push("/Auth/Login");
                       handlesideclick();
                     }}
@@ -273,7 +276,9 @@ const Navbar = () => {
                       className=" py-2 px-[4vh] cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                       onClick={() => {
                         localStorage.getItem("token")
-                          ? router.push("/Orders")
+                          ? (!isAdmin
+                            ? router.push("/Orders")
+                            : router.push("/AdminOrders"))
                           : router.push("/Auth/Login");
                       }}
                     >
