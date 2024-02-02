@@ -40,6 +40,26 @@ const Cart = () => {
     }
   };
 
+  // Function to Notif the Admin
+  const handlenotifyAdmin = () =>{
+    try {
+      fetch("https://theprintbackend.vercel.app/users/adminnotify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          auth: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          name: ClientName,
+          email: ClientEmail,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   // Function to Generate the Reciept
 
   const handleaddtoOrder = async (item) => {
@@ -66,6 +86,7 @@ const Cart = () => {
         }
       );
       const data = await res.json();
+      handlenotifyAdmin();
       console.log(data);
     } catch (error) {
       toast.error("Cannot Add to Order");

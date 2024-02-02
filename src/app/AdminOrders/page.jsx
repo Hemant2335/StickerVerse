@@ -25,7 +25,7 @@ const [Orderdata, setOrderdata] = useState(null);
       setOrderdata(data);
       setStatus(data?.status);
     } catch (error) {
-      toast.error("Something went wrong");
+      console.log(error);
     }
   };
 

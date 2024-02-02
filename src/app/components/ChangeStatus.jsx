@@ -2,8 +2,36 @@ import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const ChangeStatus = ({ setisAddStatus , id , setMainStatus}) => {
+const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus}) => {
     const [Status, setStatus] = useState("");
+
+
+    const handleNotifyUser = async () => {
+        try {
+          const res = await fetch(
+            `https://theprintbackend.vercel.app/users/notifyuser`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                auth: localStorage.getItem("token"),
+              },
+              body: JSON.stringify({ name: name , status : Status , email : email}),
+            }
+          );
+          const resdata = await res.json();
+          if (resdata?.Check) {
+            toast.success("User Notified");
+          } else {
+            toast.error("Error Sending Notification to User");
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error("Internal Error Occured");
+        }
+    };
+
+
 
     const handleAddtoStatus = async () => {
         if (Status === "") {
@@ -24,6 +52,7 @@ const ChangeStatus = ({ setisAddStatus , id , setMainStatus}) => {
             const resdata = await res.json();
             if (resdata?.Check) {
               toast.success("Status Updated");
+              handleNotifyUser();
               setisAddStatus(false);
               setMainStatus(Status);
             } else {

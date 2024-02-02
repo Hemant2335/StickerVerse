@@ -15,6 +15,8 @@ const AdminOrderCard = ({ data, }) => {
           setisAddStatus={setisAddStatus}
           setMainStatus={setStatus}
           id={data?._id}
+          email = {data?.user?.Email}
+          name={data?.name}
         />
       )}
       <div className="md:flex justify-between items-center cursor-pointer border-2 shadow-3xl bg-white  mb-10 rounded-lg  w-full   p-4 ">

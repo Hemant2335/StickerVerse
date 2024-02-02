@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { adminstatus } from "@/store/atom/State";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import ChangeAddress from "../components/ChangeAddress";
 import { Accountname } from "@/store/atom/State";
 import Loading from "../components/Loading";
@@ -22,7 +22,7 @@ const Profile = () => {
   const [isAddsetPhone, setisAddsetPhone] = useState(false);
   const setAccountName = useSetRecoilState(Accountname); 
   
-  const setisAdmin = useSetRecoilState(adminstatus);
+  const isAdmin = useRecoilValue(adminstatus);
   const show = async () => {
     setisLoading(true);
     const response = await fetch(
@@ -40,7 +40,6 @@ const Profile = () => {
     setdata(json?.User);
     setisLoading(false);
     setAddress(json?.User?.Address);
-    setisAdmin(data?.isAdmin);
     setPhone(json?.User?.Phone);
   };
 
@@ -73,7 +72,7 @@ const Profile = () => {
           <div className="flex flex-col gap-5 ">
             <div className="flex gap-5">
               <h2 className="text-xl font-poppins font-semibold">Profile </h2>
-              {data?.isAdmin ? (
+              {isAdmin ? (
                 <h2 className="text-xl font-poppins font-medium">Admin</h2>
               ) : (
                 <h2 className="text-xl font-poppins font-medium">User</h2>
