@@ -42,7 +42,7 @@ const ChangeAddress = ({ setisAddaddress, setMainAddress }) => {
         if (resdata?.Check) {
           toast.success("Address Updated");
           setisAddaddress(false);
-          setMainAddress(`${Address} , ${City} , ${State} , ${Pincode}`);
+          setMainAddress(`${Address1} , ${Address2} , ${City} , ${State} , ${Pincode}`);
         } else {
           toast.error("Something went wrong");
         }

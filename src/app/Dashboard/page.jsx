@@ -27,7 +27,7 @@ const page = () => {
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
   const [isTypedropdown, setisTypedropdown] = useState(false);
 
-  const Typedropdown = ["Sticker", "Poster"] ;
+  const Typedropdown = ["Sticker", "Poster" , "Special"] ;
 
   const handleCategory = async () => {
     try {

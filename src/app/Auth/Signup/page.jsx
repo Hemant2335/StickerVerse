@@ -26,6 +26,14 @@ const page = () => {
   // Function to handle Signup
 
   const handleSignup = async () => {
+    if(!Email || !Password || !Name)
+    {
+      return toast.error("Please Fill all the Fields");
+    }
+    else if(!Password.length>8)
+    {
+      return toast.error("Password must be 8 characters long");
+    }
     setisLoading(true);
     const response = await fetch(
       "https://theprintbackend.vercel.app/users/signup",
@@ -88,6 +96,7 @@ const page = () => {
     if (intcode !== code) {
       return toast.error("Code is not correct");
     } else {
+      toast.success("Code Verified");
       setisEmailVerify(true);
       setispass(false);
       setbuttonValue("Sign up");
@@ -102,6 +111,10 @@ const page = () => {
       } else {
         handleEmailVerifyCode();
       }
+    }
+    else
+    {
+      handleSignup();
     }
   };
 

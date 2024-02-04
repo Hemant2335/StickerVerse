@@ -94,7 +94,11 @@ const Cart = () => {
   };
 
   const handlebuy = async () => {
-
+    if(!ClientAddress || !ClientEmail || !ClientPhone)
+    {
+      toast.error("Please Add your Address, Email and Phone in your Profile");
+      return;
+    }
     const itemdata = Cartitems?.map((item) => {
       return {
         name: item?.name,
