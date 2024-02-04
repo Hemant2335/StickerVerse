@@ -16,7 +16,7 @@ const DashboardCard = ({ Name }) => {
         })}  
       </div>
       <div className=" w-full flex justify-center">
-          <MoreCard />
+          <MoreCard Name={Name}/>
         </div>
     </div>
   );

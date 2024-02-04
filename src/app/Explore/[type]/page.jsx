@@ -1,28 +1,28 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import sticker from "../../Assets/sticker.png";
-import poster from "../../Assets/poster.png";
 import Image from "next/image";
 import { loadingstatus } from "@/store/atom/State";
-import Loading from "../components/Loading";
-import { ItemCard } from "../components";
-import useFetch from "../hooks/useFetch";
+import Loading from "@/app/loading";
+import { ItemCard } from "../../components";
+import useFetch from "@/app/hooks/useFetch";
 import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
 
-import Filter from "../components/Filter";
+import Filter from "../../components/Filter";
+import { useParams } from "next/navigation";
 
 const Explore = () => {
   const Sticker = useFetch("Sticker");
   const Poster = useFetch("Poster");
+  const {type} = useParams();
   const [data, setdata] = useState(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const [Categorydata, setCategorydata] = useState(null);
 
   const [Category, setCategory] = useState("");
   const [Subcategory, setSubcategory] = useState("");
-  const [Type, setType] = useState("Sticker");
+  const [Type, setType] = useState(type);
 
   const handleUrl = async () => {
     try {
