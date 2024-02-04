@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import banner from "../Assets/TestBanner.jpg";
-import banner1 from "../Assets/TestBanner1.png";
 import DashboardCard from "./components/DashboardCard";
 import { loadingstatus } from "@/store/atom/State";
 import { useRecoilValue } from "recoil";
