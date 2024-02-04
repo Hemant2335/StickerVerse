@@ -73,7 +73,7 @@ const Navbar = () => {
       </div>
       <div className="mt-[1vh] font-poppins flex justify-between items-center overflow-x-hidden">
         {/* Logo */}
-        <div className="flex text-[3vh] text-gray-800 w-fit h-fit font-bold ">
+        <div className="flex cursor-pointer  text-[3vh] text-gray-800 w-fit h-fit font-bold " onClick={() => router.push("/")}>
           <Image
             layout="responsive"
             src={Navlogo}
@@ -112,7 +112,7 @@ const Navbar = () => {
                   <li
                     className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
-                      router.push("/Explore");
+                      router.push("/Explore/Sticker");
                       handlesideclick();
                     }}
                   >
@@ -207,7 +207,7 @@ const Navbar = () => {
               <li
                 className="text-gray-800 font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
-                  router.push("/Explore");
+                  router.push("/Explore/Sticker");
                 }}
               >
                 <FiCompass />
