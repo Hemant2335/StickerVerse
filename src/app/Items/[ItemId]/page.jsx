@@ -140,13 +140,13 @@ const Item = () => {
             className="rounded-xl md:max-h-[80vh] shadow-3xl"
           />
         </div>
-        <div className="md:min-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
+        <div className="md:min-w-[45vw] md:max-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
           <div>
             <h1 className=" font-bold text-gray-800 text-4xl">
               {itemdata?.Name}
             </h1>
-            <h2 className=" font-bold text-2xl text-red-500">
-              {Price ? `₹${Price}` : "₹149"}
+            <h2 className=" font-bold mt-[1vh] text-2xl text-red-500">
+              {Price ? `₹${Price}` : "Select Size to get Price"}
             </h2>
             <p className=" text-gray-400">{itemdata?.Description}</p>
           </div>
