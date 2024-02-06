@@ -21,8 +21,8 @@ const page = () => {
       {isLoading && <Loading />}
       <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         {/* Banner */}
-        <div className="rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[70vh]  md:mt-[5vh]">
-          <div className="min:w-[40vw] md:max-w-[40vw] p-[4vh] md:p-[10vh] h-full text-gray-800 rounded-l-xl bg-gray-100">
+        <div className="rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
+          <div className="min:w-[40vw] h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh] h-full text-gray-800 rounded-l-xl bg-gray-100">
             <h1 className="text-4xl font-bold">
               Collect Prints for the Heaven
             </h1>
@@ -39,7 +39,7 @@ const page = () => {
               Explore Now
             </button>
           </div>
-          <div className="h-full hidden md:max-w-[55vw] md:flex">
+          <div className="h-fit hidden md:max-w-[55vw] md:flex">
             <Carousel showArrows = {true} showStatus = {false} showThumbs = {false} autoPlay = {true} infiniteLoop = {true}>
               {Banner.map((item, index) => {
                 return (
