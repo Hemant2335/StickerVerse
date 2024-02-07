@@ -1,5 +1,5 @@
 import { useEffect ,useState } from "react";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus } from "../../store/atom/State";
 import { useSetRecoilState } from "recoil";
 
 const useFetch = (param) => {

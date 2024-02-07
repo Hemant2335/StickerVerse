@@ -16,11 +16,11 @@ import {
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { adminstatus } from "@/store/atom/State";
+import { adminstatus } from "../../store/atom/State";
 import Image from "next/image";
 import Navlogo from "../../Assets/Logo.png";
 import { FiSearch } from "react-icons/fi";
-import { Accountname } from "@/store/atom/State";
+import { Accountname } from "../../store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();

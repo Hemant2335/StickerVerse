@@ -25,6 +25,7 @@ const ItemCard = ({ data }) => {
             src={data?.imageURL}
             width={200}
             height={200}
+            alt="Item Image"
             className="rounded-xl md:max-h-[40vh]"
           />
           <div className=" flex  items-center justify-between px-2  rounded-md">

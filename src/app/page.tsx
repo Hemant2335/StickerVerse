@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import DashboardCard from "./components/DashboardCard";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus } from "../store/atom/State";
 import { useRecoilValue } from "recoil";
 import Loading from "./components/Loading";
 import { useRouter } from "next/navigation";
@@ -50,6 +50,7 @@ const page = () => {
                     width={50}
                     height={50}
                     className="md:h-[2vw] rounded-r-2xl"
+                    alt="Image"
                   />
                 );
               })}

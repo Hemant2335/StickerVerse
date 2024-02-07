@@ -4,7 +4,7 @@ import React , {useState} from "react";
 import Image from "next/image";
 import ChangeStatus from "./ChangeStatus";
 
-const AdminOrderCard = ({ data, }) => {
+const AdminOrderCard = ({ data }) => {
   const [isAddStatus, setisAddStatus] = useState(false);
   const [Status, setStatus] = useState("");
 
@@ -14,7 +14,7 @@ const AdminOrderCard = ({ data, }) => {
         <ChangeStatus
           setisAddStatus={setisAddStatus}
           setMainStatus={setStatus}
-          id={data?._id}
+          id={data?._id}    
           email = {data?.user?.Email}
           name={data?.name}
         />
