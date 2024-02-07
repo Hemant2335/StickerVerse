@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 import { Suspense } from "react";
 import Loading from "./components/Loading";
-import { images } from "../../next.config";
+import { images } from "../../next.config.js/index.js";
 
 export const metadata = {
   title: "StickerVerse - All your prints at one place",
