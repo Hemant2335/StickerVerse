@@ -14,7 +14,7 @@ export const metadata = {
     "Our Website is Build to provide the best Quality of Prints which includes printing Posters and Stickers",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children  }) {
   return (
     <html lang="en">
       <head>

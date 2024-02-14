@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const ChangeAddress = ({ setisAddaddress, setMainAddress }) => {
+interface ChangeAddressProps {
+  setisAddaddress: React.Dispatch<React.SetStateAction<boolean>>;
+  setMainAddress: React.Dispatch<React.SetStateAction<string>>;
+}
+
+
+const ChangeAddress = ({ setisAddaddress, setMainAddress } : ChangeAddressProps) => {
   const [Address1, setAddress1] = useState("");
   const [Address2, setAddress2] = useState("");
   const [Pincode, setPincode] = useState("");
@@ -33,7 +39,7 @@ const ChangeAddress = ({ setisAddaddress, setMainAddress }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              auth: localStorage.getItem("token"),
+              auth: localStorage.getItem("token") || "",
             },
             body: JSON.stringify(data),
           }

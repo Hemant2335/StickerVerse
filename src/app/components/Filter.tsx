@@ -1,6 +1,27 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
+interface subcategorydata{
+  Name: string;
+}
+
+interface categorydata{
+  Name: string;
+  subcategory: Array<subcategorydata> | null;
+}
+
+
+interface FilterProps {
+  Category: string;
+  Type: string;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  setType: React.Dispatch<React.SetStateAction<string>>;
+  Categorydata: Array<categorydata>;
+  Subcategory: Array<subcategorydata> | null;
+  setSubcategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+
 const Filter = ({
   Category,
   Type,
@@ -9,11 +30,11 @@ const Filter = ({
   Categorydata,
   Subcategory,
   setSubcategory,
-}) => {
+}: FilterProps) => {
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
   const [isCatdropdown, setisCatdropdown] = useState(false);
   const [isTypedropdown, setisTypedropdown] = useState(false);
-  const [SubCategorydata, setSubCategorydata] = useState(null);
+  const [SubCategorydata, setSubCategorydata] = useState<Array<subcategorydata> | null>(null);
   const Typedata = ["Poster", "Sticker"];
 
   // Function to handle the Type filter
@@ -95,7 +116,7 @@ const Filter = ({
                         setCategory(item?.Name);
                         setisCatdropdown(false);
                         setSubcategory("");
-                        
+
                         setSubCategorydata(item?.subcategory);
                       }}
                     >
@@ -120,15 +141,15 @@ const Filter = ({
               </h1>
               {isSubcatdropdown && (
                 <div className="mt-[2vh] max-h-[20vh] z-50 overflow-y-auto shadow-3xl absolute bg-white rounded-lg">
-                   <div
-                  className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
-                  onClick={() => {
-                    setSubcategory("");
-                    setisSubcatdropdown(false);
-                  }}
-                >
-                  <h1 className="text-gray-800 font-bold">Select Subcategory</h1>
-                </div>
+                  <div
+                    className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
+                    onClick={() => {
+                      setSubcategory("");
+                      setisSubcatdropdown(false);
+                    }}
+                  >
+                    <h1 className="text-gray-800 font-bold">Select Subcategory</h1>
+                  </div>
                   {SubCategorydata?.map((item) => {
                     return (
                       <div

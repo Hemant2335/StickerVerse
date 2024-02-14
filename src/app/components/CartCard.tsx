@@ -3,16 +3,41 @@ import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
-const CartCard = ({ data, Cart, setCart }) => {
+interface Cartitem {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  size: string;
+  quantity: number;
+}
+
+interface CartCardProps {
+  data: {
+    _id: string;
+    name: string;
+    image: string;
+    price: number;
+    size: string;
+    quantity: number;
+  };
+  Cart: Array<Cartitem>;
+  setCart: React.Dispatch<React.SetStateAction<Array<Cartitem>>>;
+}
+
+
+
+const CartCard = ({data, Cart, setCart}:CartCardProps ) => {
   const handleondelete = async () => {
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(
         "https://theprintbackend.vercel.app/products/item/deleteitem",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            auth: token ? token : "",
           },
           body: JSON.stringify({
             id: data?._id,
@@ -45,6 +70,7 @@ const CartCard = ({ data, Cart, setCart }) => {
           width={200}
           height={200}
           className="rounded-xl md:max-h-[20vh]"
+          alt="Image"
         />
         </div>
         <div className="w-full md:mt-0 mt-[2vh] flex flex-col justify-center">

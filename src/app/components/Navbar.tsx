@@ -37,13 +37,14 @@ const Navbar = () => {
     if (!localStorage.getItem("token")) {
       return;
     }
+    const token = localStorage?.getItem("token");
     const response = await fetch(
       `https://theprintbackend.vercel.app/users/getuser`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          auth: token ? token : "",
         },
       }
     );
@@ -78,6 +79,7 @@ const Navbar = () => {
             layout="responsive"
             src={Navlogo}
             className="rounded-xl max-h-[15vh] md:max-h-[20vh]"
+            alt="logo"
           />
         </div>
         {/* Mobile Menu */}

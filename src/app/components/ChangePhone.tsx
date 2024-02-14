@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const ChangePhone = ({ setissetPhone, setMainPhone }) => {
+interface ChangePhoneProps {
+  setissetPhone: React.Dispatch<React.SetStateAction<boolean>>;
+  setMainPhone: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const ChangePhone = ({ setissetPhone, setMainPhone } : ChangePhoneProps) => {
   const [isPhone, setisPhone] = useState("");
 
   const handleAddtoPhone = async () => {
@@ -16,7 +21,7 @@ const ChangePhone = ({ setissetPhone, setMainPhone }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              auth: localStorage.getItem("token"),
+              auth: localStorage.getItem("token") || "",
             },
             body: JSON.stringify({ phone: isPhone }),
           }

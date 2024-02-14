@@ -1,10 +1,20 @@
 "use client";
-import { MoreCard } from ".";
+import MoreCard from "./MoreCard";
 import useFetch from "../hooks/useFetch";
 import ItemCard from "./ItemCard";
 
-const DashboardCard = ({ Name }) => {
-  const ProductData = useFetch(Name);
+interface productdata {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  size: string;
+  quantity: number;
+}
+
+
+const DashboardCard = ( Name : string ) => {
+  const ProductData : Array<productdata> = useFetch(Name);
   return (
     <div className="mt-[5vh] w-full">
       <h2 className="font-bold mb-5 text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]">

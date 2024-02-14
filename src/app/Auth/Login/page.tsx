@@ -6,10 +6,9 @@ import logo from "../../../Assets/Logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { adminstatus  , Accountname} from "@/store/atom/State";
 import { toast } from 'react-hot-toast';
-import { loadingstatus } from "@/store/atom/State";
-import Loading from "@/app/components/Loading";
+import { loadingstatus , adminstatus  , Accountname} from "../../../store/atom/State";
+import Loading from "../../components/Loading";
 
 const page = () => {
 
@@ -66,7 +65,7 @@ const page = () => {
       
       <div className=" shadow-3xl h-fit md:min-w-[55vh] rounded-lg">
         <div className="w-full flex items-center justify-center">
-          <Image src={logo} width={150} height={150} />
+          <Image src={logo} width={150} height={150} alt="Logo"/>
         </div>
         <div className="w-full max-w-[55vh] flex flex-col gap-[2vh] mt-[2vh] p-4">
           <input

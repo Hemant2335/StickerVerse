@@ -3,11 +3,17 @@
 import React, { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
 import { toast } from "react-hot-toast";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus , Accountname } from "../../store/atom/State";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Loading from "../components/Loading";
 import { useRouter } from "next/navigation";
-import { Accountname } from "@/store/atom/State";
+
+interface OrderItem{
+  name : string,
+  price : Number, 
+  
+}
+
 
 const Cart = () => {
   const [Cartitems, setCartitems] = useState(null);
@@ -27,7 +33,7 @@ const Cart = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            auth: localStorage.getItem("token") || "",
           },
         }
       );
@@ -47,7 +53,7 @@ const Cart = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          auth: localStorage.getItem("token") || "",
         },
         body: JSON.stringify({
           name: ClientName,
@@ -71,7 +77,7 @@ const Cart = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            auth: localStorage.getItem("token") || " ",
           },
           body: JSON.stringify({
             name: item?.name,

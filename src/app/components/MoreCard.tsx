@@ -1,7 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
-const MoreCard = ({Name}) => {
+interface MorecardProps {
+  Name : string
+}
+
+
+const MoreCard = (Name : MorecardProps) => {
 
   const router = useRouter();
 

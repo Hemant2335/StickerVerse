@@ -3,8 +3,16 @@
 import React from "react";
 import Image from "next/image";
 
+interface OrderCardProps {
+  image : string,
+  name : string,
+  price : number,
+  size : string,
+  status : string
+}
 
-const OrderCard = ({ data }) => {
+
+const OrderCard = (data : OrderCardProps) => {
   return (
     <>
       <div
