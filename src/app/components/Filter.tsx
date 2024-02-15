@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import {Categoryinterface ,SubCategoryinterface} from "../../Utils/Interfaces"
 
-interface subcategorydata{
-  Name: string;
-}
-
-interface categorydata{
-  Name: string;
-  subcategory: Array<subcategorydata> | null;
-}
 
 
 interface FilterProps {
@@ -16,9 +9,9 @@ interface FilterProps {
   Type: string;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   setType: React.Dispatch<React.SetStateAction<string>>;
-  Categorydata: Array<categorydata>;
-  Subcategory: Array<subcategorydata> | null;
-  setSubcategory: React.Dispatch<React.SetStateAction<string>>;
+  Categorydata: Array<Categoryinterface> | null;
+  Subcategory: string | null;
+  setSubcategory: React.Dispatch<React.SetStateAction<string | "">>;
 }
 
 
@@ -34,7 +27,7 @@ const Filter = ({
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
   const [isCatdropdown, setisCatdropdown] = useState(false);
   const [isTypedropdown, setisTypedropdown] = useState(false);
-  const [SubCategorydata, setSubCategorydata] = useState<Array<subcategorydata> | null>(null);
+  const [SubCategorydata, setSubCategorydata] = useState<Array<SubCategoryinterface> | null>(null);
   const Typedata = ["Poster", "Sticker"];
 
   // Function to handle the Type filter

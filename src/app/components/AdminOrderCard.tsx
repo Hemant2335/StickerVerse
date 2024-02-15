@@ -3,27 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ChangeStatus from "./ChangeStatus";
+import {AdminOrderinterface} from "../../Utils/Interfaces"
 
-interface AdminOrderCardProps {
-  data: {
-    _id: string;
-    name: string;
-    price: number;
-    size: string;
-    status: string;
-    image: string;
-    user: {
-      Name: string;
-      Email: string;
-      Phone: string;
-    };
-    address: string;
-    type: string;
-  }
 
-}
-
-const AdminOrderCard = (data: AdminOrderCardProps) => {
+const AdminOrderCard = (data: AdminOrderinterface) => {
   const [isAddStatus, setisAddStatus] = useState(false);
   const [Status, setStatus] = useState("");
 

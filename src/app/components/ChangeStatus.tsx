@@ -22,7 +22,7 @@ const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus} : Ch
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                auth: localStorage.getItem("token") || "",
+                Authorization: localStorage.getItem("token") || "",
               },
               body: JSON.stringify({ name: name , status : Status , email : email}),
             }
@@ -52,7 +52,7 @@ const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus} : Ch
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
-                  auth: localStorage.getItem("token") || "",
+                  Authorization: localStorage.getItem("token") || "",
                 },
                 body: JSON.stringify({ status : Status }),
               }

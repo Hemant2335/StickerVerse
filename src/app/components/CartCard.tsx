@@ -2,15 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
+import {Cartinterface} from "../../Utils/Interfaces"
 
-interface Cartitem {
-  _id: string;
-  name: string;
-  image: string;
-  price: number;
-  size: string;
-  quantity: number;
-}
 
 interface CartCardProps {
   data: {
@@ -21,8 +14,8 @@ interface CartCardProps {
     size: string;
     quantity: number;
   };
-  Cart: Array<Cartitem>;
-  setCart: React.Dispatch<React.SetStateAction<Array<Cartitem>>>;
+  Cart: Array<Cartinterface> | null;
+  setCart: React.Dispatch<React.SetStateAction<Array<Cartinterface> | undefined>>;
 }
 
 
@@ -37,7 +30,7 @@ const CartCard = ({data, Cart, setCart}:CartCardProps ) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: token ? token : "",
+            Authorization: token ? token : "",
           },
           body: JSON.stringify({
             id: data?._id,
@@ -47,7 +40,7 @@ const CartCard = ({data, Cart, setCart}:CartCardProps ) => {
 
       const data1 = await res.json();
       if (data1?.Check) {
-        const arr = Cart.filter((item) => item?._id !== data?._id);
+        const arr = Cart?.filter((item) => item?._id !== data?._id);
         setCart(arr);
         toast.success(data1?.msg);
       } else {

@@ -21,7 +21,7 @@ const ChangePhone = ({ setissetPhone, setMainPhone } : ChangePhoneProps) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              auth: localStorage.getItem("token") || "",
+              Authorization: localStorage.getItem("token") || "",
             },
             body: JSON.stringify({ phone: isPhone }),
           }

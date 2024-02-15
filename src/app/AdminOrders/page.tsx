@@ -32,7 +32,7 @@ const [Orderdata, setOrderdata] = useState<Array<Orderdata> | null>(null);
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token") || "",
+            Authorization: localStorage.getItem("token") || "",
           },
         }
       );

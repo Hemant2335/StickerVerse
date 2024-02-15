@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus } from "../../../store/atom/State";
 import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ItemCard } from "@/app/components";
+import { ItemCard } from "../../components";
 
 const Item = () => {
   const [itemdata, setitemdata] = useState(null);

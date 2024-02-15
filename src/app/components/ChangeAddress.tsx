@@ -39,7 +39,7 @@ const ChangeAddress = ({ setisAddaddress, setMainAddress } : ChangeAddressProps)
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              auth: localStorage.getItem("token") || "",
+              Authorization: localStorage.getItem("token") || "",
             },
             body: JSON.stringify(data),
           }

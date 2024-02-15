@@ -2,7 +2,7 @@ import { useEffect ,useState } from "react";
 import { loadingstatus } from "../../store/atom/State";
 import { useSetRecoilState } from "recoil";
 
-const useFetch = (param) => {
+const useFetch = (param : string) => {
 
   const [ProductData, setProductData] = useState([]);
   const setisLoading = useSetRecoilState(loadingstatus);
@@ -15,7 +15,7 @@ const useFetch = (param) => {
         {
           method: "GET",
           headers: {
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
         }
       );
