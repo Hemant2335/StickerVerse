@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import profile from "../../Assets/Logo.png";
 import { FiUploadCloud } from "react-icons/fi";
 import { MdCloudDone } from "react-icons/md";
 import { useState } from "react";
@@ -9,25 +8,27 @@ import Loading from "../components/Loading";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { FiChevronDown } from "react-icons/fi";
+import {Categoryinterface , SubCategoryinterface} from "../../Utils/Interfaces"
 
 const page = () => {
   const [isuploaded, setisuploaded] = useState(false);
-  const [isselected, setisselected] = useState(null);
+  const [isselected, setisselected] = useState<File | null>(null);
   const [isLoading, setisLoading] = useState(false);
   const [imgurl, setimgurl] = useState("");
   const [Cat, setCat] = useState("");
   const [Price, setPrice] = useState("");
   const [Desc, setDesc] = useState("");
-  const [Subcat, setSubcat] = useState("");
+  const [Subcat, setSubcat] = useState<string | undefined>("");
   const [Name, setName] = useState("");
   const [Type, setType] = useState("");
-  const [Categorydata, setCategorydata] = useState(null);
-  const [SubCategorydata, setSubCategorydata] = useState(null);
+  const [Categorydata, setCategorydata] = useState<Array<Categoryinterface> | null>(null);
+  const [SubCategorydata, setSubCategorydata] = useState<Array<SubCategoryinterface> | null>(null);
   const [isCatdropdown, setisCatdropdown] = useState(false);
   const [isSubcatdropdown, setisSubcatdropdown] = useState(false);
   const [isTypedropdown, setisTypedropdown] = useState(false);
 
-  const Typedropdown = ["Sticker", "Poster" , "Special"] ;
+  const Typedropdown = ["Sticker", "Poster", "Special"];
+
 
   const handleCategory = async () => {
     try {
@@ -66,11 +67,11 @@ const page = () => {
       formData.append("image", isselected);
       console.log(formData);
       const response = await fetch(
-        `https://theprintbackend.vercel.app/dashboard/upload`,
+        `http://localhost:5000/dashboard/upload`,
         {
           method: "POST",
           headers: {
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
           body: formData,
         }
@@ -89,23 +90,26 @@ const page = () => {
         console.log(response.statusText);
         setisLoading(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      alert("Some error occured");
+      setisLoading(false);
+    }
   };
 
   const handleAddtoProduct = async () => {
     try {
-      if(!Name || !Desc || !Price || !Cat || !Subcat || !Type || !imgurl)
-      {
+      if (!Name || !Desc || !Price || !Cat || !Subcat || !Type || !imgurl) {
         return toast.error("Please fill all the fields");
       }
       setisLoading(true);
       const res = await fetch(
-        "https://theprintbackend.vercel.app/dashboard/add",
+        "http://localhost:5000/dashboard/add",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
           body: JSON.stringify({
             name: Name,
@@ -149,7 +153,7 @@ const page = () => {
             {imgurl ? (
               <Image src={imgurl} height={150} width={150} alt="Image" />
             ) : (
-              <Image src={profile} height={150} alt="Image" />
+              <Image src={require("../../Assets/Logo.png")} height={150} alt="Image" />
             )}
             <div className="flex items-center gap-4">
               <input
@@ -158,10 +162,14 @@ const page = () => {
                 name="image"
                 className="w-full font-poppins cursor-pointer rounded-lg  bg-gray-200  p-3 text-sm font-medium text-gray-800  focus:border-2 focus:border-[#f05700] focus:outline-none md:w-full "
                 onChange={(e) => {
-                  if (e.target.files.length > 0) {
-                    setisselected(e.target.files[0]);
+                  if (e.target.files == null) {
+                    return;
                   } else {
-                    setisselected(null);
+                    if (e.target?.files.length > 0) {
+                      setisselected(e.target.files[0]);
+                    } else {
+                      setisselected(null);
+                    }
                   }
                 }}
               />
@@ -231,14 +239,14 @@ const page = () => {
 
                 {isCatdropdown && (
                   <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
-                    {Categorydata?.map((item) => {
+                    {Categorydata?.map((item : Categoryinterface) => {
                       return (
                         <div
                           className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                           onClick={() => {
                             setCat(item?.Name);
                             setisCatdropdown(false);
-                            setSubcat(null);
+                            setSubcat(undefined);
                             setSubCategorydata(item?.subcategory);
                           }}
                         >
@@ -252,7 +260,7 @@ const page = () => {
                 )}
               </div>
               <div className="mt-5">
-                {(
+                {
                   <div className="mt-[2vh]">
                     <div className="flex gap-2">
                       <input
@@ -276,9 +284,7 @@ const page = () => {
 
                     {isSubcatdropdown && (
                       <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
-                        <div
-                          className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center"
-                        >
+                        <div className=" p-2 cursor-pointer hover:bg-red-400 rounded-md flex items-center">
                           <h1 className="text-gray-800 font-bold">
                             Select SubCategory
                           </h1>
@@ -301,7 +307,7 @@ const page = () => {
                       </div>
                     )}
                   </div>
-                )}
+                }
               </div>
               <div className="mt-5 flex gap-2">
                 <input
@@ -314,14 +320,14 @@ const page = () => {
                   value={Type}
                 />
                 <h1
-                    className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
-                    onClick={() => {
-                      setisTypedropdown(!isTypedropdown);
-                    }}
-                  >
-                    {" "}
-                    <FiChevronDown />
-                  </h1>
+                  className="text-gray-800 font-bold shadow-3xl w-fit p-2 cursor-pointer rounded-lg flex items-center"
+                  onClick={() => {
+                    setisTypedropdown(!isTypedropdown);
+                  }}
+                >
+                  {" "}
+                  <FiChevronDown />
+                </h1>
                 {isTypedropdown && (
                   <div className="mt-[2vh] z-50 overflow-y-auto h-[20vh] shadow-3xl absolute bg-white rounded-lg">
                     {Typedropdown?.map((item) => {
@@ -333,9 +339,7 @@ const page = () => {
                             setisTypedropdown(false);
                           }}
                         >
-                          <h1 className="text-gray-800 font-bold">
-                            {item}
-                          </h1>
+                          <h1 className="text-gray-800 font-bold">{item}</h1>
                         </div>
                       );
                     })}

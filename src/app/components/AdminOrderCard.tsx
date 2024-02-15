@@ -1,10 +1,17 @@
 "use client";
 
-import React , {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import ChangeStatus from "./ChangeStatus";
+import {AdminOrderinterface} from "../../Utils/Interfaces"
 
-const AdminOrderCard = ({ data, }) => {
+interface AdminOrderProps{
+  data : AdminOrderinterface
+  key : number
+}
+
+
+const AdminOrderCard = ({data , key} : AdminOrderProps) => {
   const [isAddStatus, setisAddStatus] = useState(false);
   const [Status, setStatus] = useState("");
 
@@ -15,7 +22,7 @@ const AdminOrderCard = ({ data, }) => {
           setisAddStatus={setisAddStatus}
           setMainStatus={setStatus}
           id={data?._id}
-          email = {data?.user?.Email}
+          email={data?.user?.Email}
           name={data?.name}
         />
       )}

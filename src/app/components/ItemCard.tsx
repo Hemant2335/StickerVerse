@@ -1,23 +1,44 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
+interface ItemCardProps {
+  data: {
+    _id: number;
+    name: string;
+    imageURL: string;
+    price: number;
+    size: string;
+    quantity: number;
+  },
+  key: number
 
-const OrderCard = ({ data }) => {
+}
+
+const ItemCard = ({ data, key }: ItemCardProps) => {
+  const router = useRouter();
+
+  const handleonCart = () => {
+    router.push(`/Items/${data?._id}`);
+  };
+
   return (
     <>
       <div
         className=" cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:max-w-[16vw]"
+        onClick={handleonCart}
       >
         <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
-            src={data?.image}
+            src={data?.imageURL}
             width={200}
             height={200}
+            alt="Item Image"
             className="rounded-xl md:max-h-[40vh]"
-            alt="Image"
           />
           <div className=" flex  items-center justify-between px-2  rounded-md">
             <div>
@@ -29,13 +50,8 @@ const OrderCard = ({ data }) => {
                   Price : ₹{data?.price}
                 </h2>
               </div>
-              <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                Size : {data?.size}
-              </h2>
-              <h2 className="text-sm text-green-400 font-poppins font-medium ">
-                Status : {data?.status}
-              </h2>
             </div>
+
           </div>
         </div>
       </div>
@@ -43,4 +59,4 @@ const OrderCard = ({ data }) => {
   );
 };
 
-export default OrderCard;
+export default ItemCard;

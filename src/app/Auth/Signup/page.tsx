@@ -1,23 +1,24 @@
 "use client";
 
 import React from "react";
-import logo from "../../../Assets/Logo.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { MdEmail, MdMarkEmailRead } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus } from "../../../store/atom/State";
 import { useRecoilState } from "recoil";
-import Loading from "@/app/components/Loading";
+import Loading from "../../components/Loading";
+
+
 const page = () => {
   const router = useRouter();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Name, setName] = useState("");
   const [isEmailVerify, setisEmailVerify] = useState(false);
-  const [inputcode, setinputcode] = useState(null);
+  const [inputcode, setinputcode] = useState<string | null>(null);
   const [ispass, setispass] = useState(false);
   const [code, setcode] = useState(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
@@ -26,12 +27,9 @@ const page = () => {
   // Function to handle Signup
 
   const handleSignup = async () => {
-    if(!Email || !Password || !Name)
-    {
+    if (!Email || !Password || !Name) {
       return toast.error("Please Fill all the Fields");
-    }
-    else if(!Password.length>8)
-    {
+    } else if (Password.length <= 8) {
       return toast.error("Password must be 8 characters long");
     }
     setisLoading(true);
@@ -124,7 +122,7 @@ const page = () => {
       <div className="w-full h-fit flex mt-[5vh] justify-center items-center p-4">
         <div className="shadow-3xl h-fit md:min-w-[55vh] rounded-lg">
           <div className="w-full flex items-center justify-center">
-            <Image src={logo} width={150} height={150} />
+            <Image src={require("../../../Assets/Logo.png")} width={150} height={150} alt = "logo"/>
           </div>
           <div className="w-full max-w-[55vh] flex flex-col gap-[2vh] mt-[2vh] p-4">
             <input

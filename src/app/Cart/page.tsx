@@ -3,15 +3,16 @@
 import React, { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
 import { toast } from "react-hot-toast";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus , Accountname } from "../../store/atom/State";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Loading from "../components/Loading";
 import { useRouter } from "next/navigation";
-import { Accountname } from "@/store/atom/State";
+import {UserOrderinterface, Cartinterface} from "../../Utils/Interfaces";
+
 
 const Cart = () => {
-  const [Cartitems, setCartitems] = useState(null);
-  const [totalprice, settotalprice] = useState(null);
+  const [Cartitems, setCartitems] = useState<Array<Cartinterface>| undefined>(undefined);
+  const [totalprice, settotalprice] = useState<number | null>(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const router = useRouter();
   const ClientName = useRecoilValue(Accountname);
@@ -27,7 +28,7 @@ const Cart = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
         }
       );
@@ -47,7 +48,7 @@ const Cart = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token") || "",
         },
         body: JSON.stringify({
           name: ClientName,
@@ -62,7 +63,7 @@ const Cart = () => {
 
   // Function to Generate the Reciept
 
-  const handleaddtoOrder = async (item) => {
+  const handleaddtoOrder = async (item:UserOrderinterface) => {
     try {
       console.log("I am Orderadd running", item);
       const res = await fetch(
@@ -71,7 +72,7 @@ const Cart = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || " ",
           },
           body: JSON.stringify({
             name: item?.name,
@@ -99,7 +100,7 @@ const Cart = () => {
       toast.error("Please Add your Address, Email and Phone in your Profile");
       return;
     }
-    const itemdata = Cartitems?.map((item) => {
+    const itemdata = Cartitems?.map((item:Cartinterface) => {
       return {
         name: item?.name,
         description: item?.description,
@@ -116,7 +117,7 @@ const Cart = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token") || " ",
         },
         body: JSON.stringify({
           items: itemdata,
@@ -140,7 +141,7 @@ const Cart = () => {
         name: "OEat",
         description: "Payment for your order",
         order_id: order_id,
-        handler: (response) => {
+        handler: (response:Response) => {
           // Handle the payment success or failure
           if(response)
           {
@@ -160,7 +161,7 @@ const Cart = () => {
         },
       };
 
-      const razorpayInstance = new window.Razorpay(options);
+      const razorpayInstance = new (window as any).Razorpay(options); // from github copilot
       razorpayInstance.open();
       
       setisLoading(false);
@@ -179,7 +180,7 @@ const Cart = () => {
         {
           method: "GET",
           headers: {
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || " ",
           },
         }
       );

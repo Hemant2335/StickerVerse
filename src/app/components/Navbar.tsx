@@ -16,11 +16,10 @@ import {
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { adminstatus } from "@/store/atom/State";
+import { adminstatus } from "../../store/atom/State";
 import Image from "next/image";
-import Navlogo from "../../Assets/Logo.png";
 import { FiSearch } from "react-icons/fi";
-import { Accountname } from "@/store/atom/State";
+import { Accountname } from "../../store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();
@@ -37,13 +36,14 @@ const Navbar = () => {
     if (!localStorage.getItem("token")) {
       return;
     }
+    const token = localStorage?.getItem("token");
     const response = await fetch(
       `https://theprintbackend.vercel.app/users/getuser`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          Authorization: token ? token : "",
         },
       }
     );
@@ -76,8 +76,9 @@ const Navbar = () => {
         <div className="flex cursor-pointer  text-[3vh] text-gray-800 w-fit h-fit font-bold " onClick={() => router.push("/")}>
           <Image
             layout="responsive"
-            src={Navlogo}
+            src={require("../../Assets/Logo.png")}
             className="rounded-xl max-h-[15vh] md:max-h-[20vh]"
+            alt="logo"
           />
         </div>
         {/* Mobile Menu */}

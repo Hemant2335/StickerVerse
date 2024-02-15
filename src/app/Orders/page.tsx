@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import OrderCard from "../components/OrderCard";
 import { toast } from "react-hot-toast";
+import {UserOrderinterface} from "../../Utils/Interfaces";
 
 const Orders = () => {
-  const [Orderdata, setOrderdata] = useState(null);
+  const [Orderdata, setOrderdata] = useState<UserOrderinterface[] | null>(null);
 
   const handlefetchOrders = async () => {
     try {
@@ -15,7 +16,7 @@ const Orders = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
         }
       );
@@ -38,8 +39,8 @@ const Orders = () => {
         <div>
           <h1  className="text-lg font-medium">Stickers</h1>
           <div className="grid md:grid-cols-5 mt-[2vh] grid-cols-2">
-            {Orderdata?.map((item) => {
-              if (item?.type === "Sticker") return <OrderCard data={item} />;
+            {Orderdata?.map((item : UserOrderinterface) => {
+              if (item?.type === "Sticker") return <OrderCard data={item} key={item?._id} />;
             })}
           </div>
         </div>
@@ -47,7 +48,7 @@ const Orders = () => {
           <h1 className="text-lg font-medium">Posters</h1>
           <div className="grid md:grid-cols-5 mt-[2vh] grid-cols-2">
             {Orderdata?.map((item) => {
-              if (item?.type === "Poster") return <OrderCard data={item} />;
+              if (item?.type === "Poster") return <OrderCard data={item} key={item?._id} />;
             })}
           </div>
         </div>

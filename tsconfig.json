@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types", "./src/types" ],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "allowJs": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+, "src/app/page.jsx", "src/app/layout.jsx"  ],  
+  "exclude": [
+    "node_modules" , "**/*.png"
+  ],
+  "baseUrl": ".",
+  "paths": {
+    "@/components/": [
+      "components/"
+    ],
+    "@/lib/": [
+      "lib/"
+    ]
+    // Add more paths as needed based on your project structure
+  }
+}

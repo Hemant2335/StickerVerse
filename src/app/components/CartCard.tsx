@@ -2,17 +2,35 @@ import React from "react";
 import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
+import {Cartinterface} from "../../Utils/Interfaces"
 
-const CartCard = ({ data, Cart, setCart }) => {
+
+interface CartCardProps {
+  data: {
+    _id: number;
+    name: string;
+    image: string;
+    price: number;
+    size: string;
+    quantity: number;
+  };
+  Cart: Array<Cartinterface> | null;
+  setCart: React.Dispatch<React.SetStateAction<Array<Cartinterface> | undefined>>;
+}
+
+
+
+const CartCard = ({data, Cart, setCart}:CartCardProps ) => {
   const handleondelete = async () => {
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(
         "https://theprintbackend.vercel.app/products/item/deleteitem",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: token ? token : "",
           },
           body: JSON.stringify({
             id: data?._id,
@@ -22,7 +40,7 @@ const CartCard = ({ data, Cart, setCart }) => {
 
       const data1 = await res.json();
       if (data1?.Check) {
-        const arr = Cart.filter((item) => item?._id !== data?._id);
+        const arr = Cart?.filter((item) => item?._id !== data?._id);
         setCart(arr);
         toast.success(data1?.msg);
       } else {
@@ -45,6 +63,7 @@ const CartCard = ({ data, Cart, setCart }) => {
           width={200}
           height={200}
           className="rounded-xl md:max-h-[20vh]"
+          alt="Image"
         />
         </div>
         <div className="w-full md:mt-0 mt-[2vh] flex flex-col justify-center">

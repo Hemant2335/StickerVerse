@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 import toast from "react-hot-toast";
 
-const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus}) => {
+interface ChangeStatusProps {
+  setisAddStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  id: number;
+  email: string;
+  name: string;
+  setMainStatus: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus} : ChangeStatusProps) => {
     const [Status, setStatus] = useState("");
 
 
@@ -14,7 +22,7 @@ const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus}) => 
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                auth: localStorage.getItem("token"),
+                Authorization: localStorage.getItem("token") || "",
               },
               body: JSON.stringify({ name: name , status : Status , email : email}),
             }
@@ -44,7 +52,7 @@ const ChangeStatus = ({ setisAddStatus , id , email , name , setMainStatus}) => 
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
-                  auth: localStorage.getItem("token"),
+                  Authorization: localStorage.getItem("token") || "",
                 },
                 body: JSON.stringify({ status : Status }),
               }

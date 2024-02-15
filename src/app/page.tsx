@@ -3,17 +3,18 @@
 import React from "react";
 import Image from "next/image";
 import DashboardCard from "./components/DashboardCard";
-import { loadingstatus } from "@/store/atom/State";
+import { loadingstatus } from "../store/atom/State";
 import { useRecoilValue } from "recoil";
 import Loading from "./components/Loading";
 import { useRouter } from "next/navigation";
 import useFetch from "./hooks/useFetch";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import {Productinterface} from "../Utils/Interfaces"
 
 const page = () => {
   const isLoading = useRecoilValue(loadingstatus);
-  const Banner = useFetch("Special");
+  const Banner:Productinterface[] = useFetch("Special");
   const router = useRouter();
 
   return (
@@ -22,7 +23,7 @@ const page = () => {
       <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         {/* Banner */}
         <div className="rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
-          <div className="min:w-[40vw] h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh] h-full text-gray-800 rounded-l-xl bg-gray-100">
+          <div className="min:w-[40vw] h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]  text-gray-800 rounded-l-xl bg-gray-100">
             <h1 className="text-4xl font-bold">
               Collect Prints for the Heaven
             </h1>
@@ -50,6 +51,7 @@ const page = () => {
                     width={50}
                     height={50}
                     className="md:h-[2vw] rounded-r-2xl"
+                    alt="Image"
                   />
                 );
               })}

@@ -2,10 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import AdminOrderCard from "../components/AdminOrderCard";
-import { toast } from "react-hot-toast";
-
+import { AdminOrderinterface } from "../../Utils/Interfaces";
 const AdminOrder = () => {
-const [Orderdata, setOrderdata] = useState(null);
+const [Orderdata, setOrderdata] = useState<Array<AdminOrderinterface> | null>(null);
 
 
   const handlefetchOrders = async () => {
@@ -16,14 +15,12 @@ const [Orderdata, setOrderdata] = useState(null);
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
         }
       );
       const data = await response.json();
-      console.log("I am AdminOrder", data);
       setOrderdata(data);
-      setStatus(data?.status);
     } catch (error) {
       console.log(error);
     }
@@ -41,16 +38,16 @@ const [Orderdata, setOrderdata] = useState(null);
         <div>
           <h1  className="text-lg font-medium">Stickers</h1>
           <div className="flex flex-col mt-[2vh]">
-            {Orderdata?.map((item) => {
-              if (item?.type === "Sticker") return <AdminOrderCard  data={item} />;
+            {Orderdata?.map((item : AdminOrderinterface) => {
+              if (item?.type === "Sticker") return <AdminOrderCard data={item} key={item?._id}/>;
             })}
           </div>
         </div>
         <div>
           <h1 className="text-lg font-medium">Posters</h1>
           <div className="flex flex-col mt-[2vh]">
-            {Orderdata?.map((item) => {
-              if (item?.type === "Poster") return <AdminOrderCard data={item} />;
+            {Orderdata?.map((item : AdminOrderinterface) => {
+              if (item?.type === "Poster") return <AdminOrderCard data={item} key={item?._id}/>;
             })}
           </div>
         </div>

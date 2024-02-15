@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 import { Suspense } from "react";
 import Loading from "./components/Loading";
-import { images } from "../../next.config";
 
 export const metadata = {
   title: "StickerVerse - All your prints at one place",
@@ -15,7 +14,7 @@ export const metadata = {
     "Our Website is Build to provide the best Quality of Prints which includes printing Posters and Stickers",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>

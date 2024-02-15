@@ -2,27 +2,27 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { loadingstatus } from "@/store/atom/State";
-import Loading from "@/app/loading";
+import { loadingstatus } from "../../../store/atom/State";
+import Loading from "../../components/Loading";
 import { ItemCard } from "../../components";
-import useFetch from "@/app/hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
-
 import Filter from "../../components/Filter";
 import { useParams } from "next/navigation";
+import {Productinterface} from "../../../Utils/Interfaces";
 
 const Explore = () => {
   const Sticker = useFetch("Sticker");
   const Poster = useFetch("Poster");
   const {type} = useParams();
-  const [data, setdata] = useState(null);
+  const [data, setdata] = useState<Productinterface[] | null>(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const [Categorydata, setCategorydata] = useState(null);
 
   const [Category, setCategory] = useState("");
-  const [Subcategory, setSubcategory] = useState("");
-  const [Type, setType] = useState(type);
+  const [Subcategory, setSubcategory] = useState<string | "">("");
+  const [Type, setType] = useState<string>(type as string);
 
   const handleUrl = async () => {
     try {
@@ -81,15 +81,14 @@ const Explore = () => {
             setSubcategory={setSubcategory}
             Category={Category}
             setCategory={setCategory}
-            setdata={setdata}
             Categorydata={Categorydata}
             setType={setType}
           />
         </div>
         <div className="w-full h-fit mt-[5vh]">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-          {data?.map((item) => {
-            return <ItemCard data={item} />;
+          {data?.map((item : Productinterface) => {
+            return <ItemCard data={item} key={item?._id}/>;
           })}
         </div>
       </div>
