@@ -8,17 +8,21 @@ interface SubCategoryinterface {
 }
 
 interface Productinterface {
-    _id: string;
+    _id: number;
     name: string;
-    image: string;
+    imageURL: string;
     price: number;
     size: string;
     quantity: number;
+    type: string;
+    Category : string;
+    Subcategory : string;
+    Description: string;
 }
 
 
 interface UserOrderinterface {
-    _id: string;
+    _id: number;
     name: string;
     price: number;
     size: string;
@@ -30,7 +34,7 @@ interface UserOrderinterface {
 }
 
 interface AdminOrderinterface {
-    _id: string;
+    _id: number;
     name: string;
     price: number;
     size: string;
@@ -46,7 +50,7 @@ interface AdminOrderinterface {
 }
 
 interface Cartinterface {
-    _id: string;
+    _id: number;
     name: string;
     description: string;
     price: number;

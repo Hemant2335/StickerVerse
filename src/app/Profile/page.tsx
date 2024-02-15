@@ -1,21 +1,27 @@
 "use client";
 
 import React from "react";
-import profile from "../../Assets/man-avatar.png";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { adminstatus } from "@/store/atom/State";
+import { adminstatus , Accountname } from "../../store/atom/State";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import ChangeAddress from "../components/ChangeAddress";
-import { Accountname } from "@/store/atom/State";
 import Loading from "../components/Loading";
 import ChangePhone from "../components/ChangePhone";
+
+interface Userinterface {
+  Name: string;
+  Email: string;
+  Address: string;
+  Phone: string;
+  isAdmin: boolean;
+}
 
 const Profile = () => {
   const router = useRouter();
   const [isLoading, setisLoading] = useState(false);
-  const [data, setdata] = useState("");
+  const [data, setdata] = useState<Userinterface | null>(null);
   const [isAddaddress, setisAddaddress] = useState(false);
   const [Address, setAddress] = useState("");
   const [Phone, setPhone] = useState("");
@@ -31,7 +37,7 @@ const Profile = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          auth: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token") || "",
         },
       }
     );
@@ -63,10 +69,11 @@ const Profile = () => {
           <div className="shadow-3xl w-fit p-4 rounded-lg">
             {/* {data?.isAdmin ? () : (<img src={profile} alt="" className='h-[30vh]' />)} */}
             <Image
-              src={profile}
+              src={require("../../Assets/man-avatar.png")}
               width={200}
               height={200}
               className="rounded-xl md:max-h-[28vh] responsive"
+              alt="Man Avatar"
             />
           </div>
           <div className="flex flex-col gap-5 ">

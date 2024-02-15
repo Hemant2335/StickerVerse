@@ -7,7 +7,7 @@ import {Cartinterface} from "../../Utils/Interfaces"
 
 interface CartCardProps {
   data: {
-    _id: string;
+    _id: number;
     name: string;
     image: string;
     price: number;

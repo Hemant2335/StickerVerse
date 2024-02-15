@@ -5,8 +5,13 @@ import Image from "next/image";
 import ChangeStatus from "./ChangeStatus";
 import {AdminOrderinterface} from "../../Utils/Interfaces"
 
+interface AdminOrderProps{
+  data : AdminOrderinterface
+  key : number
+}
 
-const AdminOrderCard = (data: AdminOrderinterface) => {
+
+const AdminOrderCard = ({data , key} : AdminOrderProps) => {
   const [isAddStatus, setisAddStatus] = useState(false);
   const [Status, setStatus] = useState("");
 

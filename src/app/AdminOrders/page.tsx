@@ -2,26 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import AdminOrderCard from "../components/AdminOrderCard";
-
-interface Orderdata{
-  _id: string;
-  name: string;
-  price: number;
-  size: string;
-  status: string;
-  image: string;
-  user: {
-    Name: string;
-    Email: string;
-    Phone: string;
-  };
-  address: string;
-  type : string;
-}
-
-
+import { AdminOrderinterface } from "../../Utils/Interfaces";
 const AdminOrder = () => {
-const [Orderdata, setOrderdata] = useState<Array<Orderdata> | null>(null);
+const [Orderdata, setOrderdata] = useState<Array<AdminOrderinterface> | null>(null);
 
 
   const handlefetchOrders = async () => {
@@ -55,16 +38,16 @@ const [Orderdata, setOrderdata] = useState<Array<Orderdata> | null>(null);
         <div>
           <h1  className="text-lg font-medium">Stickers</h1>
           <div className="flex flex-col mt-[2vh]">
-            {Orderdata?.map((item : Orderdata) => {
-              if (item?.type === "Sticker") return <AdminOrderCard  data={item} />;
+            {Orderdata?.map((item : AdminOrderinterface) => {
+              if (item?.type === "Sticker") return <AdminOrderCard data={item} key={item?._id}/>;
             })}
           </div>
         </div>
         <div>
           <h1 className="text-lg font-medium">Posters</h1>
           <div className="flex flex-col mt-[2vh]">
-            {Orderdata?.map((item : Orderdata) => {
-              if (item?.type === "Poster") return <AdminOrderCard data={item} />;
+            {Orderdata?.map((item : AdminOrderinterface) => {
+              if (item?.type === "Poster") return <AdminOrderCard data={item} key={item?._id}/>;
             })}
           </div>
         </div>

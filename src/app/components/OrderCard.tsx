@@ -2,17 +2,15 @@
 
 import React from "react";
 import Image from "next/image";
+import {UserOrderinterface} from "../../Utils/Interfaces"
 
 interface OrderCardProps {
-  image : string,
-  name : string,
-  price : number,
-  size : string,
-  status : string
+  data : UserOrderinterface
+  key : number
 }
 
 
-const OrderCard = (data : OrderCardProps) => {
+const OrderCard = ({data ,key} : OrderCardProps) => {
   return (
     <>
       <div

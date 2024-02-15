@@ -67,7 +67,7 @@ const page = () => {
       formData.append("image", isselected);
       console.log(formData);
       const response = await fetch(
-        `https://theprintbackend.vercel.app/dashboard/upload`,
+        `http://localhost:5000/dashboard/upload`,
         {
           method: "POST",
           headers: {
@@ -90,7 +90,11 @@ const page = () => {
         console.log(response.statusText);
         setisLoading(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      alert("Some error occured");
+      setisLoading(false);
+    }
   };
 
   const handleAddtoProduct = async () => {
@@ -100,7 +104,7 @@ const page = () => {
       }
       setisLoading(true);
       const res = await fetch(
-        "https://theprintbackend.vercel.app/dashboard/add",
+        "http://localhost:5000/dashboard/add",
         {
           method: "POST",
           headers: {

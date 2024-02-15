@@ -8,11 +8,12 @@ import { useRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ItemCard } from "../../components";
+import {Productinterface} from "../../../Utils/Interfaces";
 
 const Item = () => {
-  const [itemdata, setitemdata] = useState(null);
-  const [Similardata, setSimilardata] = useState(null);
-  const [Size, setSize] = useState(null);
+  const [itemdata, setitemdata] = useState<Productinterface | null>(null);
+  const [Similardata, setSimilardata] = useState<Productinterface[] | null>(null);
+  const [Size, setSize] = useState<string>("");
   const { ItemId } = useParams();
   const router = useRouter();
   const Sizecomp = useRef();
@@ -64,7 +65,7 @@ const Item = () => {
 
       if (!localStorage.getItem("token")) {
         router.push("/Auth/Login");
-        toast.warning("Please Login First");
+        toast.error("Please Login First");
         return;
       }
 
@@ -76,10 +77,10 @@ const Item = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            auth: localStorage.getItem("token"),
+            Authorization: localStorage.getItem("token") || "",
           },
           body: JSON.stringify({
-            name: itemdata?.Name,
+            name: itemdata?.name,
             price: Price*Quantity,
             image: itemdata?.imageURL,
             size: Size,
@@ -125,7 +126,7 @@ const Item = () => {
     { Name: "3*3 CMS", Price: 30 },
   ];
 
-  const [Price, setPrice] = useState(null);
+  const [Price, setPrice] = useState<number>(1);
   const [Quantity, setQuantity] = useState(1);
 
   return (
@@ -134,16 +135,17 @@ const Item = () => {
         <div>
           <Image
             layout="responsive"
-            src={itemdata?.imageURL}
+            src={itemdata?.imageURL as string}
             width={400}
             height={400}
             className="rounded-xl md:max-h-[80vh] shadow-3xl"
+            alt="Image"
           />
         </div>
         <div className="md:min-w-[45vw] md:max-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
           <div>
             <h1 className=" font-bold text-gray-800 text-4xl">
-              {itemdata?.Name}
+              {itemdata?.name}
             </h1>
             <h2 className=" font-bold mt-[1vh] text-2xl text-red-500">
               {Price ? `₹${Price}` : "Select Size to get Price"}
@@ -207,13 +209,13 @@ const Item = () => {
                     PosterSize.map((item) => {
                       if (item?.Name !== Name) {
                         document
-                          .getElementById(item?.Name)
-                          .classList.remove("border-2", "border-red-400");
+                          ?.getElementById(item?.Name)
+                          ?.classList.remove("border-2", "border-red-400") ;
                       }
                     });
                     document
-                      .getElementById(item?.Name)
-                      .classList.add("border-2", "border-red-400");
+                      ?.getElementById(item?.Name)
+                      ?.classList.add("border-2", "border-red-400");
                   }}
                 >
                   {item?.Name}
@@ -234,13 +236,13 @@ const Item = () => {
                     StickerSize.map((item) => {
                       if (item?.Name !== Name) {
                         document
-                          .getElementById(item?.Name)
-                          .classList.remove("border-2", "border-red-500");
+                          ?.getElementById(item?.Name)
+                          ?.classList.remove("border-2", "border-red-500");
                       }
                     });
                     document
-                      .getElementById(item?.Name)
-                      .classList.add("border-2", "border-red-500");
+                      ?.getElementById(item?.Name)
+                      ?.classList.add("border-2", "border-red-500");
                   }}
                 >
                   {item?.Name}
@@ -261,8 +263,8 @@ const Item = () => {
       <div className="mt-[5vh] w-full text-gray-800">
         <h1 className="text-xl font-bold">You may also like</h1>
         <div className="grid grid-cols-2 mt-[5vh] md:grid-cols-5 gap-2">
-          {Similardata?.map((item) => {
-            return <ItemCard data={item} />;
+          {Similardata?.map((item : Productinterface) => {
+            return <ItemCard data={item} key={item?._id} />;
           })}
         </div>
       </div>

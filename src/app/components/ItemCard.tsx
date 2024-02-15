@@ -7,14 +7,14 @@ import { toast } from "react-hot-toast";
 
 interface ItemCardProps {
   data: {
-    _id: string;
+    _id: number;
     name: string;
-    image: string;
+    imageURL: string;
     price: number;
     size: string;
     quantity: number;
   },
-  key: string
+  key: number
 
 }
 
@@ -34,7 +34,7 @@ const ItemCard = ({ data, key }: ItemCardProps) => {
         <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
-            src={data?.image}
+            src={data?.imageURL}
             width={200}
             height={200}
             alt="Item Image"

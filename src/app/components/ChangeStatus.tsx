@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 interface ChangeStatusProps {
   setisAddStatus: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string;
+  id: number;
   email: string;
   name: string;
   setMainStatus: React.Dispatch<React.SetStateAction<string>>;
