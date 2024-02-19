@@ -40,7 +40,7 @@ const Orders = () => {
           <h1  className="text-lg font-medium">Stickers</h1>
           <div className="grid md:grid-cols-5 mt-[2vh] grid-cols-2">
             {Orderdata?.map((item : UserOrderinterface) => {
-              if (item?.type === "Sticker") return <OrderCard data={item} key={item?._id} />;
+              if (item?.type === "Sticker") return <OrderCard data={item} key={item?.id} />;
             })}
           </div>
         </div>
@@ -48,7 +48,7 @@ const Orders = () => {
           <h1 className="text-lg font-medium">Posters</h1>
           <div className="grid md:grid-cols-5 mt-[2vh] grid-cols-2">
             {Orderdata?.map((item) => {
-              if (item?.type === "Poster") return <OrderCard data={item} key={item?._id} />;
+              if (item?.type === "Poster") return <OrderCard data={item} key={item?.id} />;
             })}
           </div>
         </div>

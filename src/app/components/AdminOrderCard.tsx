@@ -21,7 +21,7 @@ const AdminOrderCard = ({data , key} : AdminOrderProps) => {
         <ChangeStatus
           setisAddStatus={setisAddStatus}
           setMainStatus={setStatus}
-          id={data?._id}
+          id={data?.id}
           email={data?.user?.Email}
           name={data?.name}
         />

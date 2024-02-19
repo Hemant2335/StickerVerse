@@ -39,7 +39,7 @@ const [Orderdata, setOrderdata] = useState<Array<AdminOrderinterface> | null>(nu
           <h1  className="text-lg font-medium">Stickers</h1>
           <div className="flex flex-col mt-[2vh]">
             {Orderdata?.map((item : AdminOrderinterface) => {
-              if (item?.type === "Sticker") return <AdminOrderCard data={item} key={item?._id}/>;
+              if (item?.type === "Sticker") return <AdminOrderCard data={item} key={item?.id}/>;
             })}
           </div>
         </div>
@@ -47,7 +47,7 @@ const [Orderdata, setOrderdata] = useState<Array<AdminOrderinterface> | null>(nu
           <h1 className="text-lg font-medium">Posters</h1>
           <div className="flex flex-col mt-[2vh]">
             {Orderdata?.map((item : AdminOrderinterface) => {
-              if (item?.type === "Poster") return <AdminOrderCard data={item} key={item?._id}/>;
+              if (item?.type === "Poster") return <AdminOrderCard data={item} key={item?.id}/>;
             })}
           </div>
         </div>
