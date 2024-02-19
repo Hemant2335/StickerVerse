@@ -18,7 +18,7 @@ const DashboardCard = ( {Name } : DashboardCardProps ) => {
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
         {ProductData?.slice(0, 10).map((item) => {
-          return <ItemCard data={item} key={item?._id}/>;
+          return <ItemCard data={item} key={item?.id}/>;
         })}  
       </div>
       <div className=" w-full flex justify-center">

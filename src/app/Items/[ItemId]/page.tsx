@@ -80,7 +80,7 @@ const Item = () => {
             Authorization: localStorage.getItem("token") || "",
           },
           body: JSON.stringify({
-            name: itemdata?.name,
+            name: itemdata?.Name,
             price: Price*Quantity,
             image: itemdata?.imageURL,
             size: Size,
@@ -145,10 +145,10 @@ const Item = () => {
         <div className="md:min-w-[45vw] md:max-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
           <div>
             <h1 className=" font-bold text-gray-800 text-4xl">
-              {itemdata?.name}
+              {itemdata?.Name}
             </h1>
             <h2 className=" font-bold mt-[1vh] text-2xl text-red-500">
-              {Price ? `₹${Price}` : "Select Size to get Price"}
+              {Price != 1 ? `₹${Price}` : "Select Size to get Price"}
             </h2>
             <p className=" text-gray-400">{itemdata?.Description}</p>
           </div>
@@ -264,7 +264,7 @@ const Item = () => {
         <h1 className="text-xl font-bold">You may also like</h1>
         <div className="grid grid-cols-2 mt-[5vh] md:grid-cols-5 gap-2">
           {Similardata?.map((item : Productinterface) => {
-            return <ItemCard data={item} key={item?._id} />;
+            return <ItemCard data={item} key={item?.id} />;
           })}
         </div>
       </div>

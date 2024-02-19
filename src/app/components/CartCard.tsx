@@ -7,7 +7,7 @@ import {Cartinterface} from "../../Utils/Interfaces"
 
 interface CartCardProps {
   data: {
-    _id: number;
+    id: number;
     name: string;
     image: string;
     price: number;
@@ -15,7 +15,7 @@ interface CartCardProps {
     quantity: number;
   };
   Cart: Array<Cartinterface> | null;
-  setCart: React.Dispatch<React.SetStateAction<Array<Cartinterface> | undefined>>;
+  setCart: React.Dispatch<React.SetStateAction<Array<Cartinterface>>>;
 }
 
 
@@ -33,14 +33,15 @@ const CartCard = ({data, Cart, setCart}:CartCardProps ) => {
             Authorization: token ? token : "",
           },
           body: JSON.stringify({
-            id: data?._id,
+            id: data?.id,
           }),
         }
       );
 
       const data1 = await res.json();
       if (data1?.Check) {
-        const arr = Cart?.filter((item) => item?._id !== data?._id);
+        const arr = Cart?.filter((item) => item?.id !== data?.id);
+        if(arr)
         setCart(arr);
         toast.success(data1?.msg);
       } else {

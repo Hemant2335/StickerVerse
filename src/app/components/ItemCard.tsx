@@ -1,29 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
+import {Productinterface} from "../../Utils/Interfaces"
 
 interface ItemCardProps {
-  data: {
-    _id: number;
-    name: string;
-    imageURL: string;
-    price: number;
-    size: string;
-    quantity: number;
-  },
+  data: Productinterface,
   key: number
 
 }
+
 
 const ItemCard = ({ data, key }: ItemCardProps) => {
   const router = useRouter();
 
   const handleonCart = () => {
-    router.push(`/Items/${data?._id}`);
+    router.push(`/Items/${data?.id}`);
   };
+
 
   return (
     <>
@@ -43,11 +39,11 @@ const ItemCard = ({ data, key }: ItemCardProps) => {
           <div className=" flex  items-center justify-between px-2  rounded-md">
             <div>
               <h1 className="text-sm text-gray-800 font-poppins font-medium mt-5 ">
-                {data?.name}
+                {data?.Name}
               </h1>
               <div className="flex gap-2">
                 <h2 className="text-sm text-gray-400 font-poppins font-medium ">
-                  Price : ₹{data?.price}
+                  Price : ₹{data?.Price}
                 </h2>
               </div>
             </div>

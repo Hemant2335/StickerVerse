@@ -50,7 +50,7 @@ const page = () => {
                     src={item.imageURL}
                     width={50}
                     height={50}
-                    className="md:h-[2vw] rounded-r-2xl"
+                    className="rounded-r-2xl"
                     alt="Image"
                   />
                 );

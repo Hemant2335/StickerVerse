@@ -49,7 +49,6 @@ const Navbar = () => {
     );
 
     const json = await response.json();
-    console.log(json);
     setisAdmin(json?.User?.isAdmin);
     setAccname(json?.User?.Name);
   };

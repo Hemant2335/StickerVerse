@@ -11,7 +11,7 @@ import {UserOrderinterface, Cartinterface} from "../../Utils/Interfaces";
 
 
 const Cart = () => {
-  const [Cartitems, setCartitems] = useState<Array<Cartinterface>| undefined>(undefined);
+  const [Cartitems, setCartitems] = useState<Cartinterface[]>([]);
   const [totalprice, settotalprice] = useState<number | null>(null);
   const [isLoading, setisLoading] = useRecoilState(loadingstatus);
   const router = useRouter();
@@ -207,6 +207,7 @@ const Cart = () => {
 
   useEffect(() => {
     findtotal();
+    console.log(Cartitems);
   }, [Cartitems]);
 
   return (
@@ -219,7 +220,7 @@ const Cart = () => {
         {/* Items */}
         <div className="w-full h-fit ">
           <div className="">
-            {Cartitems?.map((item) => {
+            {Cartitems && Cartitems?.map((item) => {
               return (
                 <CartCard data={item} Cart={Cartitems} setCart={setCartitems} />
               );

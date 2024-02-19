@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import RecoilContextProvider from "./recoilContextProvider";
 import { Suspense } from "react";
 import Loading from "./components/Loading";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata = {
   title: "StickerVerse - All your prints at one place",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="../../public/Logo.png" />
       </head>
+      <GoogleOAuthProvider clientId="551918395782-v17s3h8ts05grojf189484cbm816ivnr.apps.googleusercontent.com">
       <body className="">
         <div className="mx-[5vw]">
           <RecoilContextProvider>
@@ -34,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </body>
+      </GoogleOAuthProvider>
     </html>
   );
 }
