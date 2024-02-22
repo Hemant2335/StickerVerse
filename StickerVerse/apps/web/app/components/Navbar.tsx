@@ -6,6 +6,7 @@ import {
   FiGrid,
   FiAlignLeft,
   FiShoppingCart,
+  FiUserPlus,
   FiPlusSquare,
   FiCompass,
   FiX,
@@ -14,7 +15,7 @@ import {
   FiSmile,
 } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import { useRecoilState} from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { adminstatus } from "../../store/atom/State";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";

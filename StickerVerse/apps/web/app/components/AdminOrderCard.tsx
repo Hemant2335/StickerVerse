@@ -11,7 +11,7 @@ interface AdminOrderProps{
 }
 
 
-const AdminOrderCard = ({data} : AdminOrderProps) => {
+const AdminOrderCard = ({data , key} : AdminOrderProps) => {
   const [isAddStatus, setisAddStatus] = useState(false);
   const [Status, setStatus] = useState("");
 
