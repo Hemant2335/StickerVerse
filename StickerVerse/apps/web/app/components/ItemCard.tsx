@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { toast } from "react-hot-toast";
 import {Productinterface} from "../../Utils/Interfaces"
 
 interface ItemCardProps {
@@ -13,7 +12,7 @@ interface ItemCardProps {
 }
 
 
-const ItemCard = ({ data, key }: ItemCardProps) => {
+const ItemCard = ({ data}: ItemCardProps) => {
   const router = useRouter();
 
   const handleonCart = () => {

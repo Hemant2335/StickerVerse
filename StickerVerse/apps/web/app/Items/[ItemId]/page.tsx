@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { loadingstatus } from "../../../store/atom/State";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ItemCard } from "../../components";
@@ -16,7 +16,6 @@ const Item = () => {
   const [Size, setSize] = useState<string>("");
   const { ItemId } = useParams();
   const router = useRouter();
-  const Sizecomp = useRef();
   const fetchItem = async () => {
     try {
       const res = await fetch(
@@ -55,7 +54,7 @@ const Item = () => {
     }
   };
 
-  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
+  const setisLoading = useSetRecoilState(loadingstatus);
   const handleonCart = async () => {
     try {
       if (!Size) {

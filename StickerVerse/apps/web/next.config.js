@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  transpilePackages: ["@repo/ui"],
-};
+const nextConfig = {
+    images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'res.cloudinary.com',
+            port: '',
+            pathname: '/dri5u2nqb/image/upload/**',
+          },
+        ],
+      },
+}
+
+module.exports = nextConfig

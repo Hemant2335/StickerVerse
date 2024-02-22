@@ -1,23 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { loadingstatus } from "../../../store/atom/State";
 import Loading from "../../components/Loading";
 import { ItemCard } from "../../components";
 import useFetch from "../../hooks/useFetch";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import toast from "react-hot-toast";
 import Filter from "../../components/Filter";
 import { useParams } from "next/navigation";
 import {Productinterface} from "../../../Utils/Interfaces";
 
 const Explore = () => {
-  const Sticker = useFetch("Sticker");
-  const Poster = useFetch("Poster");
   const {type} = useParams();
   const [data, setdata] = useState<Productinterface[] | null>(null);
-  const [isLoading, setisLoading] = useRecoilState(loadingstatus);
+  const isLoading = useRecoilValue(loadingstatus);
   const [Categorydata, setCategorydata] = useState(null);
 
   const [Category, setCategory] = useState("");
