@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </RecoilContextProvider>
         </div>
         <Footer />
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js" async/>
       </body>
       </GoogleOAuthProvider>
     </html>

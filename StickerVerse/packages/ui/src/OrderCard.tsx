@@ -10,7 +10,7 @@ interface OrderCardProps {
 }
 
 
-const OrderCard = ({data ,key} : OrderCardProps) => {
+const OrderCard = ({data} : OrderCardProps) => {
   return (
     <>
       <div

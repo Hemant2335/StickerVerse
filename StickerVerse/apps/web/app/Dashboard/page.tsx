@@ -8,7 +8,7 @@ import Loading from "../components/Loading";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { FiChevronDown } from "react-icons/fi";
-import {Categoryinterface , SubCategoryinterface} from "../../Utils/Interfaces"
+import {Categoryinterface , SubCategoryinterface} from "../../../../packages/Utils/Interfaces"
 
 const page = () => {
   const [isuploaded, setisuploaded] = useState(false);

@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { loadingstatus } from "../../../store/atom/State";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import {useSetRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ItemCard } from "../../components";
-import {Productinterface} from "../../../Utils/Interfaces";
+import {Productinterface} from "../../../../../packages/Utils/Interfaces";
 
 const Item = () => {
   const [itemdata, setitemdata] = useState<Productinterface | null>(null);

@@ -1,6 +1,6 @@
 {
-  "name": "theprint",
-  "version": "0.1.0",
+  "name": "@doone/stickerverse",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/ui" : "*",
     "@react-oauth/google": "^0.12.1",
     "@stripe/stripe-js": "^2.4.0",
-    "@vercel/analytics": "^1.1.2",
+    "@vercel/analytics": "^1.1.2",  
     "@vercel/speed-insights": "^1.0.5",
     "chart.js": "^4.4.1",
     "lottie-web": "^5.12.2",
@@ -27,8 +28,14 @@
     "stripe": "^14.14.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^14.0.4",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "@types/node": "^20.11.16",
     "@types/react": "^18.2.55",
+    "@types/eslint": "^8.56.1",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^8.56.0",
     "autoprefixer": "^10.0.1",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",

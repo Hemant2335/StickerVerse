@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import OrderCard from "../components/OrderCard";
 import { toast } from "react-hot-toast";
-import {UserOrderinterface} from "../../Utils/Interfaces";
+import {UserOrderinterface} from "../../../../packages/Utils/Interfaces";
 
 const Orders = () => {
   const [Orderdata, setOrderdata] = useState<UserOrderinterface[] | null>(null);

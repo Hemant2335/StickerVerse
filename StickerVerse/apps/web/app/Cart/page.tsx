@@ -7,7 +7,7 @@ import { loadingstatus , Accountname } from "../../store/atom/State";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Loading from "../components/Loading";
 import { useRouter } from "next/navigation";
-import {UserOrderinterface, Cartinterface} from "../../Utils/Interfaces";
+import {UserOrderinterface, Cartinterface} from "../../../../packages/Utils/Interfaces";
 
 
 const Cart = () => {

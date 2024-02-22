@@ -2,14 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { loadingstatus } from "../../../store/atom/State";
-import Loading from "../../components/Loading";
+import {} from "StickerVerseUI"; 
 import { ItemCard } from "../../components";
-import useFetch from "../../hooks/useFetch";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import toast from "react-hot-toast";
-import Filter from "../../components/Filter";
+import {Filter} from "@repo/ui";
 import { useParams } from "next/navigation";
-import {Productinterface} from "../../../Utils/Interfaces";
+import {Productinterface} from "../../../../../packages/Utils/Interfaces";
 
 const Explore = () => {
   const {type} = useParams();
