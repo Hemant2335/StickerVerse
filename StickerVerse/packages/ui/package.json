@@ -3,21 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "." : "./src/index.ts",
-    "./AdminOrderCard": "./src/AdminOrderCard.tsx",
-    "./CartCard": "./src/CartCard.tsx",
-    "./ChangeAddress": "./src/ChangeAddress.tsx",
-    "./ChangePhone" : "./src/ChangePhone.tsx",
-    "./ChangeStatus" : "./src/ChangeStatus.tsx",
-    "./DashboardCard" : "./src/DashboardCard.tsx",
-    "./Filter" : "./src/Filter.tsx",
-    "./Footer" : "./src/Footer.tsx",
-    "./ItemCard" : "./src/ItemCard.tsx",
-    "./Loading" : "./src/Loading.tsx",
-    "./MoreCard" : "./src/MoreCard.tsx",
-    "./Navbar" : "./src/Navbar.tsx",
-    "./OrderCard" : "./src/OrderCard.tsx",
-    "./ToastWrapper" : "./src/ToastWrapper.tsx"
+    "./button": "./src/button.tsx",
+    "./card": "./src/card.tsx",
+    "./code": "./src/code.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

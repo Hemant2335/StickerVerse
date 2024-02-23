@@ -8,7 +8,7 @@ import {useSetRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ItemCard } from "../../components";
-import {Productinterface} from "../../../../../packages/Utils/Interfaces";
+import {Productinterface} from "../../../Utils/Interfaces";
 
 const Item = () => {
   const [itemdata, setitemdata] = useState<Productinterface | null>(null);

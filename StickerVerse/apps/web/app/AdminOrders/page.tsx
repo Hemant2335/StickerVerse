@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import AdminOrderCard from "../components/AdminOrderCard";
-import { AdminOrderinterface } from "../../../../packages/Utils/Interfaces";
+import { AdminOrderinterface } from "../../Utils/Interfaces";
 const AdminOrder = () => {
 const [Orderdata, setOrderdata] = useState<Array<AdminOrderinterface> | null>(null);
 

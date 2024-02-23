@@ -5,12 +5,12 @@ import Image from "next/image";
 import DashboardCard from "./components/DashboardCard";
 import { loadingstatus } from "../store/atom/State";
 import { useRecoilValue } from "recoil";
-import Loading from "@repo/ui/Loading";
+import Loading from "./loading";
 import { useRouter } from "next/navigation";
 import useFetch from "./hooks/useFetch";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel";
-import {Productinterface} from "../../../packages/Utils/Interfaces"
+import {Productinterface} from "../Utils/Interfaces"
 
 const page = () => {
   const isLoading = useRecoilValue(loadingstatus);
