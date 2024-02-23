@@ -231,7 +231,7 @@ const Navbar = () => {
               {isAdmin && (
                 <li
                   className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
-                  onClick={() => router.push("/Adminhandle")}
+                  onClick={() => router.push("/Dashboard")}
                 >
                   <FiPlusSquare />
                 </li>
