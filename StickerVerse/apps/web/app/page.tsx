@@ -23,7 +23,7 @@ const page = () => {
       <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         {/* Banner */}
         <div className="rounded-2xl w-full overflow-hidden md:flex items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
-          <div className="min:w-[40vw] h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]  text-gray-800 rounded-l-xl bg-gray-100">
+          <div className="min:w-[40vw] md:hidden  h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]  text-gray-800 rounded-l-xl bg-gray-100">
             <h1 className="text-4xl font-bold">
               Collect Prints for the Heaven
             </h1>
@@ -40,7 +40,7 @@ const page = () => {
               Explore Now
             </button>
           </div>
-          <div className="h-fit hidden md:max-w-[55vw] md:flex">
+          <div className="h-fit hidden  md:flex">
             <Carousel showArrows = {true} showStatus = {false} showThumbs = {false} autoPlay = {true} infiniteLoop = {true}>
               {Banner.map((item, index) => {
                 return (
@@ -50,7 +50,7 @@ const page = () => {
                     src={item.imageURL}
                     width={50}
                     height={50}
-                    className="rounded-r-2xl"
+                    className="rounded-2xl"
                     alt="Image"
                   />
                 );
