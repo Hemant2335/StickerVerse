@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { toast } from "react-hot-toast";
 import {Productinterface} from "../../Utils/Interfaces"
+
 
 interface ItemCardProps {
   data: Productinterface,
@@ -15,7 +15,7 @@ interface ItemCardProps {
 
 const ItemCard = ({ data, key }: ItemCardProps) => {
   const router = useRouter();
-
+  
   const handleonCart = () => {
     router.push(`/Items/${data?.id}`);
   };
@@ -23,10 +23,12 @@ const ItemCard = ({ data, key }: ItemCardProps) => {
 
   return (
     <>
+
       <div
         className=" cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:max-w-[16vw]"
         onClick={handleonCart}
       >
+        
         <div className="  md:min-w-[10vw] md:max-w-[25vw]">
           <Image
             layout="responsive"
