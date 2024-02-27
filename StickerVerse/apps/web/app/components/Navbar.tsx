@@ -24,7 +24,6 @@ import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { Accountname } from "../../store/atom/State";
 import { isdark } from "../../store/atom/State";
-import { JSDOM } from 'jsdom';
 
 const Navbar = () => {
   const router = useRouter();
@@ -105,7 +104,7 @@ const Navbar = () => {
           />
         </div>
         {/* Mobile Menu */}
-        <div className="flex">
+        <div className="flex md:hidden">
         {!isdarktheme ? (
                 <li
                   className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
@@ -123,7 +122,7 @@ const Navbar = () => {
                 </li>
               )}
           <button
-            className="md:hidden p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            className=" p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
             onClick={handlesideclick}
           >
             <FiAlignLeft />
@@ -319,7 +318,7 @@ const Navbar = () => {
                   <FiUser /> {Accname.split(" ")[0]}
                 </li>
                 {isUserdropdown && localStorage.getItem("token") && (
-                  <div className="shadow-3xl bg-white z-50  rounded-md absolute w-fit h-fit">
+                  <div className="shadow-3xl  z-50  rounded-md absolute w-fit h-fit">
                     <div
                       className=" py-2 px-[4vh] cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                       onClick={() => {
