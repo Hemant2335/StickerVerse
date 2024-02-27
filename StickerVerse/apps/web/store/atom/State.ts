@@ -7,6 +7,12 @@ export const adminstatus = atom({
     default : false
 })
 
+
+export const isdark = atom({
+  key : "isdark",
+  default : false
+})
+
 export const Accountname = atom({
   key : "accountname" ,
   default : "Login"

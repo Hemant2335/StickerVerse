@@ -20,7 +20,7 @@ const DashboardCard = ( {Name } : DashboardCardProps ) => {
   return (
     <>
     <div className="mt-[5vh] w-full">
-      <h2 className="font-bold mb-5 text-[4vh] text-gray-800 text-left text-lg md:text-[5vh]">
+      <h2 className="font-bold mb-5 text-[4vh]  text-left text-lg md:text-[5vh]">
         {Name}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-5">

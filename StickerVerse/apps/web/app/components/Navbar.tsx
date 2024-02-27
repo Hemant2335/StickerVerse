@@ -13,20 +13,36 @@ import {
   FiPackage,
   FiUser,
   FiSmile,
+  FiSun,
+  FiMoon
 } from "react-icons/fi";
+import { CiLight, CiDark } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { adminstatus } from "../../store/atom/State";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { Accountname } from "../../store/atom/State";
+import { isdark } from "../../store/atom/State";
 
 const Navbar = () => {
   const router = useRouter();
   const [issidebar, setissidebar] = useState(false);
   const [isAdmin, setisAdmin] = useRecoilState(adminstatus);
   const [Accname, setAccname] = useRecoilState(Accountname);
+  const [isdarktheme, setisdarktheme] = useRecoilState(isdark);
   const [isUserdropdown, setisUserdropdown] = useState(false);
+  const body = document.body;
+
+  const modetoggle = () => {
+    if (body.classList.contains("light")) {
+      body.classList.remove("light");
+      setisdarktheme(!isdarktheme);
+    } else {
+      body.classList.add("light");
+      setisdarktheme(!isdarktheme);
+    }
+  };
 
   const handlesideclick = () => {
     setissidebar(!issidebar);
@@ -72,7 +88,10 @@ const Navbar = () => {
       </div>
       <div className="mt-[1vh] font-poppins flex justify-between items-center overflow-x-hidden">
         {/* Logo */}
-        <div className="flex cursor-pointer  text-[3vh] text-gray-800 w-fit h-fit font-bold " onClick={() => router.push("/")}>
+        <div
+          className="flex cursor-pointer  text-[3vh] w-fit h-fit font-bold "
+          onClick={() => router.push("/")}
+        >
           <Image
             layout="responsive"
             src={require("../../Assets/Logo.png")}
@@ -81,16 +100,33 @@ const Navbar = () => {
           />
         </div>
         {/* Mobile Menu */}
-        <div>
+        <div className="flex">
+        {!isdarktheme ? (
+                <li
+                  className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  onClick={() => modetoggle()}
+                >
+                  <FiSun />
+                </li>
+              ) : (
+                <li
+                  className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  onClick={() => modetoggle()}
+                >
+                  <FiMoon />
+                  
+                </li>
+              )}
           <button
-            className="text-gray-800 md:hidden p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+            className="md:hidden p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
             onClick={handlesideclick}
           >
             <FiAlignLeft />
           </button>
+
         </div>
         {issidebar && (
-          <div className="z-10 fixed p-2 right-0 text-gray-800  h-screen top-0 w-[50vw] shadow-3xl bg-white">
+          <div className="z-10 fixed p-2 right-0  h-screen top-0 w-[50vw] shadow-3xl bg-white">
             <button
               className="  md:hidden p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
               onClick={handlesideclick}
@@ -181,14 +217,14 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="hidden  text-[2.3vh] md:flex items-center w-full justify-center p-4">
-          <div className="bg-[#e5e4e2]  rounded-xl flex ml-[2vw] items-center pl-2 pr-[5vw]">
-            <h1 className="text-gray-800 text-lg">
+          <div className=" shadow-3xl rounded-xl flex ml-[2vw] items-center pl-2 pr-[5vw]">
+            <h1 className="text-lg">
               <FiSearch />
             </h1>
             <input
               type="text"
               placeholder="Search"
-              className="bg-[#e5e4e2] text-gray-800 focus:border-0  focus:outline-none px-3 py-2 rounded-xl"
+              className="  focus:border-0  focus:outline-none px-3 py-2 rounded-xl"
             />
           </div>
         </div>
@@ -198,14 +234,31 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-center p-4">
           <nav>
             <ul className="flex gap-2 items-center justify-center">
+            {!isdarktheme ? (
+                <li
+                  className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  onClick={() => modetoggle()}
+                >
+                  <FiSun />
+                </li>
+              ) : (
+                <li
+                  className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  onClick={() => modetoggle()}
+                >
+                  <FiMoon />
+                  
+                </li>
+              )}
               <li
-                className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => router.push("/")}
               >
                 <FiHome />
               </li>
+              
               <li
-                className="text-gray-800 font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                className="font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
                   router.push("/Explore/Sticker");
                 }}
@@ -213,7 +266,7 @@ const Navbar = () => {
                 <FiCompass />
               </li>
               <li
-                className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
                   router.push("/Category");
                 }}
@@ -221,7 +274,7 @@ const Navbar = () => {
                 <FiGrid />
               </li>
               <li
-                className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
                   router.push("/Category");
                 }}
@@ -230,14 +283,14 @@ const Navbar = () => {
               </li>
               {isAdmin && (
                 <li
-                  className="text-gray-800  font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  className=" font-bold p-[1.5vh] flex items-center gap-1  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                   onClick={() => router.push("/Dashboard")}
                 >
                   <FiPlusSquare />
                 </li>
               )}
               <li
-                className="text-gray-800 p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                className="p-[1.5vh]  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                 onClick={() => {
                   localStorage.getItem("token")
                     ? router.push("/Cart")
@@ -251,7 +304,7 @@ const Navbar = () => {
                 onMouseLeave={handleMouseleave}
               >
                 <li
-                  className="text-gray-800 flex items-center gap-2  p-[1.5vh] border-2  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                  className="flex items-center gap-2  p-[1.5vh] border-2  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                   onClick={() => {
                     if (!localStorage.getItem("token")) {
                       router.push("/Auth/Login");
@@ -270,19 +323,19 @@ const Navbar = () => {
                           : router.push("/Auth/Login");
                       }}
                     >
-                      <h1 className="text-gray-800 font-medium">Profile</h1>
+                      <h1 className="font-medium">Profile</h1>
                     </div>
                     <div
                       className=" py-2 px-[4vh] cursor-pointer hover:bg-red-400 rounded-md flex items-center"
                       onClick={() => {
                         localStorage.getItem("token")
-                          ? (!isAdmin
+                          ? !isAdmin
                             ? router.push("/Orders")
-                            : router.push("/AdminOrders"))
+                            : router.push("/AdminOrders")
                           : router.push("/Auth/Login");
                       }}
                     >
-                      <h1 className="text-gray-800 font-medium">Order</h1>
+                      <h1 className="font-medium">Order</h1>
                     </div>
                   </div>
                 )}

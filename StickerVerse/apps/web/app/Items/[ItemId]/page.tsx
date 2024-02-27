@@ -143,7 +143,7 @@ const Item = () => {
         </div>
         <div className="md:min-w-[45vw] md:max-w-[45vw] md:mt-0 mt-[5vh] flex flex-col gap-[2vh]">
           <div>
-            <h1 className=" font-bold text-gray-800 text-4xl">
+            <h1 className=" font-bold  text-4xl">
               {itemdata?.Name}
             </h1>
             <h2 className=" font-bold mt-[1vh] text-2xl text-red-500">
@@ -151,20 +151,20 @@ const Item = () => {
             </h2>
             <p className=" text-gray-400">{itemdata?.Description}</p>
           </div>
-          <h1 className="text-gray-800 font-medium">Tags</h1>
+          <h1 className=" font-medium">Tags</h1>
           <div className=" flex gap-2">
-            <div className="border-2 text-gray-800 text-sm w-fit p-2 rounded-md">
+            <div className="border-2  text-sm w-fit p-2 rounded-md">
               {itemdata?.type}
             </div>
-            <div className="border-2 text-gray-800 text-sm w-fit p-2 rounded-md">
+            <div className="border-2  text-sm w-fit p-2 rounded-md">
               {itemdata?.Category}
             </div>
-            <div className="border-2 text-gray-800 text-sm w-fit p-2 rounded-md">
+            <div className="border-2  text-sm w-fit p-2 rounded-md">
               {itemdata?.Subcategory}
             </div>
           </div>
-          <h1 className="text-gray-800 font-medium">Quantity</h1>
-          <div className="flex gap-2 text-gray-800 font-medium">
+          <h1 className=" font-medium">Quantity</h1>
+          <div className="flex gap-2  font-medium">
             <button
               onClick={() => {
                 if (Quantity <= 1) {
@@ -194,12 +194,12 @@ const Item = () => {
             </button>
           </div>
 
-          <h1 className="text-gray-800 font-medium">Size</h1>
+          <h1 className=" font-medium">Size</h1>
           {itemdata?.type === "Poster" && (
             <div className=" md:flex grid grid-cols-2 pr-[2vh]   gap-2">
               {PosterSize.map((item) => (
                 <div
-                  className="border-2  text-gray-800 cursor-pointer hover:scale-105  transition-transform   text-sm md:max-w-[7vw] p-2 rounded-md"
+                  className="border-2   cursor-pointer hover:scale-105  transition-transform   text-sm md:max-w-[7vw] p-2 rounded-md"
                   id={item?.Name}
                   onClick={() => {
                     setSize(item?.Name);
@@ -226,7 +226,7 @@ const Item = () => {
             <div className=" md:flex grid grid-cols-2 py-[2vh]  gap-2">
               {StickerSize.map((item) => (
                 <div
-                  className="border-2  text-gray-800 cursor-pointer hover:scale-105  transition-transform  font-bold text-sm md:max-w-[10vw] p-2 rounded-md"
+                  className="border-2   cursor-pointer hover:scale-105  transition-transform  font-bold text-sm md:max-w-[10vw] p-2 rounded-md"
                   id={item?.Name}
                   onClick={() => {
                     setSize(item?.Name);
@@ -259,7 +259,7 @@ const Item = () => {
       </div>
       {/* Similar Items */}
 
-      <div className="mt-[5vh] w-full text-gray-800">
+      <div className="mt-[5vh] w-full ">
         <h1 className="text-xl font-bold">You may also like</h1>
         <div className="grid grid-cols-2 mt-[5vh] md:grid-cols-5 gap-2">
           {Similardata?.map((item : Productinterface) => {

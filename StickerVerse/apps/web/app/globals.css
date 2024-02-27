@@ -4,21 +4,67 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  --background-color-light : #FAF9F6;
+  --background-color-dark : #222222;
+  --text-color-dark : #FAF9F6;
+  --text-color-light : #222222;
   }
-} */
+
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: #ffffff;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
   font-family: "Poppins", sans-serif;
+}
+input{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+button{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.card{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.other{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+
+.light {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.light .card{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+.light .other{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.light input{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.light button{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+
+
+
+
+*:focus{
+  outline: 0;
 }

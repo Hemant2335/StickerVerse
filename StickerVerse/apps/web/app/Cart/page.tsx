@@ -212,7 +212,7 @@ const Cart = () => {
 
   return (
     <>
-      <h1 className="text-gray-800 mt-[5vh] text-xl font-extrabold">
+      <h1 className=" mt-[5vh] text-xl font-extrabold">
         Shopping Cart
       </h1>
       {isLoading && <Loading />}

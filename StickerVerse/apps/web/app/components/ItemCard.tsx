@@ -25,7 +25,7 @@ const ItemCard = ({ data, key }: ItemCardProps) => {
     <>
 
       <div
-        className=" cursor-pointer border-2 shadow-3xl bg-white  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:max-w-[16vw]"
+        className=" cursor-pointer shadow-3xl bg-black-800  hover:scale-105 transition-transform mb-10 rounded-lg  w-full md:w-fit  p-4 md:max-w-[16vw]"
         onClick={handleonCart}
       >
         
@@ -40,7 +40,7 @@ const ItemCard = ({ data, key }: ItemCardProps) => {
           />
           <div className=" flex  items-center justify-between px-2  rounded-md">
             <div>
-              <h1 className="text-sm text-gray-800 font-poppins font-medium mt-5 ">
+              <h1 className="text-sm  font-poppins font-medium mt-5 ">
                 {data?.Name}
               </h1>
               <div className="flex gap-2">
