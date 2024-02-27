@@ -24,6 +24,7 @@ import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { Accountname } from "../../store/atom/State";
 import { isdark } from "../../store/atom/State";
+import { JSDOM } from 'jsdom';
 
 const Navbar = () => {
   const router = useRouter();
@@ -32,14 +33,18 @@ const Navbar = () => {
   const [Accname, setAccname] = useRecoilState(Accountname);
   const [isdarktheme, setisdarktheme] = useRecoilState(isdark);
   const [isUserdropdown, setisUserdropdown] = useState(false);
-  const body = document.body;
+  const [body, setbody] = useState<HTMLElement | null>(null)
+  // Create a DOM environment
+  useEffect(() => {
+    setbody(document.body)
+  }, []);
 
   const modetoggle = () => {
-    if (body.classList.contains("light")) {
+    if (body?.classList.contains("light")) {
       body.classList.remove("light");
       setisdarktheme(!isdarktheme);
     } else {
-      body.classList.add("light");
+      body?.classList.add("light");
       setisdarktheme(!isdarktheme);
     }
   };
