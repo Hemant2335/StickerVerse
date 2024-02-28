@@ -130,7 +130,7 @@ const Navbar = () => {
 
         </div>
         {issidebar && (
-          <div className="z-10 fixed p-2 right-0  h-screen top-0 w-[50vw] shadow-3xl bg-white">
+          <div className="z-10 fixed p-2 right-0  h-screen top-0 w-[50vw] shadow-3xl bg-red-500">
             <button
               className="  md:hidden p-[1.5vh] rounded-lg  cursor-pointer transition-transform"
               onClick={handlesideclick}
@@ -139,9 +139,9 @@ const Navbar = () => {
             </button>
             <div>
               <nav>
-                <ul className="gap-5 items-center px-[8vw] py-[5vh] flex flex-col">
+                <ul className="gap-5 items-center bg-red-500 px-[8vw] py-[5vh] flex flex-col">
                   <li
-                    className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       router.push("/");
                       handlesideclick();
@@ -150,7 +150,7 @@ const Navbar = () => {
                     <FiHome />
                   </li>
                   <li
-                    className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       router.push("/Explore/Sticker");
                       handlesideclick();
@@ -159,7 +159,7 @@ const Navbar = () => {
                     <FiCompass />
                   </li>
                   <li
-                    className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       router.push("/Category");
                       handlesideclick();
@@ -169,7 +169,7 @@ const Navbar = () => {
                   </li>
                   {isAdmin && (
                     <li
-                      className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                      className="bg-red-400 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                       onClick={() => {
                         router.push("/Adminhandle");
                         handlesideclick();
@@ -179,7 +179,7 @@ const Navbar = () => {
                     </li>
                   )}
                   <li
-                    className="bg-gray-200 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400 w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       localStorage.getItem("token")
                         ? router.push("/Cart")
@@ -190,7 +190,7 @@ const Navbar = () => {
                     <FiShoppingCart />
                   </li>
                   <li
-                    className="bg-gray-200  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       localStorage.getItem("token")
                         ? router.push("/Profile")
@@ -201,7 +201,7 @@ const Navbar = () => {
                     <FiUser />
                   </li>
                   <li
-                    className="bg-gray-200  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
+                    className="bg-red-400  w-full flex  justify-center py-[1.5vh] rounded-lg  cursor-pointer transition-transform"
                     onClick={() => {
                       localStorage.getItem("token")
                         ? !isAdmin

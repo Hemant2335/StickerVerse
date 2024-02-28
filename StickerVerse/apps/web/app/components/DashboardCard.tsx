@@ -24,8 +24,12 @@ const DashboardCard = ( {Name } : DashboardCardProps ) => {
         {Name}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
-
-        {isLoading &&  Skeletond.map(()=> {return <Skeleton height="80vh" width="15vw"/>})}
+        {isLoading &&  Skeletond.map(()=> {return <div className="flex flex-col gap-4 w-52">
+  <div className="skeleton h-32 w-full"></div>
+  <div className="skeleton h-4 w-28"></div>
+  <div className="skeleton h-4 w-full"></div>
+  <div className="skeleton h-4 w-full"></div>
+</div>})}
         {ProductData?.slice(0, 10).map((item) => {
           return <ItemCard data={item} key={item?.id}/>;
         })}  

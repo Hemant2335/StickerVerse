@@ -21,6 +21,7 @@ input{
   color: var(--text-color-dark);
 }
 
+
 button{
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);

@@ -40,7 +40,7 @@ const page = () => {
               Explore Now
             </button>
           </div>
-          {isLoading && <Skeleton animation = "wave" height="120vh" width="100vw"/>}
+          {isLoading && <div className="skeleton w-[90vw] h-[120vh]"></div>}
           <div className="h-fit hidden  md:flex">
             <Carousel showArrows = {true} showStatus = {false} showThumbs = {false} autoPlay = {true} infiniteLoop = {true}>
               {Banner.map((item, index) => {

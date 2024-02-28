@@ -4,7 +4,7 @@ import React, { useEffect,  useState } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { loadingstatus } from "../../../store/atom/State";
-import {useSetRecoilState } from "recoil";
+import {useRecoilValue, useSetRecoilState } from "recoil";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ItemCard } from "../../components";
@@ -15,15 +15,19 @@ const Item = () => {
   const [Similardata, setSimilardata] = useState<Productinterface[] | null>(null);
   const [Size, setSize] = useState<string>("");
   const { ItemId } = useParams();
+  const isLoading = useRecoilValue(loadingstatus);
+  const setisLoading = useSetRecoilState(loadingstatus);
   const router = useRouter();
   const fetchItem = async () => {
     try {
+      setisLoading(true);
       const res = await fetch(
         `https://theprintbackend.vercel.app/products/item/${ItemId}`
       );
       const data = await res.json();
       console.log(data?.item);
       setitemdata(data?.item);
+      setisLoading(false);
       handleUrl();
     } catch (error) {
       console.log(error);
@@ -54,7 +58,7 @@ const Item = () => {
     }
   };
 
-  const setisLoading = useSetRecoilState(loadingstatus);
+  
   const handleonCart = async () => {
     try {
       if (!Size) {
@@ -130,6 +134,7 @@ const Item = () => {
 
   return (
     <>
+      {isLoading && <div className="skeleton h-32 w-full"/>}
       <div className="md:flex  w-full md:md-0 mt-[5vh] md:px-[10vh] md:py-[5vh] min-h-[50vh] justify-between">
         <div>
           <Image
