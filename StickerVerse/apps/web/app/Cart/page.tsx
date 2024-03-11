@@ -60,6 +60,10 @@ const Cart = () => {
     }
   }
 
+  const handlesendInvoice = async (id : string) => {
+    
+  };
+
 
   // Function to Generate the Reciept
 

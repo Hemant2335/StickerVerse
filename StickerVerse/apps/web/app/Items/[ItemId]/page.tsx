@@ -18,6 +18,7 @@ const Item = () => {
   const isLoading = useRecoilValue(loadingstatus);
   const setisLoading = useSetRecoilState(loadingstatus);
   const router = useRouter();
+  const SubCategory = "";
   const fetchItem = async () => {
     try {
       setisLoading(true);
@@ -41,7 +42,7 @@ const Item = () => {
       }
       console.log(itemdata?.type, itemdata?.Category);
       const res = await fetch(
-        `https://theprintbackend.vercel.app/products/all/filter?type=${itemdata?.type}&&category=${itemdata?.Category}`,
+        `https://theprintbackend.vercel.app/products/all/filter?type=${itemdata?.type}&&category=${itemdata?.Category}&&subcategory=${SubCategory}`,
         {
           method: "GET",
           headers: {
