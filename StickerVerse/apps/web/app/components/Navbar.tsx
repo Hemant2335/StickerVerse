@@ -87,7 +87,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-black text-white flex justify-center">
+      <div className="bg-black  text-white flex justify-center">
         Summer Sale Live 50% off on any 2 Stickers
       </div>
       <div className="mt-[1vh] font-poppins flex justify-between items-center overflow-x-hidden">

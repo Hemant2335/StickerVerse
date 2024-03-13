@@ -8,21 +8,21 @@ import { useRecoilValue } from "recoil";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
 import useFetch from "./hooks/useFetch";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import {Productinterface} from "../Utils/Interfaces"
+import { Productinterface } from "../Utils/Interfaces";
 import { Skeleton } from "@mui/material";
 
 const page = () => {
   const isLoading = useRecoilValue(loadingstatus);
-  const Banner:Productinterface[] = useFetch("Special");
+  const Banner: Productinterface[] = useFetch("Special");
   const router = useRouter();
 
   return (
     <>
-      <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
+      <div className="w-full relative md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         {/* Banner */}
-        <div className="rounded-2xl shadow-3xl w-full overflow-hidden md:flex items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
+        <div className="rounded-2xl shadow-3xl w-full overflow-hidden md:hidden items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
           <div className="min:w-[40vw]  md:hidden h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]   rounded-l-xl">
             <h1 className="text-4xl font-bold">
               Collect Prints for the Heaven
@@ -40,9 +40,19 @@ const page = () => {
               Explore Now
             </button>
           </div>
-          {isLoading && <div className="skeleton hidden md:flex w-[90vw] h-[120vh]"></div>}
+        </div>
+        <div className="absolute top-0 h-[60vh] bg-red-400">
+          {isLoading && (
+            <div className="skeleton  hidden md:flex w-[90vw] h-[120vh]"></div>
+          )}
           <div className="h-fit hidden  md:flex">
-            <Carousel showArrows = {true} showStatus = {false} showThumbs = {false} autoPlay = {true} infiniteLoop = {true}>
+            <Carousel
+              showArrows={true}
+              showStatus={false}
+              showThumbs={false}
+              autoPlay={true}
+              infiniteLoop={true}
+            >
               {Banner.map((item, index) => {
                 return (
                   <Image

@@ -35,7 +35,7 @@ const DashboardCard = ({ Name }: DashboardCardProps) => {
           })}
         </div>
         <div className=" w-full flex justify-center">
-          <MoreCard Name={Name} />
+          <MoreCard name={Name} />
         </div>
       </div>
     </>
