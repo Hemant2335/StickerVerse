@@ -23,16 +23,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <GoogleOAuthProvider clientId="551918395782-v17s3h8ts05grojf189484cbm816ivnr.apps.googleusercontent.com">
       <body className="">
-        <div className="mx-[5vw] relative">
+        
           <RecoilContextProvider>
             <Navbar />
+            <div className="mx-[2vw] pt-[15vh] md:pt-[10vh]">
             <Suspense fallback={<Loading />} />
             {children}
             <Analytics />
             <SpeedInsights />
             <Toaster />
+            </div>
           </RecoilContextProvider>
-        </div>
         <Footer />
         <script src="https://checkout.razorpay.com/v1/checkout.js" async/>
       </body>

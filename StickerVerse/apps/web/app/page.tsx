@@ -20,11 +20,11 @@ const page = () => {
 
   return (
     <>
-      <div className="w-full relative md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
+      <div className="w-full  md:p-4 p-2 flex flex-col items-center overflow-x-hidden">
         {/* Banner */}
-        <div className="rounded-2xl shadow-3xl w-full overflow-hidden md:hidden items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
-          <div className="min:w-[40vw]  md:hidden h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]   rounded-l-xl">
-            <h1 className="text-4xl font-bold">
+        <div className="rounded-2xl  shadow-3xl w-full overflow-hidden md:flex items-center justify-center  md:h-[60vh]  md:mt-[5vh]">
+          <div className="min:w-[80vw]   h-fit md:max-w-[40vw] p-[4vh] md:p-[10vh]   rounded-l-xl">
+            <h1 className="text-4xl font-bold ">
               Collect Prints for the Heaven
             </h1>
             <p className="mt-[5vh] text-gray-400 ">
@@ -32,7 +32,7 @@ const page = () => {
               wide range Collection , Enjoy exploring and supporting future{" "}
             </p>
             <button
-              className="mt-[5vh] bg-gray-800 text-white px-4 py-2 rounded-lg"
+              className="mt-[5vh] shadow-3xl bg-red-400 text-white px-4 py-2 rounded-lg"
               onClick={() => {
                 router.push("/Category");
               }}
@@ -40,12 +40,10 @@ const page = () => {
               Explore Now
             </button>
           </div>
-        </div>
-        <div className="absolute top-0 h-[60vh] bg-red-400">
           {isLoading && (
-            <div className="skeleton  hidden md:flex w-[90vw] h-[120vh]"></div>
+            <div className="skeleton  hidden md:flex w-[90vw] h-fit"></div>
           )}
-          <div className="h-fit hidden  md:flex">
+          <div className=" h-fit max-w-[60vw] hidden md:flex">
             <Carousel
               showArrows={true}
               showStatus={false}
@@ -61,7 +59,7 @@ const page = () => {
                     src={item.imageURL}
                     width={50}
                     height={50}
-                    className="rounded-2xl"
+                    className="rounded-2xl "
                     alt="Image"
                   />
                 );
